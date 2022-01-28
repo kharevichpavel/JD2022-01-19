@@ -4,6 +4,7 @@ public class TaskA {
     public static void main(String[] args) {
         step1();
         step2();
+        step3();
 
 
     }
@@ -29,6 +30,23 @@ public class TaskA {
 
 
 
+
+    }
+
+    private static void step3() {
+        double x = 12.1;
+        System.out.println("-".repeat(36) );
+        System.out.printf("   A     X      F");
+        System.out.println("-".repeat(36) );
+
+
+        for (double  a = -5; a <=12 ; a=a+3.75) {
+            double f = exp(a * x) - 3.45 * a;
+            System.out.printf(" %8.4f  %8.4f  %12.6g%n", a,x,f );
+
+
+
+        }
 
     }
 }
