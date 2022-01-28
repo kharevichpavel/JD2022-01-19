@@ -26,7 +26,7 @@ public class TaskA {
         double a = 1.21;
         double b = 0.371;
         double y = tan(pow(a+b,2))-cbrt(a+1.5)+a*pow(b,5)-b/log(a*a) ;
-        System.out.printf("For a=%f b=%f y=%g", a,b,y);
+        System.out.printf("For a=%f b=%f y=%g%n", a,b,y);
 
 
 
@@ -43,10 +43,6 @@ public class TaskA {
         for (double  a = -5; a <=12 ; a=a+3.75) {
             double f = exp(a * x) - 3.45 * a;
             System.out.printf(" %8.4f  %8.4f  %12.6g%n", a,x,f );
-
-
-
         }
-
     }
 }
