@@ -1,6 +1,6 @@
 package by.it.katsal.jd01_03;
 
-public class Helper<pablic> {
+class Helper {
 
     static double findMin(double[] array) {
         if (0 == array.length) {
@@ -42,8 +42,9 @@ public class Helper<pablic> {
                     array[j + 1] = buffer;
                     swap = true;
                 }
-                last--;
+
             }
+            last--;
         }
         while (swap );
     }
