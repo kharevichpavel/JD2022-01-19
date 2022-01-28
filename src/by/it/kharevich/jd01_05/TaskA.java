@@ -22,6 +22,12 @@ public class TaskA {
     }
 
     private static void solvePart2() {
+        double a = 1.21;
+        double b = 0.371;
+        double y = tan(pow(a + b, 2)) - cbrt(a + 1.5) + a * pow(b, 5) - b / log(pow(a, 2));
+        System.out.printf("For a=%f b=%f result y=%f",a,b,y);
+
+
     }
 
     private static void solvePart3() {
