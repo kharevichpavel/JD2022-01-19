@@ -36,7 +36,6 @@ public class TaskA {
             System.out.printf(" %8.4f  %8.4f  %12.6g%n",a,x,f);
         }
         System.out.println("-".repeat(36));
-        System.out.println("╝\u255D");
     }
 
 
