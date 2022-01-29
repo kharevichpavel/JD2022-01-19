@@ -13,33 +13,40 @@ public class TaskB {
         name = name.trim();
         String[] nameAll = name.split(" ");
 
-
         Scanner sc2 = new Scanner(System.in);
-
-
         int[][] salary = new int[peopleCount][4];
-        int count = 0;
+        int sum = 0;
+
         for (int i = 0; i < salary.length; i++) {
+
+            System.out.printf("Введите зарплату для %s\n", nameAll[i]);
             for (int j = 0; j < salary[0].length; j++) {
-                if (i==0){
-                    System.out.printf("Введите зарплату для %s\n",nameAll);
-                    salary[i][j] = sc2.nextInt();
-                    break;
-                }
-                else {
-                    for (int k = 0; k < nameAll.length; k++) {
-                        salary[i][j] = sc2.nextInt();
-                        System.out.printf("Введите зарплату для %s\n",nameAll);
-                        break;
-
-                    }
-
-                }
-
-
+                salary[i][j] = sc2.nextInt();
+                sum=sum+salary[i][j];
             }
         }
+
+
+        System.out.print("-".repeat(65));
+        System.out.println();
+        System.out.print("Фамилия        Квартла1  Квартал2  Квартал3  Квартал4  Итого");
+        System.out.println();
+        System.out.print("-".repeat(65));
+        System.out.println();
+        for (int i = 0; i < salary.length; i++) {
+            System.out.println();
+            System.out.printf("%-15s", nameAll[i]+":");
+            for (int i1 = 0; i1 < salary[i].length; i1++) {
+                System.out.printf("%-10d",salary[i][i1]);
+            }
+        }
+        System.out.println();
+        System.out.print("-".repeat(65));
+        System.out.println();
+        System.out.printf("Итого          "+"%-15d",sum);
     }
+
+
 }
 
 
