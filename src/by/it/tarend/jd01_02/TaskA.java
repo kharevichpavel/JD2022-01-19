@@ -46,7 +46,6 @@ public class TaskA {
         System.out.println();
     }
     private static void step3(int[] arr) {
-
         int min = arr[0];
 
         for (int element : arr) {

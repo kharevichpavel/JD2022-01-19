@@ -9,7 +9,7 @@ public class Runner {
         Scanner sc = new Scanner(System.in);
         String line = sc.nextLine();
         int columnCount = 3;
-        String nameOfArray = "v";
+        String nameOfArray = "V";
         double[] array = InOut.getArray(line);
         System.out.println("\n Simple output \n");
         InOut.printArray(array);

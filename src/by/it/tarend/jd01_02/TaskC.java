@@ -7,15 +7,14 @@ public class TaskC {
     public static void main(String[] args) {
 
         int n;
-        int sum;
         Scanner sc = new Scanner(System.in);
 
         n = sc.nextInt();
         int[][] array;
 
         array = step1(n);
-        sum = step2(array);
-        int[][] newArray = step3(array);
+        step2(array);
+        step3(array);
 
     }
 

@@ -33,8 +33,8 @@ public class TaskC {
         int indexOfFirst = binarySearch(array, firstElement);
         int indexOfLast = binarySearch(array, lastElement);
 
-        System.out.printf("Index of first element=%d/n", indexOfFirst);
-        System.out.printf("Index of last element=%d/n", indexOfLast);
+        System.out.printf("Index of first element=%d%n", indexOfFirst);
+        System.out.printf("Index of last element=%d%n", indexOfLast);
     }
 
     static int binarySearch(double[] array, double value) {

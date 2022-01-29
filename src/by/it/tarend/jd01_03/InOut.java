@@ -21,7 +21,7 @@ class InOut {
     }
 
      static void printArray(double[] array, String nameOfArray, int columnCount) {
-        // v[ 0 ] = 111.222    v[ 1 ] = 222.111
+        // v[ 0 ] = 111.222    v[ 1 ] = 222.111 - такой вывод нужен
         for (int index = 0; index < array.length; index++) {
             if (((index+1) % columnCount == 0) || (index+1 == array.length)) {
                 System.out.printf("%s[% -3d]=%-10.3f\n", nameOfArray, index, array[index]);
