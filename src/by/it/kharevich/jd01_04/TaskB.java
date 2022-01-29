@@ -17,7 +17,8 @@ public class TaskB {
         Scanner sc2 = new Scanner(System.in);
         int[][] salary = new int[peopleCount][4];
         int sum = 0;
-        int sumName = 0;
+        int sumName;
+        int[]resultName = new int[salary.length];
         double average = 0;
 
         for (int i = 0; i < salary.length; i++) {
@@ -25,8 +26,16 @@ public class TaskB {
             for (int j = 0; j < salary[0].length; j++) {
                 salary[i][j] = sc2.nextInt();
                 sum=sum+salary[i][j];
-                average = sum/salary.length;
+                average = (sum/salary.length)/4;
             }
+        }
+
+        for (int i = 0; i < salary.length; i++) {
+            sumName=0;
+            for (int i1 = 0; i1 < salary[i].length; i1++) {
+                sumName=sumName+salary[i][i1];
+            }
+            resultName[i]=sumName;
         }
 
         System.out.print("-".repeat(65));
@@ -40,16 +49,15 @@ public class TaskB {
             System.out.printf("%-15s", nameAll[i]+":");
             for (int i1 = 0; i1 < salary[i].length; i1++) {
                 System.out.printf("%-10d",salary[i][i1]);
-                sumName=sumName + salary[0][i1];
             }
-            System.out.printf("%-10d", sumName);
+            System.out.printf("%-10d", resultName[i]);
         }
         System.out.println();
         System.out.print("-".repeat(65));
         System.out.println();
         System.out.printf("Итого          "+"%-15d",sum);
         System.out.println();
-        System.out.printf("Средняя        "+"%-15.5f",average);
+        System.out.printf("Средняя        "+"%-15.6f",average);
     }
 }
 
