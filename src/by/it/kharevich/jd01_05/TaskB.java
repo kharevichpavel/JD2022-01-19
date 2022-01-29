@@ -6,6 +6,7 @@ public class TaskB {
     public static void main(String[] args) {
 
         part1();
+        part2();
 
     }
 
@@ -18,9 +19,36 @@ public class TaskB {
                 sum=sum+s;
             }
             y=sum;
-            System.out.printf("%-4.1f      " + "%-16.12f%n",a,y);
+            System.out.printf("При a = %-4.1f      " + "Сумма у = %-16.12f%n",a,y);
         }
         System.out.println();
+    }
+
+    private static void part2() {
+        double result;
+        for (double x = -6; x < 2; x=x+0.5) {
+            double r = 0;
+            for (double b = x; b < x ; b++) {
+                double a = log(b+2.74);
+                if (-2<x/2 && x/2<=-1);{
+                    b=sin(pow(x,2));
+                }
+                if (-1<x/2 && 2<0.2){
+                    b=cos(pow(x,2));
+                }
+                if (x/2==0.2){
+                    b=tanh(pow(x,2));
+                }
+                else {
+                    System.out.println("Вычисления невозможны");
+                }
+                r=r+a;
+
+            }
+            result=r;
+            System.out.print(result);
+
+        }
     }
 
 
