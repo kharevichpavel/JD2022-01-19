@@ -8,10 +8,17 @@ public class TaskB {
         Scanner sc = new Scanner(System.in);
         int peopleCount = sc.nextInt();
 
-        Scanner sc1 = new Scanner(System.in);
-        String name = sc1.nextLine();
+ /*       Scanner sc1 = new Scanner(System.in);
+        String name =sc1.next();
         name = name.trim();
-        String[] nameAll = name.split(" ");
+        String[] nameAll = name.split(" ");*/
+
+        Scanner sc1 = new Scanner(System.in);
+        String[] nameAll = new String[peopleCount];
+        for (int i = 0; i < nameAll.length; i++) {
+            nameAll[i]=sc1.next();
+
+        }
 
         Scanner sc2 = new Scanner(System.in);
         int[][] salary = new int[peopleCount][4];
@@ -25,9 +32,10 @@ public class TaskB {
                 salary[i][j] = sc2.nextInt();
                 sum=sum+salary[i][j];
                 sumName=sumName + salary[0][j];
-                average = (sum/salary.length);
+                average = sum/salary.length;
             }
         }
+
 
         System.out.print("-".repeat(65));
         System.out.println();
@@ -50,4 +58,7 @@ public class TaskB {
         System.out.println();
         System.out.printf("Средняя        "+"%-15.5f",average);
     }
+
+
 }
+
