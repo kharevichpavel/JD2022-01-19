@@ -25,7 +25,7 @@ public class TaskB {
                 salary[i][j] = sc2.nextInt();
                 sum=sum+salary[i][j];
                 sumName=sumName + salary[0][j];
-                average = sum/salary.length;
+                average = (sum/salary.length);
             }
         }
 
