@@ -1,4 +1,4 @@
-package by.it.burov.jd01_04;
+package by.it.burov.jd01_05;
 
 class InOut {
     static double[] getArray(String line){
@@ -19,7 +19,7 @@ class InOut {
 
     static void printArray(double[] array, String name, int columnCount) {
         for (int i = 0; i < array.length; i++) {
-            System.out.printf("%s[% -3d]=%-10.4f ", name,i,array[i]);
+            System.out.printf("%s[% -3d]=%-2.12f ", name,i,array[i]);
             if(((i+1)%columnCount == 0) || (array.length == i+1)){
                 System.out.println();
             }

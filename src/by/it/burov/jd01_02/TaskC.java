@@ -10,6 +10,8 @@ public class TaskC {
         int n = scan.nextInt();
         step1(n);
         step2(step1(n));
+        step3(step1(n));
+
     }
 
     public static int[][] step1(int n) {
@@ -65,52 +67,61 @@ public class TaskC {
     }
 
     public static int[][] step3(int[][] array){
-        int max = Integer.MAX_VALUE;
-        for (int[] row : array){
-            for (int element : row){
-                if(max<element){
-                    max = element;
-                }
-            }
-        }
+        int max = getMax(array);
         boolean[] deleteRow = new boolean[array.length];
         boolean[] deleteColumn = new boolean[array[0].length];
+        fillDeleteFlags(array, max, deleteRow, deleteColumn);
+        int rows = getFalseCount(deleteRow);
+        int columns = getFalseCount(deleteColumn);
+        return buildResultArray(array, deleteRow, deleteColumn, rows, columns);
 
 
-        for (int i = 0; i<array.length;i++){
-            for (int j = 0; j < array[i].length;j++){
-                if(array[i][j]== max){
-                    deleteRow[i]=true;
-                    deleteColumn[j]=true;
-                }
-            }
-        }
-        int rows = 0;
-        for (boolean delete : deleteRow) {
-            if (!delete) {
-                rows++;
-            }
-        }
+    }
 
-        int columns = 0;
-        for (boolean delete : deleteColumn){
-            if(!delete){
-                columns++;
-            }
-        }
+    private static int[][] buildResultArray(int[][] array, boolean[] deleteRow, boolean[] deleteColumn, int rows, int columns) {
         int[][] result = new int[rows][columns];
 
         for (int i = 0, indexRow = 0; i < array.length; i++) {
             if(!deleteRow[i]){
-                for (int j = 0, indexColumn = 0; j < array.length; j++) {
+                for (int j = 0, indexColumn = 0; j < array[i].length; j++) {
                     if(!deleteColumn[j]){
-                        result[indexRow][indexColumn] = array[i][j];
+                        result[indexRow][indexColumn++] = array[i][j];
                     }
                 }
                 indexRow++;
             }
         }
         return result;
+    }
 
+    private static int getFalseCount(boolean[] deleteRow) {
+        int rows = 0;
+        for (boolean delete : deleteRow) {
+            if (!delete)
+                rows++;
+        }
+        return rows;
+    }
+
+    private static void fillDeleteFlags(int[][] array, int max, boolean[] deleteRow, boolean[] deleteColumn) {
+        for (int i = 0; i < array.length; i++){
+            for (int j = 0; j < array[i].length; j++){
+                if(array[i][j]== max){
+                    deleteRow[i]=true;
+                    deleteColumn[j]=true;
+                }
+            }
+        }
+    }
+
+    private static int getMax(int[][] array) {
+        int max = Integer.MIN_VALUE;
+        for (int[] row : array){
+            for (int element : row){
+                if(max<element)
+                    max = element;
+            }
+        }
+        return max;
     }
 }
