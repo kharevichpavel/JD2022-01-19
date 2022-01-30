@@ -28,8 +28,9 @@ public class TaskB {
         double result;
         for (double x = -6; x < 2; x=x+0.5) {
             double r = 0;
-            for (double b = x; b < x ; b++) {
-                double a = log(b+2.74);
+            double b = 0;
+            double a = log(b+2.74);
+            for (a = 0; a==x ; a++) {
                 if (-2<x/2 && x/2<=-1);{
                     b=sin(pow(x,2));
                 }
