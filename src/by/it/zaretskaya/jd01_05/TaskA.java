@@ -6,8 +6,8 @@ public class TaskA {
     public static void main(String[] args) {
         step1();
         step2();
+        step3();
     }
-
 
     private static void step1() {
         double a = 756.13;
@@ -28,6 +28,18 @@ public class TaskA {
        double step4=b/log(a*a);
        double y=step1-step2+step3-step4;
         System.out.printf("For a=%f b=%f result y=%f%n",a,b,y);
+
+    }
+       private static void step3() {
+        double x = 12.1;
+           System.out.println("-".repeat(30));
+           System.out.println("   A        X       F");
+           System.out.println("-".repeat(30));
+        for (double a = -5; a <=12 ; a=a+3.75) {
+            double f = exp(a * x) - 3.45 * a;
+            System.out.printf(" %8.4f  %8.4f  %12.6f%n",a,x,f);
+        }
+
 
     }
 }
