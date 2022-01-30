@@ -5,17 +5,29 @@ import static java.lang.Math.*;
 public class TaskA {
     public static void main(String[] args) {
         step1();
+        step2();
     }
+
 
     private static void step1() {
         double a = 756.13;
         double x = 0.3;
-        double step1 = cos(pow(x * x + PI / 6, 5));
-        double step2=sqrt(x*pow(a,3));
-        double step3=log(abs((a-1.12*x)/4));
-        double z = step1 - step2 - step3;
+        double part1 = cos(pow(x * x + PI / 6, 5));
+        double part2=sqrt(x*pow(a,3));
+        double part3=log(abs((a-1.12*x)/4));
+        double z = part1 - part2 - part3;
         System.out.printf("For x=%f a=%f result z=%f%n",x,a,z);
 
+    }
+    private static void step2() {
+       double a=1.21;
+       double b=0.371;
+       double step1=tan(pow(a+b,2));
+       double step2=cbrt(a+1.5);
+       double step3=a*pow(b,5);
+       double step4=b/log(a*a);
+       double y=step1-step2+step3-step4;
+        System.out.printf("For a=%f b=%f result y=%f%n",a,b,y);
 
     }
 }
