@@ -32,13 +32,14 @@ public class TaskA {
     }
        private static void step3() {
         double x = 12.1;
-           System.out.println("-".repeat(30));
+           System.out.println("-".repeat(36));
            System.out.println("   A        X       F");
-           System.out.println("-".repeat(30));
+           System.out.println("-".repeat(36));
         for (double a = -5; a <=12 ; a=a+3.75) {
             double f = exp(a * x) - 3.45 * a;
-            System.out.printf(" %8.4f  %8.4f  %12.6f%n",a,x,f);
+            System.out.printf(" %8.4f  %8.4f  %12.6g%n",a,x,f);
         }
+           System.out.println("-".repeat(36));
 
 
     }
