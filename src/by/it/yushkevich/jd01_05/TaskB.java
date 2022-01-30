@@ -20,39 +20,38 @@ public class TaskB {
 
             if ((x / 2) <= -2 || (x / 2) > 0.2) {
 
-                System.out.printf("При x/2=%.3f Вычислений не определены\n", x / 2);
+                System.out.printf("При x/2=%.3f Вычисленияне определены\n", x / 2);
 
-            }
 
-            else if ((x / 2) > -2 && (x / 2) <= -1) {
+            } else {
+                if ((x / 2) > -2 && (x / 2) <= -1) {
 
-                b = sin(pow(x, 2));
-                double a = log10(abs(b + 2.74));
-                System.out.printf("При х/2 =%4.2f  а = %-12.6g\n", x / 2, a);
+                    b = sin(pow(x, 2));
 
-            }
 
-            else if ((x / 2) > -1 && (x / 2) < 0.2) {
+                } else if ((x / 2) > -1 && (x / 2) < 0.2) {
 
-                b = cos(pow(x, 2));
-                double a = log10(abs(b + 2.74));
-                System.out.printf("При х/2 =%4.2f  а = %-6.6f\n", x / 2, a);
+                    b = cos(pow(x, 2));
 
-            }
 
-            else if (x / 2 == 0.2) {
+                } else if (x / 2 == 0.2) {
 
-                b = 1 / tan(pow(x, 2));
+                    b = 1 / tan(pow(x, 2));
+
+
+                }
+
                 double a = log10(abs(b + 2.74));
                 System.out.printf("При х/2 =%4.2f  а = %-6.6f\n", x / 2, a);
 
+
             }
-
-
         }
+
         System.out.println("-".repeat(35));
 
     }
+
 
     private static void sumCount() {
 
