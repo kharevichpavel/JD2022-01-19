@@ -36,15 +36,15 @@ public class TaskA {
     }
 
     private static void step2(int[] array) {
-        double sum=0;
+        double sum = 0;
         for (int element : array) {
-            sum=sum+element;
+            sum = sum + element;
 
         }
         double average = sum / array.length;
         for (int element : array) {
-            if (element<average){
-                System.out.print(element+" ");
+            if (element < average) {
+                System.out.print(element + " ");
             }
         }
         System.out.println();
@@ -59,8 +59,8 @@ public class TaskA {
 
         }
         for (int index = array.length - 1; index >= 0; index--) {
-            if (array[index]==min){
-                System.out.print(index+" ");
+            if (array[index] == min) {
+                System.out.print(index + " ");
             }
 
         }

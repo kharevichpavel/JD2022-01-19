@@ -20,9 +20,9 @@ OCT:42+32=74
 class TaskC2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int i= scanner.nextInt();
-        int j= scanner.nextInt();
-        int k=i+j;
+        int i = scanner.nextInt();
+        int j = scanner.nextInt();
+        int k = i + j;
         for (int l = 0; l < 4; l++) {
 
 
