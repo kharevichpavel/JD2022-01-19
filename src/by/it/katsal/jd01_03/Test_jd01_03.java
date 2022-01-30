@@ -90,7 +90,7 @@ public class Test_jd01_03 {
     public void testTaskB3_sort__Helper() throws Exception {
         Test_jd01_03 ok = run("", false);
         Method m = checkMethod(ok.aClass.getSimpleName(), "static sort", double[].class);
-        double[] arr = {0.1, 0.2, -0.2, -0.1, 3, 4, 5, 6, 7, 8, 9, 0, 1};
+        double[] arr =    {0.1, 0.2, -0.2, -0.1, 3, 4, 5, 6, 7, 8, 9, 0, 1};
         double[] sorted = {0.1, 0.2, -0.2, -0.1, 3, 4, 5, 6, 7, 8, 9, 0, 1};
         System.out.println("Исходный  массив:" + Arrays.toString(arr));
         Arrays.sort(sorted);
