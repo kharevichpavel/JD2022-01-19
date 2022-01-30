@@ -1,10 +1,41 @@
 package by.it.tarend.jd01_05;
 
+import java.util.Arrays;
+
 import static java.lang.Math.*;
 
 public class TaskC {
     public static void main(String[] args) {
         solveTask6();
+        solveTask7();
+    }
+
+    private static void solveTask7() {
+        double[] arrayA = new double[31];
+        for (int i = 0; i < arrayA.length; i++) {
+            arrayA[i] = (int) (random() * 348 + 103);
+        }
+
+        int newLength = 0;
+        for (int i = 0; i < arrayA.length; i++) {
+            if (arrayA[i] * 0.1 > i) {
+                newLength++;
+            }
+        }
+
+        double[] arrayB = new double[newLength];
+        int j = 0;
+        for (int i = 0; i < arrayA.length; i++) {
+            if (arrayA[i] * 0.1 > i) {
+                arrayB[j] = arrayA[i];
+                j++;
+            }
+        }
+        Arrays.sort(arrayB);
+
+        printArray(arrayA, "A", 5);
+        System.out.println();
+        printArray(arrayB, "B", 5);
     }
 
     private static void solveTask6() {
