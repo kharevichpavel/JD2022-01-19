@@ -15,14 +15,14 @@ class InOut {
         return resultData;
     }
 
-    static void print(double[] array) {
+    static void printArray(double[] array) {
         for (double element : array) {
             System.out.print(element + " ");
         }
         System.out.println();
     }
 
-    public static void print(double[] array, String name, int columnCount) {
+    public static void printArray(double[] array, String name, int columnCount) {
         //V[ 0 ]=123.456   V[1]
         for (int i = 0; i < array.length; i++) {
             System.out.printf(Locale.ENGLISH, "%s[% -3d]=%-10.4f ", name, i, array[i]);
