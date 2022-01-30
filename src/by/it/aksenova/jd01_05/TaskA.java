@@ -37,7 +37,7 @@ public class TaskA {
         for (double a = -5; a <= 12 ; a=a+3.75) {
             double f = exp(a * x) - 3.45 * a;
 
-        
+
             System.out.printf(" %f8.4f %8.4f %12.6g%n",a,x,f);
         }
     }
