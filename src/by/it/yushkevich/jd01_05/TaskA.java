@@ -32,7 +32,7 @@ public class TaskA {
         double a = 1.21;
         double b = 0.371;
         double y = tan(pow(a + b, 2)) - cbrt(a + 1.5) + a * pow(b, 5) - b / log(pow(a, 2));
-        System.out.printf("For a = %f, b = %f, y = %f", a, b, y);
+        System.out.printf("For a = %f, b = %f, y = %f\n", a, b, y);
 
     }
 
@@ -41,15 +41,16 @@ public class TaskA {
 
         double x = 12.1;
         System.out.println("-".repeat(50));
-        System.out.println("   A        X       F");
+        System.out.println("     A        X       F");
         System.out.println("-".repeat(50));
 
         for (double a = -5; a <= 12; a = a + 3.75) {
 
             double f = exp(a*x) - 3.45*a;
-            System.out.printf("При А = %f, F = %g\n", a, f);
+            System.out.printf(" %8.4f  %8.4f  %-12.6g\n", a,x, f);
 
         }
+        System.out.println("-".repeat(50));
 
     }
 
