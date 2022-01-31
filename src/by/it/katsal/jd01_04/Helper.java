@@ -1,6 +1,4 @@
-package by.it.katsal.JD01_04;
-
-import java.util.Arrays;
+package by.it.katsal.jd01_04;
 
 public class Helper {
 
