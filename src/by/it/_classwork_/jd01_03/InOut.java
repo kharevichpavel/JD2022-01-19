@@ -1,4 +1,4 @@
-package by.it.khmelov.jd01_04;
+package by.it._classwork_.jd01_03;
 
 import java.util.Locale;
 
@@ -31,6 +31,4 @@ class InOut {
             }
         }
     }
-
-
 }
