@@ -13,6 +13,7 @@ public class TaskA1 {
         Matcher matcher = pattern.matcher(stringBuilder);
 
         while (matcher.find()) {
+
             int start = matcher.start();
             int end = matcher.end();
             int wordLength = end - start;

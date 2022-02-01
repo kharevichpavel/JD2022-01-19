@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 public class TaskB1 {
 
     private static String[] words = {};
-    private static char[] vowels = {'а', 'я', 'у', 'ю', 'и', 'ы', 'э', 'е', 'о', 'ё'};
-    private static char[] consonants = {'й', 'ц', 'к', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ф', 'в', 'п', 'р', 'л', 'д', 'ж', 'б', 'т', 'м', 'с', 'ч'};
+    private static final char[] vowels = {'а', 'я', 'у', 'ю', 'и', 'ы', 'э', 'е', 'о', 'ё'};
+    private static final char[] consonants = {'й', 'ц', 'к', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ф', 'в', 'п', 'р', 'л', 'д', 'ж', 'б', 'т', 'м', 'с', 'ч'};
 
 
     public static void main(String[] args) {
@@ -17,7 +17,6 @@ public class TaskB1 {
         StringBuilder stringBuilder = new StringBuilder(Poem.text);
 
         Pattern pattern = Pattern.compile("[А-Яа-яЁё]+");
-
         Matcher matcher = pattern.matcher(stringBuilder);
 
         int counter = 0;
@@ -26,7 +25,9 @@ public class TaskB1 {
             String word = matcher.group();
 
             if (isValid(word)) {
+
                 words = Arrays.copyOf(words, words.length + 1);
+
                 words[counter] = word;
                 counter++;
             }

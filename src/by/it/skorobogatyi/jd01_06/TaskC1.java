@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 public class TaskC1 {
 
 
-
     public static void main(String[] args) {
 
         StringBuilder stringBuilder = new StringBuilder(Poem.text);
@@ -34,6 +33,7 @@ public class TaskC1 {
 
             while (!isEqual) {
                 textLines[i] = textLines[i].substring(0, spacePosition) + " " + textLines[i].substring(spacePosition);
+
                 spacePosition = textLines[i].indexOf(" ", spacePosition + counter + 1);
 
                 if (textLines[i].length() == maxCharsCount) {

@@ -13,10 +13,11 @@ public class TaskA2 {
 
         Pattern pattern = Pattern.compile("[а-яА-ЯёЁ]+");
         Matcher matcher = pattern.matcher(Poem.text);
+
         while (matcher.find()) {
+
             String word = matcher.group();
             processOneWord(word);
-
         }
         printResult();
     }
@@ -31,6 +32,7 @@ public class TaskA2 {
 
         words = Arrays.copyOf(words, words.length + 1);
         counts = Arrays.copyOf(counts, counts.length + 1);
+
         words[words.length - 1] = word;
         counts[counts.length - 1] = 1;
     }

@@ -27,10 +27,8 @@ public class TaskB2 {
             }
         }
 
-        for (String string :
-                words) {
+        for (String string : words) {
             System.out.println(string);
         }
-
     }
 }
