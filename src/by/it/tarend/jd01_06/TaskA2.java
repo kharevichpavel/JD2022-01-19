@@ -10,7 +10,7 @@ public class TaskA2 {
     private static int[] counts = {}; // // лучше создать внутри main
 
     public static void main(String[] args) {
-        Pattern pattern = Pattern.compile("[а-яА-яёЁ]+");
+        Pattern pattern = Pattern.compile("[а-яА-ЯёЁ]+");
         Matcher matcher = pattern.matcher(Poem.text);
         while (matcher.find()) { // перебираем все слова из текста
             String word = matcher.group(); // нашли слово и поместили его в word
