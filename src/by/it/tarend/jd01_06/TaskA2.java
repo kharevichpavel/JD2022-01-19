@@ -12,12 +12,10 @@ public class TaskA2 {
     public static void main(String[] args) {
         Pattern pattern = Pattern.compile("[а-яА-яёЁ]+");
         Matcher matcher = pattern.matcher(Poem.text);
-        while (matcher.find()) {
-            String word = matcher.group();
-            processOneWord(word);
-            System.out.println(word);
+        while (matcher.find()) { // перебираем все слова из текста
+            String word = matcher.group(); // нашли слово и поместили его в word
+            processOneWord(word); // или добавили слово и счетчик = 1 или увеличили счетчик на 1 если такое слово уже занесенов  массив )
         }
-
         printResult();
     }
 
