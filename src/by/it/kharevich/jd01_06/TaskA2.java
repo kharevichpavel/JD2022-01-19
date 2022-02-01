@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TaskA2 {
+
     private static String[] words = {};
     private static int[] counts = {};
 
