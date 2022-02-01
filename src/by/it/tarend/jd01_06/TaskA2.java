@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class TaskA2 {
 
     private static String[] words = {}; // лучше создать внутри main
-    private static int[] counts = {}; // // лучше создать внутри main
+    private static int[] counts = {}; // лучше создать внутри main
 
     public static void main(String[] args) {
         Pattern pattern = Pattern.compile("[а-яА-ЯёЁ]+");
