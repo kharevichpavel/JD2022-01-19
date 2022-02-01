@@ -18,7 +18,6 @@ public class TaskA2 {
         }
            printResult();
 
-
     }
 
     private static void processOneWord(String word) {
