@@ -22,5 +22,10 @@ public class Runner {
 
         Var variableB3 = new Vector(variableB1);
         System.out.println(variableB3);
+
+
+        Matrix variableC1 = new Matrix(new double[][]{{1.0, 2.0}, {3.0, 4.0}});
+        Var variableC2 = new Matrix(variableC1);
+        Var variableC3 = new Matrix("{{ 1.0, 2.0 }, { 3.0, 4.0 }}");
     }
 }
