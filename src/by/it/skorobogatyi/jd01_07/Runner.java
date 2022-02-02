@@ -12,5 +12,15 @@ public class Runner {
 
         Var variableA3 = new Scalar(variableA1);
         System.out.println(variableA3);
+
+
+        Vector variableB1 = new Vector(new double[]{1, 2, 3, 4});
+        System.out.println(variableB1);
+
+        Var variableB2 = new Vector("{1, 2, 3, 4}");
+        System.out.println(variableB2);
+
+        Var variableB3 = new Vector(variableB1);
+        System.out.println(variableB3);
     }
 }
