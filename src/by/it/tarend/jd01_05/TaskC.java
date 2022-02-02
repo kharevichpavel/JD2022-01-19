@@ -54,13 +54,13 @@ public class TaskC {
         double[] newArray = createNewArray(n, array);
         System.out.println("Массив B");
         printArray(newArray, "B", 5);
-        double geomAvg = сountGeomAvg(newArray);
+        double geomAvg = countGeomAvg(newArray);
         System.out.println("Среднее геометрическое элементов массива В = " + geomAvg);
 
 
     }
 
-    private static double сountGeomAvg(double[] newArray) {
+    private static double countGeomAvg(double[] newArray) {
         double geomAvg;
         double multip = 1;
         for (double element : newArray) {
