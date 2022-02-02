@@ -14,6 +14,7 @@ public class Runner {
         System.out.println(variableA3);
 
 
+
         Vector variableB1 = new Vector(new double[]{1, 2, 3, 4});
         System.out.println(variableB1);
 
@@ -24,8 +25,14 @@ public class Runner {
         System.out.println(variableB3);
 
 
+
         Matrix variableC1 = new Matrix(new double[][]{{1.0, 2.0}, {3.0, 4.0}});
+        System.out.println(variableC1);
+
         Var variableC2 = new Matrix(variableC1);
+        System.out.println(variableC2);
+
         Var variableC3 = new Matrix("{{ 1.0, 2.0 }, { 3.0, 4.0 }}");
+        System.out.println(variableC3);
     }
 }

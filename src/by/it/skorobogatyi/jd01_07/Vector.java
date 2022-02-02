@@ -33,13 +33,18 @@ public class Vector extends Var {
 
     @Override
     public String toString() {
+
         StringBuilder returnString = new StringBuilder();
+
         returnString.append("{");
+
         for (int i = 0; i < value.length - 1; i++) {
             double element = value[i];
             returnString.append(element).append(", ");
         }
+
         returnString.append(value[value.length - 1]).append("}");
+
         return String.valueOf(returnString);
     }
 }
