@@ -1,12 +1,15 @@
 package by.it.kharevich.jd01_06;
 
 
-
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class TaskB1 {
+
+    private static String[] words = {};
+    private static final char[] symbol = {'а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е'};
 
     public static void main(String[] args) {
         Pattern pattern = Pattern.compile("[а-яА-ЯёЁ]+");
@@ -15,37 +18,26 @@ public class TaskB1 {
             String word = matcher.group();
             processOneWord(word);
         }
-
-
+        printResult();
     }
 
-    private static String[] words = {};
-    private static String[] symbol = {"а, у, о, ы, и, э, я, ю, ё, е, А, У, О, И, Э, Я , Ю, Ё, Е"};
 
-
-    private static boolean processOneWord(String word) {
+    private static void processOneWord(String word) {
         char firstLetter = word.charAt(0);
-
-
-        char lastLetter = word.charAt(word.length()-1);
-
-
-        for (int i = 0; i < words.length; i++) {
-            for (int j = 0; j < symbol.length; j++) {
-                if (symbol.equals(firstLetter)) {
-
-                }
-
-
-
-
+        char lastLetter = word.charAt(word.length() - 1);
+        for (char c : symbol) {
+            if (c != (Character.toLowerCase(firstLetter)) && (c == lastLetter) && word.length() > 1) {
+                words = Arrays.copyOf(words, words.length + 1);
+                words[words.length - 1] = word;
             }
         }
-
-
-        return false;
     }
 
+    private static void printResult() {
+        for (String word : words) {
+            System.out.printf("%s\n", word);
+        }
+    }
 
 
 }
