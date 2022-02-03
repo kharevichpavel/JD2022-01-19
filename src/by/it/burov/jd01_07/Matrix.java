@@ -1,6 +1,8 @@
 package by.it.burov.jd01_07;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Matrix extends Var{
 
@@ -14,7 +16,33 @@ public class Matrix extends Var{
         this.value= otherMatrix.value.clone();
     }
 
+    public Matrix(String stringValue) {
+        int columns = 0;
+       // String[][] stringArray1 = {{}};
+        Pattern patternColumns = Pattern.compile("[\\{]+");
+        Matcher matcher1 = patternColumns.matcher(stringValue);
+        while (matcher1.find()) {
+            columns++;
+        }
+        Pattern patternLines = Pattern.compile("[\\d.?\\d]+");
+        Matcher matcher2 = patternLines.matcher(stringValue);
+        String[] stringArray = {};
 
+        while (matcher2.find()) {
+            String digit = matcher2.group();
+            stringArray = Arrays.copyOf(stringArray, stringArray.length + 1);
+            stringArray[stringArray.length - 1] = digit;
+        }
+        int linesLength = stringArray.length / columns;
+        double[][] doubleMatrix = new double[columns][linesLength];
+        for (int i = 0, digitPosition = 0; i < doubleMatrix.length; i++) {
+            for (int j = 0; j < linesLength; j++) {
+                doubleMatrix[i][j] = Double.parseDouble(stringArray[digitPosition]);
+                digitPosition++;
+            }
+        }
+        this.value = doubleMatrix;
+    }
 
     public double[][] getValue() {
         return value.clone();
