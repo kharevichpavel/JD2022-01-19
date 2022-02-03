@@ -8,6 +8,7 @@ public class Runner {
         System.out.println(var1);
         System.out.println(var2);
         System.out.println(var3);
-
+        Var var4 = new Vector(new double[]{1, 1, 1 , 1});
+        System.out.println(var4);
     }
 }
