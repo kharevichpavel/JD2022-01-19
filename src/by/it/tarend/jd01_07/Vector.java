@@ -2,9 +2,22 @@ package by.it.tarend.jd01_07;
 
 public class Vector extends Var{
 
-    private final double[] value;
+    private double[] value;
 
     public Vector(double[] value) {
+        this.value = value.clone();
+    }
+
+    public Vector(Vector otherVector) {
+        this.value = otherVector.value.clone();
+    }
+
+    public Vector(String strVector) {
+        String[] vector = strVector.replaceAll("[/{/}]", "").split(",");
+        double[] value = new double[vector.length];
+        for (int i = 0; i < vector.length; i++) {
+            value[i] = Double.parseDouble(vector[i]);
+        }
         this.value = value.clone();
     }
 

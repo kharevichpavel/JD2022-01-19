@@ -10,5 +10,9 @@ public class Runner {
         System.out.println(var3);
         Var var4 = new Vector(new double[]{1, 1, 1 , 1});
         System.out.println(var4);
+        Var var5 = new Vector((Vector) var4);
+        System.out.println(var5);
+        Var var6 = new Vector("{1,3,4}");
+        System.out.println(var6);
     }
 }
