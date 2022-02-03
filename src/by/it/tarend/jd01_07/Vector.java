@@ -29,7 +29,7 @@ public class Vector extends Var{
     public String toString() {
         StringBuilder outPut = new StringBuilder();
         String delimiter = "";
-        outPut.append('{');
+        outPut.append("{");
         for (double element : value) {
             outPut.append(delimiter).append(element);
             delimiter = ", ";
