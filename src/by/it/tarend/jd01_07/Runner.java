@@ -17,5 +17,6 @@ public class Runner {
         double[][] matrix = {{ 1.0, 2.0 }, { 3.0, 4.0 }};
         Var var7 = new Matrix(matrix);
         System.out.println(var7);
+        System.out.println((Matrix) var7);
     }
 }

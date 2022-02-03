@@ -12,6 +12,17 @@ public class Matrix extends Var{
         }
     }
 
+    public Matrix(Matrix otherMatrix) {
+        this.value = otherMatrix.value.clone();
+        for (int i = 0; i < value.length; i++) {
+            this.value[i] = otherMatrix.value[i].clone();
+        }
+    }
+
+    public Matrix(String strMatrix) {
+
+    }
+
     @Override
     public String toString() {
         StringBuilder outPut = new StringBuilder();
