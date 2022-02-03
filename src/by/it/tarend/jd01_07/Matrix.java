@@ -22,13 +22,25 @@ public class Matrix extends Var{
     }
 
     public Matrix(String strMatrix) {
-        String[] strArray = strMatrix.replaceAll("[{,]+|[}]{2,}", "").trim().split("}");
-        for (int i = 0; i < strArray.length; i++) {
 
+        String[] rows = strMatrix.replaceAll("[{]+|[}]{2,}", " ").trim().split("},");
+        int rowsCounter = rows.length;
+        int columnsCounter = rows[0].trim().split("[,]").length;
 
-
+        String[][] elements = new String[rowsCounter][columnsCounter];
+        for (int i = 0; i < elements.length; i++) {
+            elements[i] = rows[i].trim().split("[,]");
         }
+        double[][] value = new double[rowsCounter][columnsCounter];
+        for (int i = 0; i < elements.length; i++) {
+            for (int j = 0; j < elements[i].length; j++) {
+                value[i][j] = Double.parseDouble(elements[i][j]);
+            }
+        }
+        this.value = value;
+
     }
+
 
 
 
