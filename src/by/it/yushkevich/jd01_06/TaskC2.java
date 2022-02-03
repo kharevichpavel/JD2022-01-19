@@ -33,7 +33,7 @@ public class TaskC2 {
         String slowMessage = "";
         while (slowMessage.length()<100000){
 
-            slowMessage = slowMessage+" "+array[random.nextInt(array.length)];
+            slowMessage = slowMessage+array[random.nextInt(array.length)]+" ";
         }
 
         // System.out.println(slowMessage);
@@ -46,8 +46,9 @@ public class TaskC2 {
         Random random = new Random(1);
         StringBuilder fastMessage = new StringBuilder("");
         while (fastMessage.length()<100000){
-                //string x = x.append(" ").append(array[i]);
-            fastMessage = fastMessage.append(" ").append(array[random.nextInt(array.length)]);
+                //string x = x.append(" ").append(array[i]); //добавляем к нашей пустой строке рандомное слово из массива через апенд  и так же прробел пробел
+            // пока слово не станет 100000 символов, то к нему будет добавляться рандомные слова и пробелы
+            fastMessage = fastMessage.append(array[random.nextInt(array.length)]).append(" ");
 
         }
         System.out.println(fastMessage);
