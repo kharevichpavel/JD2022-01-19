@@ -1,7 +1,7 @@
 package by.it.chaikova.jd01_07;
 
-public class Vector {
-    private double[] value;
+public class Vector extends Var{
+    private final double[] value;
     public Vector(double [] value){
         this.value=value.clone();
     }
@@ -16,8 +16,9 @@ public class Vector {
         String delimiter="";
        for (double element : value){
            out.append(delimiter).append(element);
-
+delimiter=", ";
         }
-        return delimiter;
+       out.append("}");
+        return out.toString();
     }
 }
