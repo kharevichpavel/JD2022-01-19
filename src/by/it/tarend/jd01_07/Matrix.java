@@ -1,5 +1,7 @@
 package by.it.tarend.jd01_07;
 
+import java.util.Arrays;
+
 public class Matrix extends Var{
 
     private double[][] value;
@@ -20,8 +22,15 @@ public class Matrix extends Var{
     }
 
     public Matrix(String strMatrix) {
+        String[] strArray = strMatrix.replaceAll("[{,]+|[}]{2,}", "").trim().split("}");
+        for (int i = 0; i < strArray.length; i++) {
 
+
+
+        }
     }
+
+
 
     @Override
     public String toString() {
