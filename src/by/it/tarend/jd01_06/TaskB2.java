@@ -40,7 +40,7 @@ public class TaskB2 {
 
         for (int i = 0; i < sentences.length; i++) {
             int minLengthIndex = i;
-            for (int j = i; j < sentences.length; j++) {
+            for (int j = 1; j < sentences.length; j++) {
                 if (sentences[minLengthIndex].length() > sentences[j].length()) {
                     minLengthIndex = j;
                 }
