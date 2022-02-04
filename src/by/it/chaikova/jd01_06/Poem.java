@@ -1,7 +1,6 @@
-package by.it.burov.jd01_06;
+package by.it.chaikova.jd01_06;
 
 class Poem {
-
     static final String text=
             "У лукоморья дуб зелёный,\n" +
             "Златая цепь на дубе том.\n" +
