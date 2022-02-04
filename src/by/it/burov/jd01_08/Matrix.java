@@ -1,10 +1,10 @@
-package by.it.burov.jd01_07;
+package by.it.burov.jd01_08;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class Matrix extends Var{
+class Matrix extends Var {
 
     private final double[][] value;
 
