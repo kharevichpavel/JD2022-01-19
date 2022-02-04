@@ -1,8 +1,5 @@
 package by.it.kharevich.jd01_07;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Vector extends Var {
 
     private final double[] value;
