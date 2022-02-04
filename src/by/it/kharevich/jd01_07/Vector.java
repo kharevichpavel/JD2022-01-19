@@ -1,5 +1,8 @@
 package by.it.kharevich.jd01_07;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Vector extends Var {
 
     private final double[] value;
@@ -7,15 +10,23 @@ public class Vector extends Var {
     public Vector(double[] value) {
         this.value = value.clone();
     }
-    public double[] getValue() {
-        return value.clone();
-    }
 
     public Vector(Vector otherVector) {
         this.value = otherVector.value.clone();
     }
 
+    public Vector(String strVector) {
+        strVector = strVector.replaceAll("[{}]", "");
+        String[] strVectorArr = strVector.split(",");
+        this.value = new double[strVectorArr.length];
+        for (int i = 0; i < value.length; i++) {
+            value[i] = Double.parseDouble(strVectorArr[i]);
+        }
+    }
 
+    public double[] getValue() {
+        return value.clone();
+    }
 
     @Override
     public String toString() {
@@ -29,6 +40,4 @@ public class Vector extends Var {
         out.append("}");
         return out.toString();
     }
-
-
 }
