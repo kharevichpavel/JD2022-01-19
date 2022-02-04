@@ -1,6 +1,6 @@
 package by.it._classwork_.jd01_07;
 
-public class Vector extends Var {
+class Vector extends Var {
 
     private final double[] value;
 
