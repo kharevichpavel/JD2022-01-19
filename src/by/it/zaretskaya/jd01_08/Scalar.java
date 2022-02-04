@@ -1,6 +1,8 @@
-package by.it.zaretskaya.jd01_07;
+package by.it.zaretskaya.jd01_08;
 
- class Scalar extends Var{
+import by.it.zaretskaya.jd01_08.Var;
+
+class Scalar extends Var {
     private final double value;
 
     public Scalar(String stringValue) {
@@ -15,6 +17,17 @@ package by.it.zaretskaya.jd01_07;
         this.value=otherScalar.value;
     }
 
+    @Override
+    public Var add(Var other) {
+        if (other instanceof Scalar){
+            Scalar otherScalar = (Scalar) other;
+            double result = this.value + otherScalar.value;
+            return new Scalar(result);
+
+
+        }
+        return super.add(other);
+}
 
 
     public double getValue() {
