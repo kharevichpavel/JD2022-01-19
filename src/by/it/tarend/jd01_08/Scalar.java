@@ -44,7 +44,7 @@ class Scalar extends Var {
     public Var div(Var other) {
         if (other instanceof Scalar otherScalar) {
             if (otherScalar.value == 0) {
-                return super.div(other);
+                return super.div(other); // TODO replace with Exception
             }
             return new Scalar(this.value / otherScalar.value);
         }
