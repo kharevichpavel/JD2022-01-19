@@ -1,6 +1,6 @@
 package by.it.tarend.jd01_07;
 
-public class Runner {
+class Runner {
     public static void main(String[] args) {
         Var var1 = new Scalar(1.111);
         Var var2 = new Scalar("23.11");

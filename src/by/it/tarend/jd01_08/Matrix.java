@@ -1,8 +1,6 @@
-package by.it.tarend.jd01_07;
+package by.it.tarend.jd01_08;
 
-import java.util.Arrays;
-
-class Matrix extends Var{
+class Matrix extends Var {
 
     private double[][] value;
 

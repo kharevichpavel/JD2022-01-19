@@ -1,6 +1,6 @@
-package by.it.tarend.jd01_07;
+package by.it.tarend.jd01_08;
 
-class Vector extends Var{
+class Vector extends Var {
 
     private double[] value;
 
