@@ -25,7 +25,7 @@ package by.it.zaretskaya.jd01_08;
 
      @Override
      public Var div(Var other) {
-         System.out.printf("Operation division %s + %s impossible%n",this,other);
+         System.out.printf("Operation division %s / %s impossible%n",this,other);
 
          return null;
      }
