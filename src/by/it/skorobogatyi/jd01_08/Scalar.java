@@ -1,6 +1,6 @@
 package by.it.skorobogatyi.jd01_08;
 
-class Scalar extends Var implements Operation{
+class Scalar extends Var implements Operation {
 
     private final double value;
 
@@ -28,9 +28,8 @@ class Scalar extends Var implements Operation{
     @Override
     public Var add(Var other) {
 
-        if (other instanceof Scalar otherScalar) {
-            double result = this.value + otherScalar.value;
-            return new Scalar(result);
+        if (other instanceof Scalar scalar) {
+            return new Scalar(this.value + scalar.value);
         }
         return super.add(other);
     }
@@ -38,9 +37,8 @@ class Scalar extends Var implements Operation{
     @Override
     public Var sub(Var other) {
 
-        if (other instanceof Scalar otherScalar) {
-            double result = this.value - otherScalar.value;
-            return new Scalar(result);
+        if (other instanceof Scalar scalar) {
+            return new Scalar(this.value - scalar.value);
         }
         return super.sub(other);
     }
@@ -48,9 +46,8 @@ class Scalar extends Var implements Operation{
     @Override
     public Var mul(Var other) {
 
-        if (other instanceof Scalar otherScalar) {
-            double result = this.value * otherScalar.value;
-            return new Scalar(result);
+        if (other instanceof Scalar scalar) {
+            return new Scalar(this.value * scalar.value);
         }
         return super.mul(other);
     }
@@ -58,12 +55,12 @@ class Scalar extends Var implements Operation{
     @Override
     public Var div(Var other) {
 
-        if (other instanceof Scalar otherScalar) {
-            if (otherScalar.value == 0) {
+        if (other instanceof Scalar scalar) {
+
+            if (scalar.value == 0) {
                 return super.div(other);
             }
-            double result = this.value / otherScalar.value;
-            return new Scalar(result);
+            return new Scalar(this.value / scalar.value);
         }
         return super.div(other);
     }

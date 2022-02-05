@@ -91,6 +91,7 @@ class Matrix extends Var implements Operation {
                     returnMatrix[i][j] = this.value[i][j] + matrix.value[i][j];
                 }
             }
+
             return new Matrix(returnMatrix);
         }
 
@@ -102,6 +103,7 @@ class Matrix extends Var implements Operation {
                     returnMatrix[i][j] += scalar.getValue();
                 }
             }
+
             return new Matrix(returnMatrix);
         }
 
@@ -132,6 +134,7 @@ class Matrix extends Var implements Operation {
                     returnMatrix[i][j] = this.value[i][j] - matrix.value[i][j];
                 }
             }
+
             return new Matrix(returnMatrix);
         }
 
@@ -143,6 +146,7 @@ class Matrix extends Var implements Operation {
                     returnMatrix[i][j] -= scalar.getValue();
                 }
             }
+
             return new Matrix(returnMatrix);
         }
 
@@ -193,6 +197,7 @@ class Matrix extends Var implements Operation {
                     }
                 }
             }
+
             return new Matrix(returnMatrix);
         }
 
@@ -203,6 +208,7 @@ class Matrix extends Var implements Operation {
     public Var div(Var other) {
 
         if (other instanceof Scalar scalar) {
+
             if (scalar.getValue() != 0) {
 
                 double[][] returnMatrix = this.value.clone();
@@ -211,6 +217,7 @@ class Matrix extends Var implements Operation {
                         returnMatrix[i][j] /= scalar.getValue();
                     }
                 }
+
                 return new Matrix(returnMatrix);
             }
         }
