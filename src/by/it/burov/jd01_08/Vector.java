@@ -100,10 +100,15 @@ class Vector extends Var {
     public Var div(Var other) {
         double[] localValue = value.clone();
         if(other instanceof Scalar scalar){
-            for (int i = 0; i < localValue.length; i++) {
-                localValue[i] /= scalar.getValue();
+            if(scalar.getValue() == 0) {
+                System.out.printf("ERROR: division by zero %s / %s%n", this, other);
+                return null;
+            }else {
+                for (int i = 0; i < localValue.length; i++) {
+                    localValue[i] /= scalar.getValue();
+                }
+                return new Vector(localValue);
             }
-            return new Vector(localValue);
         } else if (other instanceof Vector vector) {
             return super.div(other);
         }
