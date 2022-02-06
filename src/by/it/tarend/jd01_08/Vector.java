@@ -50,6 +50,40 @@ class Vector extends Var {
         return super.sub(other);
     }
 
+    @Override
+    public Var mul(Var other) {
+        double[] localValue = value.clone();
+        if (other instanceof Scalar otherScalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                localValue[i] *= otherScalar.getValue();
+            }
+            return new Vector(localValue);
+        } else if (other instanceof Vector otherVector) {
+            if (localValue.length == otherVector.value.length) {
+                double result = 0.0;
+                for (int i = 0; i < localValue.length; i++) {
+                    result += localValue[i] * otherVector.value[i];
+                }
+                return new Scalar(result);
+            }
+        }
+        return super.mul(other);
+    }
+
+    @Override
+    public Var div(Var other) {
+        double[] localValue = value.clone();
+        if (other instanceof Scalar otherScalar) {
+            if (otherScalar.getValue() != 0) {
+                for (int i = 0; i < localValue.length; i++) {
+                    localValue[i] /= otherScalar.getValue();
+                }
+                return new Vector(localValue);
+            }
+        }
+        return super.div(other);
+    }
+
     public Vector(String strVector) {
         String[] vector = strVector.replaceAll("[/{/}]", "").split(",");
         double[] value = new double[vector.length];
