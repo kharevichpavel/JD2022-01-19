@@ -29,7 +29,7 @@ public class Vector extends Var {
 
         double[] buff = {};
         String regex = "[0-9.]+";
-        Pattern pattern = Pattern.compile("[0-9.]+");
+        Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(vector);
         while (matcher.find()){
            String text =  matcher.group();
