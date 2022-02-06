@@ -1,4 +1,4 @@
-package by.it.aksenova.jd01_06;
+package by.it._examples_.jd01_09.lambda;
 
 class Poem {
     static final String text=
