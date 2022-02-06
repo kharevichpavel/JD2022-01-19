@@ -36,8 +36,30 @@ import java.util.Scanner;
 class TaskC3 {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        double a = sc.nextDouble();
+        int earWeight = sc.nextInt();
         System.out.println();
+        TaskC3.getWeight(earWeight);
+        System.out.println(getWeight(earWeight));
+
     }
+
+    private static double getWeight(int weight) {
+        double freeFallEarth = 9.81;
+        double freeFallMars = 3.86;
+
+        double weightMars = weight / freeFallEarth * freeFallMars;
+
+        int intWeight = (int) weightMars;
+        double hundredth = (weightMars - intWeight) *100;
+        if (hundredth % 1>= 0.5){
+            hundredth++;
+        }
+        double fraction = (int) hundredth;
+
+
+        return fraction / 100 + intWeight;
+
+    }
+
 
 }
