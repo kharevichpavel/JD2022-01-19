@@ -24,28 +24,23 @@ public class Vector extends Var {
     }
 
 
-
     public Vector(String vector) {
 
         double[] buff = {};
         String regex = "[0-9.]+";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(vector);
-        while (matcher.find()){
-           String text =  matcher.group();
-           double parseText = Double.parseDouble(text);
-           buff = Arrays.copyOf(buff, buff.length+1);
-           buff[buff.length-1] = parseText;
+        while (matcher.find()) {
+            String text = matcher.group();
+            double parseText = Double.parseDouble(text);
+            buff = Arrays.copyOf(buff, buff.length + 1);
+            buff[buff.length - 1] = parseText;
 
         }
         this.value = buff;
 
 
     }
-
-
-
-
 
 
     @Override
