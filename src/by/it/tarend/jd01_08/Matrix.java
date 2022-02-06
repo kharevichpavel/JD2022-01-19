@@ -1,5 +1,7 @@
 package by.it.tarend.jd01_08;
 
+import java.util.Arrays;
+
 class Matrix extends Var {
 
     private double[][] value;
@@ -8,14 +10,14 @@ class Matrix extends Var {
 
         this.value = value.clone();
         for (int i = 0; i < value.length; i++) {
-            this.value[i] = value[i].clone();
+            this.value[i] = Arrays.copyOf(value[i], value[i].length);
         }
     }
 
     public Matrix(Matrix otherMatrix) {
         this.value = otherMatrix.value.clone();
         for (int i = 0; i < value.length; i++) {
-            this.value[i] = otherMatrix.value[i].clone();
+            this.value[i] = Arrays.copyOf(otherMatrix.value[i], otherMatrix.value[i].length);
         }
     }
 
@@ -29,18 +31,41 @@ class Matrix extends Var {
         for (int i = 0; i < elements.length; i++) {
             elements[i] = rows[i].trim().split("[,]");
         }
-        double[][] value = new double[rowsCounter][columnsCounter];
+        double[][] localValue = new double[rowsCounter][columnsCounter];
         for (int i = 0; i < elements.length; i++) {
             for (int j = 0; j < elements[i].length; j++) {
-                value[i][j] = Double.parseDouble(elements[i][j]);
+                localValue[i][j] = Double.parseDouble(elements[i][j]);
             }
         }
-        this.value = value;
+        this.value = localValue;
 
     }
 
-
-
+    @Override
+    public Var add(Var other) {
+        double[][] localValue = this.value.clone();
+        for (int i = 0; i < localValue.length; i++) {
+            localValue[i] = Arrays.copyOf(this.value[i], this.value[i].length);
+        }
+        if (other instanceof Scalar otherScalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                for (int j = 0; j < localValue[i].length; j++) {
+                    localValue[i][j] += otherScalar.getValue();
+                }
+            }
+            return new Matrix(localValue);
+        } else if (other instanceof Matrix otherMatrix) {
+            if ((localValue.length == otherMatrix.value.length) && (localValue[0].length == otherMatrix.value[0].length)) {
+                for (int i = 0; i < localValue.length; i++) {
+                    for (int j = 0; j < localValue[i].length; j++) {
+                        localValue[i][j] += otherMatrix.value[i][j];
+                    }
+                }
+                return new Matrix(localValue);
+            }
+        }
+        return super.add(other);
+    }
 
     @Override
     public String toString() {

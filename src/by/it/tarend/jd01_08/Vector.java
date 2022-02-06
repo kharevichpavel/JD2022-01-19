@@ -12,6 +12,15 @@ class Vector extends Var {
         this.value = otherVector.value.clone();
     }
 
+    public Vector(String strVector) {
+        String[] vector = strVector.replaceAll("[/{/}]", "").split(",");
+        double[] value = new double[vector.length];
+        for (int i = 0; i < vector.length; i++) {
+            value[i] = Double.parseDouble(vector[i]);
+        }
+        this.value = value.clone();
+    }
+
     @Override
     public Var add(Var other) {
         double[] localValue = value.clone();
@@ -82,15 +91,6 @@ class Vector extends Var {
             }
         }
         return super.div(other);
-    }
-
-    public Vector(String strVector) {
-        String[] vector = strVector.replaceAll("[/{/}]", "").split(",");
-        double[] value = new double[vector.length];
-        for (int i = 0; i < vector.length; i++) {
-            value[i] = Double.parseDouble(vector[i]);
-        }
-        this.value = value.clone();
     }
 
     public double[] getValue() {
