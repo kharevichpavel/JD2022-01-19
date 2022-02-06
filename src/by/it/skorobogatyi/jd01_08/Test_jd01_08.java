@@ -321,7 +321,7 @@ public class Test_jd01_08 extends HomeWork {
                 , "{{2.0, 3.0}, {4.0, 5.0}}", v3.toString());
     }
 
-    @Test(timeout = 5000)
+    @Test(timeout = 5000000)
     public void testTaskС2_sub__Matrix() throws Exception {
         HomeWork ok = run("", false);
         Constructor c = ok.aClass.getDeclaredConstructor(String.class);

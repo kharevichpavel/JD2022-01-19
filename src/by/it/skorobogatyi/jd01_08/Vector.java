@@ -48,103 +48,156 @@ class Vector extends Var implements Operation {
         return String.valueOf(returnString);
     }
 
+
     @Override
     public Var add(Var other) {
-
-        if (other instanceof Scalar scalar) {
-            double[] localValue = value.clone();
-
-            for (int i = 0; i < localValue.length; i++) {
-                localValue[i] += scalar.getValue();
-            }
-
-            return new Vector(localValue);
-
-        } else if (other instanceof Vector vector) {
-
-            if (this.value.length == vector.value.length) {
-
-                double[] localValue = value.clone();
-                for (int i = 0; i < localValue.length; i++) {
-                    localValue[i] += vector.value[i];
-                }
-
-                return new Vector(localValue);
-            }
-        }
-        return super.add(other);
+        return other.add(this);
     }
+
+    @Override
+    public Var add(Scalar other) {
+
+        double[] localValue = value.clone();
+        for (int i = 0; i < localValue.length; i++) {
+            localValue[i] += other.getValue();
+        }
+        return new Vector(localValue);
+    }
+
+    @Override
+    public Var add(Vector other) {
+
+        if (this.value.length == other.value.length) {
+
+            double[] localValue = value.clone();
+            for (int i = 0; i < localValue.length; i++) {
+                localValue[i] += other.value[i];
+            }
+            return new Vector(localValue);
+        }
+
+        System.out.printf("Operation addition %s + %s impossible%n", this, other);
+        return null;
+    }
+
+    @Override
+    public Var add(Matrix other) {
+        System.out.printf("Operation addition %s + %s impossible%n", this, other);
+        return null;
+    }
+
 
     @Override
     public Var sub(Var other) {
+        return other.sub(this);
+    }
 
-        if (other instanceof Scalar scalar) {
+    @Override
+    public Var sub(Scalar other) {
+
+        double[] localValue = value.clone();
+        for (int i = 0; i < localValue.length; i++) {
+            localValue[i] = localValue[i] - other.getValue();
+        }
+        return new Vector(localValue);
+    }
+
+    @Override
+    public Var sub(Vector other) {
+
+        if (this.value.length == other.value.length) {
+
             double[] localValue = value.clone();
-
             for (int i = 0; i < localValue.length; i++) {
-                localValue[i] -= scalar.getValue();
+                localValue[i] = other.value[i] - localValue[i];
             }
-
             return new Vector(localValue);
 
-        } else if (other instanceof Vector vector) {
-
-            if (this.value.length == vector.value.length) {
-                double[] localValue = value.clone();
-
-                for (int i = 0; i < localValue.length; i++) {
-                    localValue[i] -= vector.value[i];
-                }
-
-                return new Vector(localValue);
-            }
         }
-        return super.sub(other);
+        System.out.printf("Operation subtraction %s - %s impossible%n", this, other);
+        return null;
     }
+
+    @Override
+    public Var sub(Matrix other) {
+        System.out.printf("Operation subtraction %s - %s impossible%n", this, other);
+        return null;
+    }
+
 
     @Override
     public Var mul(Var other) {
-
-        if (other instanceof Scalar scalar) {
-            double[] localValue = value.clone();
-
-            for (int i = 0; i < localValue.length; i++) {
-                localValue[i] *= scalar.getValue();
-            }
-
-            return new Vector(localValue);
-
-        } else if (other instanceof Vector vector) {
-
-            if (this.value.length == vector.value.length) {
-                double[] localValue = value.clone();
-                double vectorInnerSum = 0;
-
-                for (int i = 0; i < localValue.length; i++) {
-                    localValue[i] *= vector.value[i];
-                    vectorInnerSum += localValue[i];
-                }
-
-                return new Scalar(vectorInnerSum);
-            }
-        }
-        return super.mul(other);
+        return other.mul(this);
     }
 
     @Override
-    public Var div(Var other) {
+    public Var mul(Scalar other) {
 
-        if (other instanceof Scalar scalar) {
+        double[] localValue = value.clone();
+        for (int i = 0; i < localValue.length; i++) {
+            localValue[i] = other.getValue() * localValue[i];
+        }
+        return new Vector(localValue);
+    }
+
+    @Override
+    public Var mul(Vector other) {
+
+        if (this.value.length == other.value.length) {
             double[] localValue = value.clone();
+            double vectorInnerSum = 0;
 
             for (int i = 0; i < localValue.length; i++) {
-                localValue[i] /= scalar.getValue();
+                localValue[i] = other.value[i] * localValue[i];
+                vectorInnerSum += localValue[i];
             }
 
-            return new Vector(localValue);
-
+            return new Scalar(vectorInnerSum);
         }
-        return super.div(other);
+
+        System.out.printf("Operation multiplication %s * %s impossible%n", this, other);
+        return null;
     }
+
+    @Override
+    public Var mul(Matrix other) {
+        return other.mul(this);
+    }
+
+
+    @Override
+    public Var div(Var other) {
+        return other.div(this);
+    }
+
+    @Override
+    public Var div(Scalar other) {
+
+        if (other.getValue() != 0) {
+
+            double[] localValue = value.clone();
+            for (int i = 0; i < localValue.length; i++) {
+                localValue[i] = localValue[i] / other.getValue();
+            }
+            return new Vector(localValue);
+        }
+
+        System.out.printf("Operation division %s / %s impossible%n", this, other);
+        return null;
+    }
+
+    @Override
+    public Var div(Vector other) {
+        System.out.printf("Operation division %s / %s impossible%n", this, other);
+        return null;
+    }
+
+    @Override
+    public Var div(Matrix other) {
+        System.out.printf("Operation division %s / %s impossible%n", this, other);
+        return null;
+    }
+
+
 }
 

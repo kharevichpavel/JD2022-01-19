@@ -25,43 +25,99 @@ class Scalar extends Var implements Operation {
         return Double.toString(value);
     }
 
+
+
     @Override
     public Var add(Var other) {
-
-        if (other instanceof Scalar scalar) {
-            return new Scalar(this.value + scalar.value);
-        }
-        return super.add(other);
+        return other.add(this);
     }
+
+    @Override
+    public Var add(Scalar other) {
+        double returnValue = other.value + this.value;
+        return new Scalar(returnValue);
+    }
+
+    @Override
+    public Var add(Vector other) {
+        return other.add(this);
+    }
+
+    @Override
+    public Var add(Matrix other) {
+        return other.add(this);
+    }
+
 
     @Override
     public Var sub(Var other) {
-
-        if (other instanceof Scalar scalar) {
-            return new Scalar(this.value - scalar.value);
-        }
-        return super.sub(other);
+        return other.sub(this);
     }
+
+    @Override
+    public Var sub(Scalar other) {
+        double returnValue = other.value - this.value;
+        return new Scalar(returnValue);
+    }
+
+    @Override
+    public Var sub(Vector other) {
+        return other.sub(this);
+    }
+
+    @Override
+    public Var sub(Matrix other) {
+        return other.sub(this);
+    }
+
+
 
     @Override
     public Var mul(Var other) {
-
-        if (other instanceof Scalar scalar) {
-            return new Scalar(this.value * scalar.value);
-        }
-        return super.mul(other);
+       return other.mul(this);
     }
 
     @Override
-    public Var div(Var other) {
-
-        if (other instanceof Scalar scalar) {
-
-            if (scalar.value == 0) {
-                return super.div(other);
-            }
-            return new Scalar(this.value / scalar.value);
-        }
-        return super.div(other);
+    public Var mul(Scalar other) {
+        double returnValue = other.value * this.value;
+        return new Scalar(returnValue);
     }
+
+    @Override
+    public Var mul(Vector other) {
+        return other.mul(this);
+    }
+
+    @Override
+    public Var mul(Matrix other) {
+        return other.mul(this);
+    }
+
+
+    @Override
+    public Var div(Var other) {
+        return other.div(this);
+    }
+
+    @Override
+    public Var div(Scalar other) {
+        if (this.value != 0) {
+            double returnValue = other.value / this.value;
+            return new Scalar(returnValue);
+        }
+
+        return other.div(this);
+
+    }
+
+    @Override
+    public Var div(Vector other) {
+        return other.div(this);
+    }
+
+    @Override
+    public Var div(Matrix other) {
+        return other.div(this);
+    }
+
 }
