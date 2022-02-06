@@ -26,7 +26,7 @@ public class TaskB2 {
 
     private static void processSentence(String sentence) {
 
-        String regex = "[^а-яА-яёЁ]+";
+        String regex = "[^а-яА-ЯёЁ]+";
         Pattern.compile(regex);
         sentence = sentence.replaceAll(regex, " ");
         sentence = sentence.trim();
@@ -40,7 +40,7 @@ public class TaskB2 {
 
         for (int i = 0; i < sentences.length; i++) {
             int minLengthIndex = i;
-            for (int j = 1; j < sentences.length; j++) {
+            for (int j = i; j < sentences.length; j++) {
                 if (sentences[minLengthIndex].length() > sentences[j].length()) {
                     minLengthIndex = j;
                 }
