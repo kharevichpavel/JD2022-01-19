@@ -1,6 +1,6 @@
-package by.it.kravchenko.jd01_07;
+package by.it.kravchenko.jd01_08;
 
- class Vector extends Var {
+class Vector extends Var {
     private final double[] value;
 
     public Vector(double[] value) {
