@@ -12,6 +12,44 @@ class Vector extends Var {
         this.value = otherVector.value.clone();
     }
 
+    @Override
+    public Var add(Var other) {
+        double[] localValue = value.clone();
+        if (other instanceof Scalar otherScalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                localValue[i] += otherScalar.getValue();
+            }
+            return new Vector(localValue);
+        } else if (other instanceof Vector otherVector) {
+            if (this.value.length == otherVector.value.length) {
+                for (int i = 0; i < localValue.length; i++) {
+                    localValue[i] += otherVector.value[i];
+                }
+                return new Vector(localValue);
+            }
+        }
+        return super.add(other);
+    }
+
+    @Override
+    public Var sub(Var other) {
+        double[] localValue = value.clone();
+        if (other instanceof Scalar otherScalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                localValue[i] -= otherScalar.getValue();
+            }
+            return new Vector(localValue);
+        } else if (other instanceof Vector otherVector) {
+            if (this.value.length == otherVector.value.length) {
+                for (int i = 0; i < localValue.length; i++) {
+                    localValue[i] -= otherVector.value[i];
+                }
+                return new Vector(localValue);
+            }
+        }
+        return super.sub(other);
+    }
+
     public Vector(String strVector) {
         String[] vector = strVector.replaceAll("[/{/}]", "").split(",");
         double[] value = new double[vector.length];
