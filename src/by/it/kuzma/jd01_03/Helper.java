@@ -44,5 +44,26 @@ public class Helper {
         InOut.printArray(array, name, columnCount);
             
         }
+        static double[] multiply(double[][] matrix, double[] vector){
+        double[] array = new double [matrix.length];
+            for (int i = 0; i < matrix.length; i++) {
+                for (int j = 0; j < vector.length; j++) {
+                    array[i] += matrix[i][j] * vector[j];
+                }
+            }
+            return array;
+        }
+    static double[][] multiply(double[][] matrixLeft, double[][] matrixRight){
+        double matrix[][] = new double[matrixLeft.length][matrixRight[0].length];
+        for (int i = 0; i < matrixLeft.length; i++) {
+            for (int j = 0; j < matrixRight[0].length; j++) {
+                for (int k = 0; k < matrixRight.length; k++) {
+                    matrix[i][j] += matrixLeft[i][k] * matrixRight[k][j];
+                }
+            }
+        }
+        return matrix;
+    }
+
     }
 
