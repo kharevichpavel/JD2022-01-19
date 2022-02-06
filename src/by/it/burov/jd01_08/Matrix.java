@@ -9,11 +9,11 @@ class Matrix extends Var {
     private final double[][] value;
 
     public Matrix(double[][] value) {
-        this.value = Arrays.copyOf(value,value.length);
+        this.value = value.clone();
     }
 
     public Matrix(Matrix otherMatrix){
-        this.value = Arrays.copyOf(otherMatrix.value,otherMatrix.value.length);
+        this.value = otherMatrix.value.clone();
     }
 
     public Matrix(String stringValue) {
@@ -44,13 +44,23 @@ class Matrix extends Var {
     }
 
     public double[][] getValue() {
-        double[][] localValue = Arrays.copyOf(value,value.length);
+        double[][] localValue =  new double[value.length][value[0].length];
+        for (int i = 0; i < value.length; i++) {
+            for (int j = 0; j < value[0].length; j++) {
+                localValue[i][j] = value[i][j];
+            }
+        }
         return localValue;
     }
 
     @Override
     public Var add(Var other) {
-        double[][] localValue = getValue();
+        double[][] localValue =  new double[value.length][value[0].length];
+        for (int i = 0; i < value.length; i++) {
+            for (int j = 0; j < value[0].length; j++) {
+                localValue[i][j] = value[i][j];
+            }
+        }
         if(other instanceof Scalar scalar){
             for (int i = 0; i < localValue.length; i++) {
                 for (int j = 0; j < localValue[i].length; j++) {
@@ -77,7 +87,12 @@ class Matrix extends Var {
 
     @Override
     public Var sub(Var other) {
-        double[][] localValue = getValue();
+        double[][] localValue =  new double[value.length][value[0].length];
+        for (int i = 0; i < value.length; i++) {
+            for (int j = 0; j < value[0].length; j++) {
+                localValue[i][j] = value[i][j];
+            }
+        }
         if(other instanceof Scalar scalar){
             for (int i = 0; i < localValue.length; i++) {
                 for (int j = 0; j < localValue[i].length; j++) {
@@ -104,7 +119,12 @@ class Matrix extends Var {
 
     @Override
     public Var mul(Var other) {
-        double[][] localValue = Arrays.copyOf(value,value.length);
+        double[][] localValue =  new double[value.length][value[0].length];
+        for (int i = 0; i < value.length; i++) {
+            for (int j = 0; j < value[0].length; j++) {
+                localValue[i][j] = value[i][j];
+            }
+        }
         if(other instanceof Scalar scalar){
             for (int i = 0; i < localValue.length; i++) {
                 for (int j = 0; j < localValue[i].length; j++) {
