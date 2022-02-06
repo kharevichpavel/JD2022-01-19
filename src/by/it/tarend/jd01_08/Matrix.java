@@ -1,5 +1,7 @@
 package by.it.tarend.jd01_08;
 
+import by.it.tarend.jd01_03.Helper;
+
 import java.util.Arrays;
 
 class Matrix extends Var {
@@ -92,6 +94,50 @@ class Matrix extends Var {
         }
 
         return super.sub(other);
+    }
+
+    @Override
+    public Var mul(Var other) {
+        double[][] localValue = this.value.clone();
+        for (int i = 0; i < localValue.length; i++) {
+            localValue[i] = Arrays.copyOf(this.value[i], this.value[i].length);
+        }
+        if (other instanceof Scalar otherScalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                for (int j = 0; j < localValue[i].length; j++) {
+                    localValue[i][j] *= otherScalar.getValue();
+                }
+            }
+            return new Matrix(localValue);
+        } else if (other instanceof Vector otherVector) {
+            if (localValue[0].length == otherVector.getValue().length) {
+                double[] resultVector = new double[localValue.length];
+                for (int i = 0; i < localValue.length; i++) {
+                    for (int j = 0; j < resultVector.length; j++) {
+                        resultVector[i] += localValue[i][j] * otherVector.getValue()[j];
+                    }
+                }
+                return new Vector(resultVector);
+            } else return super.mul(other);
+        } else if (other instanceof Matrix otherMatrix) {
+            if (localValue[0].length == otherMatrix.value.length) {
+                double[][] resultMatrix = new double[localValue.length][otherMatrix.value[0].length];
+                for (int i = 0; i < localValue.length; i++) {
+                    for (int j = 0; j < otherMatrix.value[0].length; j++) {
+                        for (int k = 0; k < localValue[0].length; k++) {
+                            resultMatrix[i][j] += localValue[i][k] * otherMatrix.value[k][j];
+                        }
+                    }
+                }
+                return new Matrix(resultMatrix);
+            }
+        }
+        return super.mul(other);
+    }
+
+    @Override
+    public Var div(Var other) {
+        return super.div(other);
     }
 
     @Override
