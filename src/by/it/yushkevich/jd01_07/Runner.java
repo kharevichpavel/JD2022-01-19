@@ -14,5 +14,15 @@ public class Runner {
         System.out.println(var4);
 
 
+        Var varVector = new Vector(new double[]{1,2,3,4});
+        System.out.println(varVector);
+
+        Var varVector1 = new Vector((Vector) varVector);
+        System.out.println(varVector1);
+
+        Var stringVector = new Vector("{1.2, 2.3, 4,5}");
+        System.out.println(stringVector);
+
+
     }
 }
