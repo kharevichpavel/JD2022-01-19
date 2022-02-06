@@ -54,10 +54,10 @@ public class Vector extends Var {
             if (i < value.length - 1) {
                 out.append(", ");
             }
-
+            out.append("}");
         }
-        out.append("}");
 
+        out.append("}");
         return out.toString();
 
 
