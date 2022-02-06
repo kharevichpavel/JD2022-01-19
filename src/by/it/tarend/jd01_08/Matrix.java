@@ -68,6 +68,33 @@ class Matrix extends Var {
     }
 
     @Override
+    public Var sub(Var other) {
+        double[][] localValue = this.value.clone();
+        for (int i = 0; i < localValue.length; i++) {
+            localValue[i] = Arrays.copyOf(this.value[i], this.value[i].length);
+        }
+        if (other instanceof Scalar otherScalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                for (int j = 0; j < localValue[i].length; j++) {
+                    localValue[i][j] -= otherScalar.getValue();
+                }
+            }
+            return new Matrix(localValue);
+        } else if (other instanceof Matrix otherMatrix) {
+            if ((localValue.length == otherMatrix.value.length) && (localValue[0].length == otherMatrix.value[0].length)) {
+                for (int i = 0; i < localValue.length; i++) {
+                    for (int j = 0; j < localValue[i].length; j++) {
+                        localValue[i][j] -= otherMatrix.value[i][j];
+                    }
+                }
+                return new Matrix(localValue);
+            }
+        }
+
+        return super.sub(other);
+    }
+
+    @Override
     public String toString() {
         StringBuilder outPut = new StringBuilder();
         outPut.append("{");
