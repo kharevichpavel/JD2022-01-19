@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Matrix extends Var{
+class Matrix extends Var{
 
     private final double[][] value;
 
@@ -18,7 +18,6 @@ public class Matrix extends Var{
 
     public Matrix(String stringValue) {
         int columns = 0;
-       // String[][] stringArray1 = {{}};
         Pattern patternColumns = Pattern.compile("[\\{]+");
         Matcher matcher1 = patternColumns.matcher(stringValue);
         while (matcher1.find()) {
