@@ -1,6 +1,6 @@
 package by.it.kharevich.jd01_07;
 
-public abstract class Var {
+abstract class Var {
 
 
     @Override
