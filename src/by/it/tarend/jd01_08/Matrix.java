@@ -1,7 +1,5 @@
 package by.it.tarend.jd01_08;
 
-import by.it.tarend.jd01_03.Helper;
-
 import java.util.Arrays;
 
 class Matrix extends Var {
