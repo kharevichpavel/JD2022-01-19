@@ -3,6 +3,7 @@ package by.it.kharevich.jd01_04;
 import java.util.Scanner;
 
 public class TaskB {
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -16,17 +17,18 @@ public class TaskB {
 
         Scanner sc2 = new Scanner(System.in);
         int[][] salary = new int[peopleCount][4];
-        int sum = 0;
+        double sum = 0;
         int sumName;
         int[]resultName = new int[salary.length];
         double average = 0;
 
         for (int i = 0; i < salary.length; i++) {
+            double kv = 4;
             System.out.printf("Введите зарплату для %s\n", nameAll[i]);
             for (int j = 0; j < salary[0].length; j++) {
                 salary[i][j] = sc2.nextInt();
                 sum=sum+salary[i][j];
-                average = (sum/salary.length)/4;
+                average = (sum/salary.length)/kv;
             }
         }
 
@@ -55,7 +57,7 @@ public class TaskB {
         System.out.println();
         System.out.print("-".repeat(65));
         System.out.println();
-        System.out.printf("Итого          "+"%-15d",sum);
+        System.out.printf("Итого          "+"%-15f",sum);
         System.out.println();
         System.out.printf("Средняя        "+"%-15.6f",average);
     }
