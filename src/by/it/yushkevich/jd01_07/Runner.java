@@ -20,8 +20,19 @@ public class Runner {
         Var varVector1 = new Vector((Vector) varVector);
         System.out.println(varVector1);
 
+
         Var stringVector = new Vector("{1.2, 2.3, 4,5}");
         System.out.println(stringVector);
+
+        double[][] testArray = {{1,2,3},{6,3,4}};//stub
+       Var matrixArr1 = new Matrix(testArray);
+        System.out.println(matrixArr1);
+
+//        Var matrixArr2 = new Matrix();
+//        System.out.println();
+//
+//        Var matrixArr3 = new Matrix();
+//        System.out.println();
 
 
 
