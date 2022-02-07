@@ -31,8 +31,8 @@ public class Runner {
         Var matrixArr2 = new Matrix((Matrix) matrixArr1);
         System.out.println(matrixArr2);
 
-//        Var matrixArr3 = new Matrix("{{ 1.0, 2.0 },{ 3.0, 4.0 },{ 1.0, 2.0 },{ 3.0, 4.0 },{ 1.0, 2.0 },{ 3.0, 4.0 }}");
-//       System.out.println(matrixArr3);
+        Var matrixArr3 = new Matrix("{{ 1.0, 2.0 },{ 3.0, 4.0 },{ 1.0, 2.0 },{ 3.0, 4.0 },{ 1.0, 2.0 },{ 3.0, 4.0 }}");
+       System.out.println(matrixArr3);
 
 
     }
