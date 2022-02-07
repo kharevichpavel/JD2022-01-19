@@ -1,9 +1,10 @@
 package by.it.zaretskaya.jd01_08;
 
 class Vector extends by.it.zaretskaya.jd01_08.Var {
-private final double[] value;
 
-public Vector(double[] value) {
+ private final double[] value;
+
+ public Vector(double[] value) {
  this.value = value.clone();
 }
 
@@ -11,16 +12,16 @@ public Vector(double[] value) {
 
  @Override
  public Var add(Var other) {
- if(other instanceof Scalar scalar){
   double[] localValue = value.clone();
+  if(other instanceof Scalar scalar){
   for (int i = 0; i < localValue.length; i++) {
-   localValue[i]+=scalar.getValue();
+   localValue[i] +=scalar.getValue();
   }
   return new Vector (localValue);
  }else if (other instanceof Vector vector ) {
   if (this.value.length == vector.value.length) {
-   for (int i = 0; i < value.length; i++) {
-    value[i] += vector.value[i];
+   for (int i = 0; i < localValue.length; i++) {
+    localValue[i] += vector.value[i];
    }
    return new Vector(value);
   }
