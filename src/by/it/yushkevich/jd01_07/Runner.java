@@ -14,7 +14,7 @@ public class Runner {
         System.out.println(var4);
 
 
-        Var varVector = new Vector(new double[]{1,2,3,4});
+        Var varVector = new Vector(new double[]{1, 2, 3, 4});
         System.out.println(varVector);
 
         Var varVector1 = new Vector((Vector) varVector);
@@ -24,17 +24,15 @@ public class Runner {
         Var stringVector = new Vector("{1.2, 2.3, 4,5}");
         System.out.println(stringVector);
 
-        double[][] testArray = {{1,2,3},{6,3,4}};//stub
-       Var matrixArr1 = new Matrix(testArray);
+        double[][] testArray = {{1, 2, 3}, {6, 3, 4}};//stub
+        Var matrixArr1 = new Matrix(testArray);
         System.out.println(matrixArr1);
 
-//        Var matrixArr2 = new Matrix();
-//        System.out.println();
-//
-//        Var matrixArr3 = new Matrix();
-//        System.out.println();
+        Var matrixArr2 = new Matrix((Matrix) matrixArr1);
+        System.out.println(matrixArr2);
 
-
+        Var matrixArr3 = new Matrix("{ { 1.0, 2.0 }, { 3.0, 4.0 } }");
+//        System.out.println();
 
 
     }
