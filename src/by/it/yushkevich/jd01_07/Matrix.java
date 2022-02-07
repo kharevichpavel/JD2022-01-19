@@ -21,7 +21,7 @@ public class Matrix extends Var {
         this.value = otherMatrix.value.clone();// надо подумать как клонировать двумерный массив. возможно циклом?
     }
 
-    //ПОДСМОТРЕЛ У ДРУГОГО СТУДЕНТА РЕШЕНИЕ, ПЕРЕДЕЛАЛ РАЗБИРАЯСЬ, САМ БЫ НЕ СДЕЛАЛ
+    //ПОДСМОТРЕЛ У ДРУГОГО СТУДЕНТА РЕШЕНИЕ, ПЕРЕДЕЛАЛ РАЗБИРАЯСЬ, САМ БЫ НЕ СДЕЛАЛ!
     public Matrix(String textMatrix) {
 
         // Оставляем } и по ним посчитаем количество рядом, остальные скобки заменяем пустым местом
@@ -55,7 +55,7 @@ public class Matrix extends Var {
             buffArray[i] = rows[i].trim().split("[,]");
 
         }
-        // просто парсим в дабловый массив 
+        // просто парсим в дабловый массив
         double[][] value = new double[rowsCount][colCount];
         for (int i = 0; i < buffArray.length; i++) {
             for (int j = 0; j < buffArray[i].length; j++) {
