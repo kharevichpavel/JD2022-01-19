@@ -25,36 +25,24 @@ public class TaskB {
     }
 
     private static void part2() {
-        double a = 0;
-        double b;
-        double x;
-        String no = new String();
-
+        double a, b, x;
 
         for (x = -6 + 0.5; x < 2; x = x + 0.5) {
-            if (-2 < x / 2 && x / 2 <= -1) {
+            double xx=x/2;
+
+            if (-2 < xx && xx <= -1) {
                 b = sin(x*x);
-                a = log(b + 2.74);
-            } else if (-1 < x / 2 && x / 2 < 0.2) {
+            } else if (-1 < xx && xx < 0.2) {
                 b = cos(x*x);
-                a = log(b + 2.74);
-            } else if (x / 2 == 0.2) {
+            } else if (xx == 0.2) {
                 b = 1/tan(x*x);
-                a = log(b + 2.74);
             } else {
-                b=0;
-                a=0;
-                no = "Вычисления невозможны";
+                System.out.printf("При x/2=%6.2f    вычисления не определены\n", xx);
+                continue;
             }
 
-            if (a!=0){
-                System.out.printf("При x/2=%6.2f    a = %14.10e", x / 2, a, no);
-                System.out.println();
-            } else{
-                System.out.printf("При x/2=%6.2f    %23s", x / 2, no);
-                System.out.println();
-            }
-
+            a = log10(abs(b + 2.74));
+            System.out.printf("При x/2=%6.2f    a = %14.10e\n", xx, a);
         }
     }
 }

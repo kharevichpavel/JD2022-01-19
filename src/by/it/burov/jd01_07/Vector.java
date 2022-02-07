@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Vector extends Var{
+class Vector extends Var{
 
     private final double[] value;
 
