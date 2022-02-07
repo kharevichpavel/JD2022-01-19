@@ -26,7 +26,7 @@ public class TaskB2 {
 
     private static void processSentence(String sentence) {
 
-        String regex = "[^а-яА-яёЁ]+";
+        String regex = "[^а-яА-ЯёЁ]+";
         Pattern.compile(regex);
         sentence = sentence.replaceAll(regex, " ");
         sentence = sentence.trim();
