@@ -22,42 +22,32 @@ public class Matrix extends Var {
     }
 
 
-    public Matrix(String textMatrix) {
-        //есть строка, нужно понять, какого размера нам делать двумерный массив. Сколько столбцов / сколько строк?
-        // можно попробовать регексом сразу определить количество строк, например {+цифра --сколько совпадет, столько строк
-        // столбцы похожим образом разделить...
-        //String[] rowsCounter = textMatrix.split();
-
-        String rowCount = "[{]\s?[0-9]";
-        String colCount = "";
-
-
-
-
-
-
-
-
-
-
-//        String regex = "[{]\s[0-9.,\s]+[}]";
-//        String regexNum = "[^0-9.]+";
+//    public Matrix(String textMatrix) {
+    //есть строка, нужно понять, какого размера нам делать двумерный массив. Сколько столбцов / сколько строк?
+    // можно попробовать регексом сразу определить количество строк, например {+цифра --сколько совпадет, столько строк
+    // столбцы похожим образом разделить...
+//        //String[] rowsCounter = textMatrix.split();
 //
-//
-//        Pattern pattern = Pattern.compile(regex);
-//        Matcher matcher = pattern.matcher(textMatrix);
-//        while (matcher.find()) {
-//            String text = matcher.group();
-//            text = text.replaceAll("[{]", "");
-//            text = text.replaceAll("[}]", "");
-//            text.trim();
-//            String[] textArr = text.split(regexNum);
-//            System.out.println(text+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//        String rowCount = "[{]\s?[0-9]";
+//        String colCount = "";
 
-//        }
+    public Matrix(String strMatrix) {
+
+
+        String regexRowCount ="[{]\s?[0-9]";
+        Pattern patternRow = Pattern.compile(regexRowCount);
+        Matcher matcherRowCount = patternRow.matcher(strMatrix);
+        int rowCounter = 0;
+        while (matcherRowCount.find()){
+            rowCounter++;
+        }
+        System.out.println(rowCounter);
+
+        String regexColCount = "";
 
 
     }
+
 
 
     @Override
@@ -65,8 +55,7 @@ public class Matrix extends Var {
 
         StringBuilder out = new StringBuilder();
         out.append("{");
-        //System.out.println(value.length);
-        //System.out.println(value[0].length);
+
 
         for (int i = 0; i < value.length; i++) {
             out.append("{");
@@ -78,12 +67,10 @@ public class Matrix extends Var {
                     out.append(",");
 
                 }
-
-
             }
 
             out.append("}");
-            if (i<value.length-1){
+            if (i < value.length - 1) {
                 out.append(",");
             }
         }
