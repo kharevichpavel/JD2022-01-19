@@ -21,8 +21,82 @@ class Vector extends Var {
         }
     }
 
+    @Override
+    public Var add(Var other) {
+        double[] localValue = value.clone();
+        if (other instanceof Scalar otherScalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                localValue[i] += otherScalar.getValue();
+            }
+            return new Vector(localValue);
+        } else if (other instanceof Vector otherVector) {
+            if (this.value.length == otherVector.value.length) {
+                for (int i = 0; i < localValue.length; i++) {
+                    localValue[i] += otherVector.value[i];
+                }
+                return new Vector(localValue);
+
+            }
+        }
+
+        return super.add(other);
+    }
+
+    @Override
+    public Var sub(Var other) {
+        double[] localValue = value.clone();
+        if (other instanceof Scalar otherScalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                localValue[i] -= otherScalar.getValue();
+            }
+            return new Vector(localValue);
+        } else if (other instanceof Vector otherVector) {
+            if (this.value.length == otherVector.value.length) {
+                for (int i = 0; i < localValue.length; i++) {
+                    localValue[i] -= otherVector.value[i];
+                }
+                return new Vector(localValue);
+            }
+        }
+
+        return super.sub(other);
+    }
+
+    @Override
+    public Var mul(Var other) {
+        double[] localValue = value.clone();
+        if (other instanceof Scalar otherScalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                localValue[i] *= otherScalar.getValue();
+            }
+            return new Vector(localValue);
+        } else if (other instanceof Vector otherVector) {
+            if (localValue.length == otherVector.value.length) {
+                double res = 0.0;
+                for (int i = 0; i < localValue.length; i++) {
+
+                    res += localValue[i] * otherVector.value[i];
+                }
+                return new Scalar(res);
+            }
+        }
+        return super.mul(other);
+    }
+
     public double[] getValue() {
         return value.clone();
+    }
+
+    @Override
+    public Var div(Var other) {
+        double[] localValue = value.clone();
+        if (other instanceof Scalar otherScalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                localValue[i] /= otherScalar.getValue();
+            }
+            return new Vector(localValue);
+        }
+        return super.div(other);
     }
 
     @Override
