@@ -146,6 +146,8 @@ class Matrix extends Var {
 
     @Override
     public Var mul(Var other) {
+
+        //TODO multiply 
         return super.mul(other);
     }
 

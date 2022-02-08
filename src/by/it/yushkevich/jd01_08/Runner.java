@@ -29,6 +29,7 @@ public class Runner {
 
         print(m.add(s));
         print(m.sub(s));
+        print(m.mul(s));
 
         print(m.add(m)); //{{2.0, 4.0, 6.0}, {8.0, 10.0, 12.0}, {14.0, 16.0, 18.0}}
         print(m.sub(m)); //{{0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}}
