@@ -5,12 +5,14 @@ import java.util.Scanner;
 import static by.it._classwork_.jd01_09.Application.END;
 
 public class Application {
-    private final Printer printer;
-    private final Parser parcer;
 
-    public Application(Printer printer, Parser parcer) {
+    public static final String END="end";
+    private final Printer printer;
+    private final Parser parser;
+
+    public Application(Printer printer, Parser parser) {
         this.printer = printer;
-        this.parcer = parcer;
+        this.parser = parser;
     }
 
     public void run() {
@@ -18,8 +20,8 @@ public class Application {
         Scanner scanner = new Scanner (System.in);
         while (true){
             String line = scanner.nextLine();
-            if (line.equals(END)) {
-                Var result=parcer.calc(line);
+            if (!line.equals(END)) {
+                Var result= parser.calc(line);
                 printer.print (result);
             }else{
                 System.out.println("App finished");
