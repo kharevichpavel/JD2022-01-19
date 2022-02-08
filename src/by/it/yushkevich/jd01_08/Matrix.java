@@ -46,6 +46,68 @@ class Matrix extends Var {
 
 
     @Override
+    public Var add(Var other) {
+
+        double[][] localMatrix = new double[this.value.length][this.value[0].length];
+
+        for (int i = 0; i < value.length; i++) {
+            for (int j = 0; j < value[0].length; j++) {
+                localMatrix[i][j] = value[i][j];
+            }
+        }
+
+        if (other instanceof Scalar scalar) {
+            for (int i = 0; i < localMatrix.length; i++) {
+                for (int j = 0; j < localMatrix[i].length; j++) {
+                    localMatrix[i][j] = localMatrix[i][j] + scalar.getValue();
+                }
+
+            }
+            return new Matrix(localMatrix);
+
+
+
+        } else if (other instanceof Matrix matrix){
+            double[][] copyMatrix = new double[this.value.length][this.value[0].length];
+
+            for (int i = 0; i < value.length; i++) {
+                for (int j = 0; j < value[0].length; j++) {
+                    copyMatrix[i][j] = value[i][j];
+                }
+            }
+
+            if (this.value.length == matrix.value.length){
+                for (int i = 0; i < copyMatrix.length; i++) {
+                    for (int j = 0; j < copyMatrix[i].length; j++) {
+
+                        copyMatrix[i][j] = copyMatrix[i][j] + matrix.value[i][j];
+
+                    }
+
+                }
+                return new Matrix(copyMatrix);
+
+            }
+        }
+        return super.add(other);
+    }
+
+    @Override
+    public Var sub(Var other) {
+        return super.sub(other);
+    }
+
+    @Override
+    public Var mul(Var other) {
+        return super.mul(other);
+    }
+
+    @Override
+    public Var div(Var other) {
+        return super.div(other);
+    }
+
+    @Override
     public String toString() {
 
         StringBuilder out = new StringBuilder();
@@ -59,14 +121,14 @@ class Matrix extends Var {
                 out.append(value[i][j]);
 
                 if (j < value[i].length - 1) {
-                    out.append(",");
+                    out.append(", ");
 
                 }
             }
 
             out.append("}");
             if (i < value.length - 1) {
-                out.append(",");
+                out.append(", ");
             }
         }
         out.append("}");
