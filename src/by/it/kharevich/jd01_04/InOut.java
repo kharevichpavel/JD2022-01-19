@@ -5,24 +5,20 @@ import java.util.Locale;
 
 class InOut {
 
-    static double[ ] getArray(String line){
+    static double[] getArray(String line) {
         line = line.trim();
         String[] partsLine = line.split(" ");
-        double[] resultData=new double[partsLine.length];
+        double[] resultData = new double[partsLine.length];
         for (int i = 0; i < resultData.length; i++) {
-            resultData[i]=Double.parseDouble(partsLine[i]);
-
+            resultData[i] = Double.parseDouble(partsLine[i]);
         }
         return resultData;
-
     }
 
-
-
-    static void printArray(double[] array, String name, int columnCount) {
+    static void printArray(double[] array, int columnCount) {
         for (int i = 0; i < array.length; i++) {
-            System.out.printf(Locale.ENGLISH,"%s[% -3d]=%-10.4f ",name,i,array[i]);
-            if (((i+1)%columnCount==0) || (array.length==i+1)){
+            System.out.printf(Locale.ENGLISH, "%s[% -3d]=%-10.4f ", "V", i, array[i]);
+            if (((i + 1) % columnCount == 0) || (array.length == i + 1)) {
                 System.out.println();
             }
 

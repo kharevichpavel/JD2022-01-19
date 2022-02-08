@@ -1,4 +1,4 @@
-package by.it.kharevich.jd01_07;
+package by.it.kharevich.jd01_09;
 
 class Matrix extends Var {
 
@@ -20,25 +20,13 @@ class Matrix extends Var {
         this.value = secondMatrix;
     }
 
-    public Matrix(String strMatrix) {
-        strMatrix = strMatrix.replaceAll("[^0-9],\\s?[^0-9]", "&");
-        strMatrix = strMatrix.replaceAll("[{}]", "");
-        String[] strMatrixArr = strMatrix.split("&");
-        int q = strMatrixArr.length;
-        int q1 = strMatrixArr[0].trim().split(",").length;
-        String[][] matrixArr = new String[q][q1];
-        for (int i = 0; i < matrixArr.length; i++) {
-            matrixArr[i] = strMatrixArr[0].trim().split(",");
-        }
-        double[][] secondMatrix = new double[q][q1];
-        for (int i = 0; i < matrixArr.length; i++) {
-            for (int i1 = 0; i1 < matrixArr[0].length; i1++) {
-                secondMatrix[i][i1] = Double.parseDouble(matrixArr[i][i1]);
-
-            }
-        }
-        this.value = secondMatrix;
-    }
+ /*   public Matrix(String strMatrix) {
+        strMatrix = strMatrix.replaceAll("[{ }]", "");
+        String[] strMatrixarr = strMatrix.split(",");
+        this.value = new double[strVectorArr.length];
+        for (int i = 0; i < value.length; i++) {
+            value[i] = Double.parseDouble(strVectorArr[i]);
+        }*/
 
     @Override
     public String toString() {
