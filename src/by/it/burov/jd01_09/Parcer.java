@@ -9,10 +9,10 @@ public class Parcer {
         expression = expression.replaceAll(Patterns.SPACES, "");
         String[] parts = expression.split(Patterns.OPERATION, 2);
         if (parts.length == 1) {
-            return Var.create(expression);
+            return Var.createVar(expression);
         }
-        Var left = Var.create(parts[0]);
-        Var right = Var.create(parts[1]);
+        Var left = Var.createVar(parts[0]);
+        Var right = Var.createVar(parts[1]);
         if (left == null || right == null) {
             System.out.println("Incorrect expression " + expression);
             return null;

@@ -2,7 +2,7 @@ package by.it.burov.jd01_09;
 
 abstract class Var implements Operation {
 
-    public static Var create(String varValue) {
+    public static Var createVar(String varValue) {
         if (varValue.matches(Patterns.SCALAR)){
             return new Scalar(varValue);
         }else if(varValue.matches(Patterns.VECTOR)){
