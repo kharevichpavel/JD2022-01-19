@@ -68,32 +68,79 @@ class Matrix extends Var {
 
 
         } else if (other instanceof Matrix matrix){
-            double[][] copyMatrix = new double[this.value.length][this.value[0].length];
+
 
             for (int i = 0; i < value.length; i++) {
                 for (int j = 0; j < value[0].length; j++) {
-                    copyMatrix[i][j] = value[i][j];
+                    localMatrix[i][j] = value[i][j];
                 }
             }
 
             if (this.value.length == matrix.value.length){
-                for (int i = 0; i < copyMatrix.length; i++) {
-                    for (int j = 0; j < copyMatrix[i].length; j++) {
+                for (int i = 0; i < localMatrix.length; i++) {
+                    for (int j = 0; j < localMatrix[i].length; j++) {
 
-                        copyMatrix[i][j] = copyMatrix[i][j] + matrix.value[i][j];
+                        localMatrix[i][j] = localMatrix[i][j] + matrix.value[i][j];
 
                     }
 
                 }
-                return new Matrix(copyMatrix);
+                return new Matrix(localMatrix);
 
             }
         }
         return super.add(other);
     }
 
+
+
     @Override
     public Var sub(Var other) {
+        double[][] localMatrix = new double[this.value.length][this.value[0].length];
+
+        for (int i = 0; i < value.length; i++) {
+            for (int j = 0; j < value[0].length; j++) {
+                localMatrix[i][j] = value[i][j];
+            }
+        }
+
+        if (other instanceof Scalar scalar) {
+            for (int i = 0; i < localMatrix.length; i++) {
+                for (int j = 0; j < localMatrix[i].length; j++) {
+                    localMatrix[i][j] = localMatrix[i][j] - scalar.getValue();
+                }
+
+            }
+            return new Matrix(localMatrix);
+
+        }
+        else if (other instanceof Matrix matrix){
+
+
+            for (int i = 0; i < value.length; i++) {
+                for (int j = 0; j < value[0].length; j++) {
+                    localMatrix[i][j] = value[i][j];
+                }
+            }
+
+            if (this.value.length == matrix.value.length){
+                for (int i = 0; i < localMatrix.length; i++) {
+                    for (int j = 0; j < localMatrix[i].length; j++) {
+
+                        localMatrix[i][j] = localMatrix[i][j] - matrix.value[i][j];
+
+                    }
+
+                }
+                return new Matrix(localMatrix);
+
+            }
+        }
+
+
+
+
+
         return super.sub(other);
     }
 
