@@ -91,12 +91,47 @@ class Vector extends Var {
 
     @Override
     public Var mul(Var other) {
+
+        double[] localValue = value.clone();
+
+        if (other instanceof Scalar scalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                localValue[i] = localValue[i] * scalar.getValue();
+            }
+            return new Vector(localValue);
+
+        } else if (other instanceof Vector vector) {
+
+            if (localValue.length == vector.value.length) {
+                System.out.println(localValue.length + " left local value length ||| right vector value lenttgh" + vector.value.length);
+                double sum = 0;
+
+                for (int i = 0; i < localValue.length; i++) {
+                    localValue[i] = localValue[i] * vector.value[i];
+                    sum = sum + localValue[i];
+                }
+                return new Scalar(sum);
+
+
+            }
+
+
+        }
         return super.mul(other);
+
     }
 
     @Override
     public Var div(Var other) {
-        return super.div(other);
+        double[] localValue = value.clone();
+
+        if (other instanceof Scalar scalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                localValue[i] = localValue[i] / scalar.getValue();
+            }
+            return new Vector(localValue);
+
+        } else return super.div(other);
     }
 
     @Override
