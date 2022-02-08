@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 class Vector extends Var {
 
-    private double[] value;
+    private final double[] value;
 
     public Vector(double[] value) {
 
@@ -42,6 +42,62 @@ class Vector extends Var {
 
     }
 
+
+    @Override
+    public Var add(Var other) {
+
+        double[] localValue = value.clone();
+
+        if (other instanceof Scalar scalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                localValue[i] = localValue[i] + scalar.getValue();
+            }
+            return new Vector(localValue);
+
+        } else if (other instanceof Vector vector) {
+
+            if (this.value.length == vector.value.length) {
+                for (int i = 0; i < localValue.length; i++) {
+                    localValue[i] = localValue[i] + vector.value[i];
+                }
+                return new Vector(localValue);
+            }
+        }
+        return super.add(other);
+    }
+
+    @Override
+    public Var sub(Var other) {
+
+        double[] localValue = value.clone();
+
+        if (other instanceof Scalar scalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                localValue[i] = localValue[i] - scalar.getValue();
+            }
+            return new Vector(localValue);
+
+        } else if (other instanceof Vector vector) {
+
+            if (this.value.length == vector.value.length) {
+                for (int i = 0; i < localValue.length; i++) {
+                    localValue[i] = localValue[i] - vector.value[i];
+                }
+                return new Vector(localValue);
+            }
+        }
+        return super.sub(other);
+    }
+
+    @Override
+    public Var mul(Var other) {
+        return super.mul(other);
+    }
+
+    @Override
+    public Var div(Var other) {
+        return super.div(other);
+    }
 
     @Override
     public String toString() {
