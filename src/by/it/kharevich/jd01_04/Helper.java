@@ -18,6 +18,5 @@ class Helper {
             lastElement--;
         }
         while (swap);
-
     }
 }
