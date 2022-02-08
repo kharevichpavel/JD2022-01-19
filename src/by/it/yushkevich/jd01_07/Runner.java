@@ -1,6 +1,5 @@
 package by.it.yushkevich.jd01_07;
-
-public class Runner {
+ class Runner {
 
     public static void main(String[] args) {
 
