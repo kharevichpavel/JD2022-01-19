@@ -18,14 +18,25 @@ public class  Application {
 
     public void run() {
         System.out.println("App start");
-        String command = reader.readFromConsole();
-        if (command.equals(END)) {
-            System.out.println("App finished");
-        } else {
-            Var result = parser.calc(command);
-            printer.print(result);
-        }
-
-
+        Scanner sc = new Scanner(System.in);
+        while (true){
+            String line = sc.nextLine();
+            if (!line.equals(END)) {
+            Var result= parser.calc(line);
+                printer.print(result);
+            } else {
+                System.out.println("App finished");
+                break;
+            }
+/*        while (true) {
+            String command = reader.readFromConsole();
+            if (!command.equals(END)) {
+                Var result = parser.calc(command);
+                printer.print(result);
+            } else {
+                System.out.println("App finished");
+                break;
+            }
+*/        }
     }
 }
