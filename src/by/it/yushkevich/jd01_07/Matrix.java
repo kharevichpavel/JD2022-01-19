@@ -45,7 +45,7 @@ public class Matrix extends Var {
 
         for (int i = 0; i < col.length; i++) {
             col[i].trim();
-            System.out.println(i+ " "+ col[i]);
+            System.out.println(i + " " + col[i]);
             //System.out.println(colCount);
         }
         // создаем временный двумерный массив вуказывая нужный размеры рядов/столбцов и заполняем из rows.
