@@ -66,8 +66,7 @@ class Matrix extends Var {
             return new Matrix(localMatrix);
 
 
-
-        } else if (other instanceof Matrix matrix){
+        } else if (other instanceof Matrix matrix) {
 
 
             for (int i = 0; i < value.length; i++) {
@@ -76,7 +75,7 @@ class Matrix extends Var {
                 }
             }
 
-            if (this.value.length == matrix.value.length){
+            if (this.value.length == matrix.value.length) {
                 for (int i = 0; i < localMatrix.length; i++) {
                     for (int j = 0; j < localMatrix[i].length; j++) {
 
@@ -91,7 +90,6 @@ class Matrix extends Var {
         }
         return super.add(other);
     }
-
 
 
     @Override
@@ -113,8 +111,7 @@ class Matrix extends Var {
             }
             return new Matrix(localMatrix);
 
-        }
-        else if (other instanceof Matrix matrix){
+        } else if (other instanceof Matrix matrix) {
 
 
             for (int i = 0; i < value.length; i++) {
@@ -123,7 +120,7 @@ class Matrix extends Var {
                 }
             }
 
-            if (this.value.length == matrix.value.length){
+            if (this.value.length == matrix.value.length) {
                 for (int i = 0; i < localMatrix.length; i++) {
                     for (int j = 0; j < localMatrix[i].length; j++) {
 
@@ -138,16 +135,13 @@ class Matrix extends Var {
         }
 
 
-
-
-
         return super.sub(other);
     }
 
     @Override
     public Var mul(Var other) {
 
-        //TODO multiply 
+        //TODO multiply
         return super.mul(other);
     }
 

@@ -53,7 +53,7 @@ public class Helper {
        double[] newOne = new double[matrix.length];
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < vector.length; j++) {
-                newOne[i] = newOne[i] + matrix[i][j]*vector[j]; //разобраться зачем нюван
+                newOne[i] = newOne[i] + matrix[i][j]*vector[j]; 
             }
         }
 
@@ -63,12 +63,22 @@ public class Helper {
 
 
 
-    static double[] multiply(double[][] matrixLeft, double[][] matrixRight){
+    static double[][] multiply(double[][] matrixLeft, double[][] matrixRight){
+        int m = matrixLeft.length;// количество строк в левой матрице
+        int n = matrixRight[0].length; // количество столбцов в правой матрице
 
-        double[][] newMassive = new double[matrixLeft.length][matrixRight[0].length];
+        double[][] newMassive = new double[m][n];
+
+        for (int i = 0; i < newMassive.length; i++) {
+            for (int j = 0; j < newMassive[i].length ; j++) {
+                for (int k = 0; k < matrixRight.length; k++) {
+                    newMassive[i][j] = newMassive[i][j] + matrixLeft[i][k]*matrixRight[k][j]; 
+                }
+            }
+        }
 
 
-        return null;
+        return newMassive;
     }
 
 
