@@ -1,5 +1,7 @@
 package by.it.yushkevich.jd01_08;
 
+import java.util.Arrays;
+
 class Matrix extends Var {
 
     private double[][] value;
@@ -140,10 +142,14 @@ class Matrix extends Var {
 
     @Override
     public Var mul(Var other) {
+        
+            //TODO multiply
 
-        //TODO multiply
+
         return super.mul(other);
     }
+
+
 
     @Override
     public Var div(Var other) {

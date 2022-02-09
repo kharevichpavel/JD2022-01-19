@@ -70,9 +70,9 @@ public class Helper {
         double[][] newMassive = new double[m][n];
 
         for (int i = 0; i < newMassive.length; i++) {
-            for (int j = 0; j < newMassive[i].length ; j++) {
+            for (int j = 0; j < matrixLeft.length ; j++) {
                 for (int k = 0; k < matrixRight.length; k++) {
-                    newMassive[i][j] = newMassive[i][j] + matrixLeft[i][k]*matrixRight[k][j]; 
+                    newMassive[i][j] = newMassive[i][j] + matrixLeft[i][k]*matrixRight[k][j];
                 }
             }
         }
