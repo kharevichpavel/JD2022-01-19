@@ -34,16 +34,13 @@ public class TaskC {
         int sumElement = 0;
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
-
-
-                sumElement = sumElement + j;
-
-
-
+                if (arr[i][j]==0 && j>0) {
+                    sumElement = sumElement + j;
+                }
             }
         }
-
         System.out.print(sumElement);
+
         return sumElement;
     }
 

@@ -20,6 +20,48 @@ class Matrix extends Var {
         this.value = secondMatrix;
     }
 
+    public Matrix(String strMatrix) {
+        strMatrix = strMatrix.replaceAll("[^0-9],\\s?[^0-9]", "&");
+        strMatrix = strMatrix.replaceAll("[{}]", "");
+        String[] strMatrixArr = strMatrix.split("&");
+        int q = strMatrixArr.length;
+        int q1 = strMatrixArr[0].trim().split(",").length;
+        String[][] matrixArr = new String[q][q1];
+        for (int i = 0; i < matrixArr.length; i++) {
+            matrixArr[i] = strMatrixArr[0].trim().split(",");
+        }
+        double[][] secondMatrix = new double[q][q1];
+        for (int i = 0; i < matrixArr.length; i++) {
+            for (int i1 = 0; i1 < matrixArr[0].length; i1++) {
+                secondMatrix[i][i1] = Double.parseDouble(matrixArr[i][i1]);
+
+            }
+        }
+        this.value = secondMatrix;
+    }
+
+    @Override
+    public Var add(Var other) {
+        double[][] localValue = value.clone();
+        if (other instanceof Scalar scalar) {
+            for (int i = 0; i < localValue.length; i++) {
+                for (int i1 = 0; i1 < localValue.length; i1++) {
+                    localValue[i][i1] = scalar.getValue();
+
+                }
+            }
+            return new Matrix(localValue);
+/*        } else if (other instanceof Matrix localValue) {
+            if (this.value.length == Matrix. {
+                for (int i = 0; i < localValue.length; i++) {
+                    localValue[i] += vector.value[i];
+                }
+                return new Vector(localValue);
+            }*/
+        }
+        return super.add(other);
+    }
+
     @Override
     public String toString() {
         StringBuilder out = new StringBuilder();

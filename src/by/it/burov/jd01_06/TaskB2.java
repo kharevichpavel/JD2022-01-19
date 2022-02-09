@@ -35,16 +35,9 @@ public class TaskB2 {
     }
 
     private static void sortSentence(String[] array) {
-        for(int i = array.length-1 ; i > 0 ; i--){
-            for(int j = 0 ; j < i ; j++){
-            if( array[j].length() > array[j+1].length()){
-                String tempLine = array[j];
-                array[j] = array[j+1];
-                array[j+1] = tempLine;
-            }
-        }
+     Arrays.sort(array,((o1, o2) -> o1.length()-o2.length()));
     }
-    }
+
 
         private static void printResult (String[] array){
             for (int i = 0; i < TaskB2.array.length; i++) {

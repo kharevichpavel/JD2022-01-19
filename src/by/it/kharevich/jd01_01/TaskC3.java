@@ -37,21 +37,20 @@ import java.util.Scanner;
 
 class TaskC3 {
     public static void main(String[] args) {
-        System.out.println(getWeight());
-
+        Scanner sc = new Scanner(System.in);
+        int weight = sc.nextInt();
+        System.out.println(getWeight(weight));
     }
 
-    public static double getWeight() {
-        Scanner sc = new Scanner(System.in);
-        double weight = sc.nextInt();
+    static double getWeight(int weight) {
         double m = 3.86;
         double z = 9.81;
-        double marsW =(weight*(m/z))*100;
+        double marsW = (weight * (m / z)) * 100;
+        if (((weight * (m / z) * 1000) % 10) >= 5 && ((weight * (m / z) * 1000) % 10) > 1) {
+            marsW = marsW + 1;
+        }
         int mars = (int) marsW;
-
-
-
-        return (double) mars /100;
+        return (double) mars / 100;
     }
 }
 
