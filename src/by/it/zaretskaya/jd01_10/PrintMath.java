@@ -39,13 +39,16 @@ public class PrintMath {
         }
         Field[] declaredFields = structure.getDeclaredFields();
         for (Field field : declaredFields) {
-            StringBuilder builder = new StringBuilder();
+            StringBuilder outLine = new StringBuilder();
             int fieldModifiers = field.getModifiers();
             if (Modifier.isPublic(fieldModifiers)) {
-                
+                outLine.append("public ");
 
+            }    else {
+                continue;
             }
-
+            outLine.append(field.getType()).append(" ").append(')');
+            System.out.println(outLine);
 
 
         }
