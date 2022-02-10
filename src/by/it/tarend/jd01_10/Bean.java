@@ -7,6 +7,7 @@ public class Bean {
         return first + second;
     }
     @Param(a = 1, b = 2)
+    @Deprecated
     double max (int first, int second) {
         return Math.max(first, second);
     }
@@ -15,6 +16,7 @@ public class Bean {
     static double min (int first, int second) {
         return Math.min(first, second);
     }
+
     double avg (int first, int second) {
         return (first + second) / 2.0;
     }
