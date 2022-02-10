@@ -1,5 +1,6 @@
 package by.it.zaretskaya.jd01_10;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
@@ -36,6 +37,19 @@ public class PrintMath {
 
 
         }
+        Field[] declaredFields = structure.getDeclaredFields();
+        for (Field field : declaredFields) {
+            StringBuilder builder = new StringBuilder();
+            int fieldModifiers = field.getModifiers();
+            if (Modifier.isPublic(fieldModifiers)) {
+                
+
+            }
+
+
+
+        }
+
 
 
     }
