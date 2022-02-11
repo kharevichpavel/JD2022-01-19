@@ -1,4 +1,4 @@
-package by.it.zaretskaya;
+package by.it.zaretskaya.jd01_10;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
