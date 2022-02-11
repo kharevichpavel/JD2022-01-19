@@ -1,4 +1,6 @@
-package by.it.skorobogatyi.jd01_09;
+package by.it.skorobogatyi.jd01_09.variables;
+
+import by.it.skorobogatyi.jd01_09.utils.Operation;
 
 class Scalar extends Var implements Operation {
 
@@ -106,7 +108,8 @@ class Scalar extends Var implements Operation {
             return new Scalar(returnValue);
         }
 
-        return other.div(this);
+        System.out.printf("Operation division %s / %s impossible%n", this, other);
+        return null;
 
     }
 

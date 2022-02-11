@@ -1,4 +1,7 @@
-package by.it.skorobogatyi.jd01_09;
+package by.it.skorobogatyi.jd01_09.utils;
+
+import by.it.skorobogatyi.jd01_09.printers.Printer;
+import by.it.skorobogatyi.jd01_09.variables.Var;
 
 import java.util.Scanner;
 

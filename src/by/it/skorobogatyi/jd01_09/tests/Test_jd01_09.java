@@ -1,4 +1,4 @@
-package by.it.skorobogatyi.jd01_09;
+package by.it.skorobogatyi.jd01_09.tests;
 
 
 import by.it.HomeWork;
