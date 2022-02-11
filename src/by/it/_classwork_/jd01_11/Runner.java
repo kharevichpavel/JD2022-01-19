@@ -9,8 +9,6 @@ public class Runner {
         processList(list);
         list=new ListA<>();
         processList(list);
-
-
     }
 
     private static void processList(List<String> list) {
