@@ -16,9 +16,9 @@ public class TaskA {
         double[] array = InOut.getArray(line);
         double firstElement = array[0];
         double lastElement = array[array.length - 1];
-        InOut.printArray(array, "V", 5);
+        InOut.printArray(array, 5);
         Helper.sort(array);
-        InOut.printArray(array, "V", 4);
+        InOut.printArray(array, 4);
 
         for (int i = 0; i < array.length; i++) {
             if (firstElement == array[i]) {
