@@ -10,8 +10,8 @@ public class ListA<E> implements List<E> {
     @Override
     public boolean add(E e) {
         if(elements.length==size){
-            int newCapasity =elements.length+(elements.length/2)+1;
-            elements=Arrays.copyOf(elements, newCapasity);
+            int newCapacity =elements.length+(elements.length/2)+1;
+            elements=Arrays.copyOf(elements, newCapacity);
         }
         elements[size++] = e;
         return true;
@@ -56,7 +56,19 @@ public class ListA<E> implements List<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new Iterator<E>() {
+            private int position=0;
+
+            @Override
+            public boolean hasNext() {
+                return position < size;
+            }
+
+            @Override
+            public E next() {
+                return elements[position++];
+            }
+        };
     }
 
     @Override
