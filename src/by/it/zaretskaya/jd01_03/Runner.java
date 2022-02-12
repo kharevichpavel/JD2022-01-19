@@ -13,6 +13,10 @@ public class Runner {
         Helper.sort (array);
         System.out.println("Output columns number after sorting");
         by.it.zaretskaya.jd01_03.InOut.printArray(array,name,columCount);
+        System.out.println("findMin");
+        by.it.zaretskaya.jd01_03.InOut.printArray(array);
+        System.out.println("findMax");
+        by.it.zaretskaya.jd01_03.InOut.printArray(array);
 
     }
 

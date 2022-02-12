@@ -21,7 +21,7 @@ public class TaskC2 {
     }
 
     private static String fast(String text) {
-        String[] wordsArray = text.split("[^а-яА-яёЁ]+");
+        String[] wordsArray = text.split("[^а-яА-ЯёЁ]+");
         StringBuilder randomText = new StringBuilder("");
         Random random = new Random(1);
         while (randomText.length() <= 100000) {
@@ -31,7 +31,7 @@ public class TaskC2 {
     }
 
     private static String slow(String text) {
-        String[] wordsArray = text.split("[^а-яА-яёЁ]+");
+        String[] wordsArray = text.split("[^а-яА-ЯёЁ]+");
         String randomText = "";
         Random random = new Random(1);
         while (randomText.length() <= 100000) {
