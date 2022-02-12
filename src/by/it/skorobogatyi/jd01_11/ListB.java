@@ -117,6 +117,33 @@ public class ListB<E> implements List<E> {
     }
 
     @Override
+    public boolean remove(Object o) {
+
+        if (! this.contains(o)) {
+            return false;
+        }
+
+        if (o == null) {
+            while (this.contains(null)) {
+                for (int i = 0; i < size; i++) {
+                    if (elements[i] == null) {
+                        this.remove(i);
+                    }
+                }
+            }
+        } else {
+            while (this.contains(o)) {
+                for (int i = 0; i < size; i++) {
+                    if (elements[i] == o) {
+                        this.remove(i);
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
     public boolean isEmpty() {
         return false;
     }
@@ -141,11 +168,6 @@ public class ListB<E> implements List<E> {
     @Override
     public Object[] toArray() {
         return new Object[0];
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return false;
     }
 
     @Override
