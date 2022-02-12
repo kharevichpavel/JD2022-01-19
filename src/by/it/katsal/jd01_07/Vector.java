@@ -2,7 +2,7 @@ package by.it.katsal.jd01_07;
 
 import java.util.Arrays;
 
-public class Vector {
+public class Vector extends Var {
 private final double [] value;
 public Vector (double [] value ){
     this.value = value.clone();

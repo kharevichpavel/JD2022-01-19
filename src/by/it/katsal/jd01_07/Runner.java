@@ -8,6 +8,8 @@ public class Runner {
         System.out.println(var2);
         Var var3 = new Scalar(var1);
         System.out.println(var3);
+        Var var4 = new Vector(new double[] {1,2,3,4});
+        System.out.println(var4);
 
 
 
