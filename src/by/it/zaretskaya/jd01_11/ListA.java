@@ -2,56 +2,49 @@ package by.it.zaretskaya.jd01_11;
 
 import java.util.*;
 
-public class ListA <T> implements List<T> {
-    private T[]elements= (T[]) new Object[] {};
-    private int size=0;
+public class ListA<E> implements List<E> {
+@SuppressWarnings("unchecked")
+private E[] elements= (E[]) new Object[]{};
+private int size=0;
 
     @Override
-    public boolean add(T t) {
-        if (size== elements.length);
-        elements= Arrays.copyOf(elements,(size*3)/2+1);
-        elements [size++]=t;
-        return false;
+    public boolean add(E e) {
+        if (elements.length==size){
+            int newCapacity = elements.length + (elements.length>>1)+1;
+            elements = Arrays.copyOf(elements,newCapacity);
+        }
+        elements [size++]=e;
+        return true;
+    }
+
+    @Override
+    public E remove(int index) {
+        //check size and throw IOOB
+        E returnValue=elements [index];
+        System.arraycopy(elements,index+1,elements,index,size-index-1);
+        elements [size--]= null;
+        return returnValue;
+    }
+
+    @Override
+    public E get(int index) {
+        return elements[index];
     }
 
     @Override
     public String toString() {
-        StringBuilder sb=new StringBuilder("[");
-        String delimiter="";
-        for (T element:elements){
-            sb.append(delimiter).append(elements);
-            delimiter=", ";
+        StringJoiner joiner = new StringJoiner(", ", "[", "]");
+        for (int i = 0; i < size; i++) {
+            joiner.add(elements[i].toString());
         }
-        sb.append("]");
-        return sb.toString();
+        return joiner.toString();
     }
-
-    @Override
-    public void add(int index, T element) {
-
-    }
-    @Override
-    public T remove(int index) {
-        return null;
-    }
-
-    @Override
-    public T get(int index) {
-        return null;
-    }
-
-
-
-
-
-
-
 
     @Override
     public int size() {
         return 0;
     }
-
+     //stubs
     @Override
     public boolean isEmpty() {
         return false;
@@ -63,7 +56,7 @@ public class ListA <T> implements List<T> {
     }
 
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<E> iterator() {
         return null;
     }
 
@@ -73,10 +66,9 @@ public class ListA <T> implements List<T> {
     }
 
     @Override
-    public <T1> T1[] toArray(T1[] a) {
+    public <T> T[] toArray(T[] a) {
         return null;
     }
-
 
     @Override
     public boolean remove(Object o) {
@@ -89,12 +81,12 @@ public class ListA <T> implements List<T> {
     }
 
     @Override
-    public boolean addAll(Collection<? extends T> c) {
+    public boolean addAll(Collection<? extends E> c) {
         return false;
     }
 
     @Override
-    public boolean addAll(int index, Collection<? extends T> c) {
+    public boolean addAll(int index, Collection<? extends E> c) {
         return false;
     }
 
@@ -113,10 +105,14 @@ public class ListA <T> implements List<T> {
 
     }
 
+    @Override
+    public E set(int index, E element) {
+        return null;
+    }
 
     @Override
-    public T set(int index, T element) {
-        return null;
+    public void add(int index, E element) {
+
     }
 
     @Override
@@ -130,17 +126,17 @@ public class ListA <T> implements List<T> {
     }
 
     @Override
-    public ListIterator<T> listIterator() {
+    public ListIterator<E> listIterator() {
         return null;
     }
 
     @Override
-    public ListIterator<T> listIterator(int index) {
+    public ListIterator<E> listIterator(int index) {
         return null;
     }
 
     @Override
-    public List<T> subList(int fromIndex, int toIndex) {
+    public List<E> subList(int fromIndex, int toIndex) {
         return null;
     }
 }
