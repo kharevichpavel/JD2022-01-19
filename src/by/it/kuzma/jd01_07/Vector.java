@@ -1,6 +1,6 @@
 package by.it.kuzma.jd01_07;
 
-public class Vector extends Var {
+class Vector extends Var {
 
     private final double[] value;
 

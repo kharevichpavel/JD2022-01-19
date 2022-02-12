@@ -1,6 +1,6 @@
 package by.it.kuzma.jd01_07;
 
-public class Matrix extends Var{
+class Matrix extends Var{
 
     private final double[][] value;
 

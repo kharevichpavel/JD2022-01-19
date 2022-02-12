@@ -1,6 +1,6 @@
 package by.it.kuzma.jd01_07;
 
-public class Runner {
+class Runner {
     public static void main(String[] args) {
         Scalar var1 = new Scalar("1234.5678");
         System.out.println(var1);
