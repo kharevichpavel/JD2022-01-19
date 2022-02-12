@@ -8,6 +8,10 @@ class Matrix extends Var{
         this.value = value.clone();
     }
 
+    public Matrix(Matrix matrix) {
+        this.value = matrix.value.clone();
+    }
+
     public double[][] getValue() {
         return value.clone();
     }

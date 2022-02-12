@@ -27,5 +27,9 @@ class Runner {
         Matrix var7 = new Matrix(new double[][]{{1,2}, {3,4}});
         System.out.println(var7);
 
+        Matrix var8 = new Matrix(var7);
+        System.out.println(var8);
+
+
     }
 }
