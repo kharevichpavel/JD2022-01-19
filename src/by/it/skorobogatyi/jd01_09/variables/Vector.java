@@ -1,4 +1,6 @@
-package by.it.skorobogatyi.jd01_09;
+package by.it.skorobogatyi.jd01_09.variables;
+
+import by.it.skorobogatyi.jd01_09.utils.Operation;
 
 class Vector extends Var implements Operation {
 

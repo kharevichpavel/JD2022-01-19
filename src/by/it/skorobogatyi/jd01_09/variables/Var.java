@@ -1,6 +1,9 @@
-package by.it.skorobogatyi.jd01_09;
+package by.it.skorobogatyi.jd01_09.variables;
 
-abstract class Var implements Operation {
+import by.it.skorobogatyi.jd01_09.utils.CustomPatterns;
+import by.it.skorobogatyi.jd01_09.utils.Operation;
+
+public abstract class Var implements Operation {
 
 
     public static Var create(String varValue) {
