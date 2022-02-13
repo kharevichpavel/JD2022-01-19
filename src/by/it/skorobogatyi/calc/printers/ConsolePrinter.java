@@ -1,12 +1,12 @@
 package by.it.skorobogatyi.calc.printers;
 
-import by.it.skorobogatyi.calc.variables.Var;
+import by.it.skorobogatyi.calc.variables.AbstractVar;
 
 public class ConsolePrinter implements Printer {
     @Override
-    public void print(Var var) {
-        if (var != null) {
-            System.out.println(var);
+    public void print(AbstractVar abstractVar) {
+        if (abstractVar != null) {
+            System.out.println(abstractVar);
         }
     }
 }

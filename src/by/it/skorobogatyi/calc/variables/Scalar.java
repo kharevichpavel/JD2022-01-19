@@ -2,7 +2,7 @@ package by.it.skorobogatyi.calc.variables;
 
 import by.it.skorobogatyi.calc.utils.Operation;
 
-class Scalar extends Var implements Operation {
+class Scalar extends AbstractVar implements Operation {
 
     private final double value;
 
@@ -30,79 +30,79 @@ class Scalar extends Var implements Operation {
 
 
     @Override
-    public Var add(Var other) {
+    public AbstractVar add(AbstractVar other) {
         return other.add(this);
     }
 
     @Override
-    public Var add(Scalar other) {
+    public AbstractVar add(Scalar other) {
         double returnValue = other.value + this.value;
         return new Scalar(returnValue);
     }
 
     @Override
-    public Var add(Vector other) {
+    public AbstractVar add(Vector other) {
         return other.add(this);
     }
 
     @Override
-    public Var add(Matrix other) {
+    public AbstractVar add(Matrix other) {
         return other.add(this);
     }
 
 
     @Override
-    public Var sub(Var other) {
+    public AbstractVar sub(AbstractVar other) {
         return other.sub(this);
     }
 
     @Override
-    public Var sub(Scalar other) {
+    public AbstractVar sub(Scalar other) {
         double returnValue = other.value - this.value;
         return new Scalar(returnValue);
     }
 
     @Override
-    public Var sub(Vector other) {
+    public AbstractVar sub(Vector other) {
         return other.sub(this);
     }
 
     @Override
-    public Var sub(Matrix other) {
+    public AbstractVar sub(Matrix other) {
         return other.sub(this);
     }
 
 
 
     @Override
-    public Var mul(Var other) {
+    public AbstractVar mul(AbstractVar other) {
        return other.mul(this);
     }
 
     @Override
-    public Var mul(Scalar other) {
+    public AbstractVar mul(Scalar other) {
         double returnValue = other.value * this.value;
         return new Scalar(returnValue);
     }
 
     @Override
-    public Var mul(Vector other) {
+    public AbstractVar mul(Vector other) {
         return other.mul(this);
     }
 
     @Override
-    public Var mul(Matrix other) {
+    public AbstractVar mul(Matrix other) {
         return other.mul(this);
     }
 
 
     @Override
-    public Var div(Var other) {
+    public AbstractVar div(AbstractVar other) {
         return other.div(this);
     }
 
     @Override
-    public Var div(Scalar other) {
+    public AbstractVar div(Scalar other) {
         if (this.value != 0) {
             double returnValue = other.value / this.value;
             return new Scalar(returnValue);
@@ -114,12 +114,12 @@ class Scalar extends Var implements Operation {
     }
 
     @Override
-    public Var div(Vector other) {
+    public AbstractVar div(Vector other) {
         return other.div(this);
     }
 
     @Override
-    public Var div(Matrix other) {
+    public AbstractVar div(Matrix other) {
         return other.div(this);
     }
 

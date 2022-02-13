@@ -1,7 +1,7 @@
 package by.it.skorobogatyi.calc.printers;
 
-import by.it.skorobogatyi.calc.variables.Var;
+import by.it.skorobogatyi.calc.variables.AbstractVar;
 
 public interface Printer {
-    void print(Var var);
+    void print(AbstractVar abstractVar);
 }

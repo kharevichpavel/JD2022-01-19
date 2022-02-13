@@ -2,7 +2,7 @@ package by.it.skorobogatyi.calc.variables;
 
 import by.it.skorobogatyi.calc.utils.Operation;
 
-class Matrix extends Var implements Operation {
+class Matrix extends AbstractVar implements Operation {
 
     private final double[][] value;
 
@@ -70,12 +70,12 @@ class Matrix extends Var implements Operation {
 
 
     @Override
-    public Var add(Var other) {
+    public AbstractVar add(AbstractVar other) {
         return other.add(this);
     }
 
     @Override
-    public Var add(Scalar other) {
+    public AbstractVar add(Scalar other) {
 
         double[][] returnMatrix = this.value.clone();
         for (int i = 0; i < this.value.length; i++) {
@@ -88,13 +88,13 @@ class Matrix extends Var implements Operation {
     }
 
     @Override
-    public Var add(Vector other) {
+    public AbstractVar add(Vector other) {
         System.out.printf("Operation addition %s + %s impossible%n", other, this);
         return null;
     }
 
     @Override
-    public Var add(Matrix other) {
+    public AbstractVar add(Matrix other) {
 
         if (other.value.length != this.value.length) {
             System.out.printf("Operation addition %s + %s impossible%n", other, this);
@@ -123,12 +123,12 @@ class Matrix extends Var implements Operation {
 
 
     @Override
-    public Var sub(Var other) {
+    public AbstractVar sub(AbstractVar other) {
        return other.sub(this);
     }
 
     @Override
-    public Var sub(Scalar other) {
+    public AbstractVar sub(Scalar other) {
 
         double[][] returnMatrix = this.value.clone();
         for (int i = 0; i < this.value.length; i++) {
@@ -141,13 +141,13 @@ class Matrix extends Var implements Operation {
     }
 
     @Override
-    public Var sub(Vector other) {
+    public AbstractVar sub(Vector other) {
         System.out.printf("Operation subtraction %s - %s impossible%n", other, this);
         return null;
     }
 
     @Override
-    public Var sub(Matrix other) {
+    public AbstractVar sub(Matrix other) {
 
         if (other.value.length != this.value.length) {
             System.out.printf("Operation subtraction %s - %s impossible%n", other, this);
@@ -176,12 +176,12 @@ class Matrix extends Var implements Operation {
 
 
     @Override
-    public Var mul(Var other) {
+    public AbstractVar mul(AbstractVar other) {
         return other.mul(this);
     }
 
     @Override
-    public Var mul(Scalar other) {
+    public AbstractVar mul(Scalar other) {
         double[][] returnMatrix = this.value.clone();
         for (int i = 0; i < this.value.length; i++) {
             for (int j = 0; j < this.value[i].length; j++) {
@@ -192,7 +192,7 @@ class Matrix extends Var implements Operation {
     }
 
     @Override
-    public Var mul(Vector other) {
+    public AbstractVar mul(Vector other) {
 
         if (other.getValue().length != this.value[0].length) {
             System.out.printf("Operation multiplication %s * %s impossible%n", other, this);
@@ -211,7 +211,7 @@ class Matrix extends Var implements Operation {
     }
 
     @Override
-    public Var mul(Matrix other) {
+    public AbstractVar mul(Matrix other) {
 
         if (this.value[0].length != other.value.length) {
             System.out.printf("Operation multiplication %s * %s impossible%n", other, this);
@@ -233,12 +233,12 @@ class Matrix extends Var implements Operation {
 
 
     @Override
-    public Var div(Var other) {
+    public AbstractVar div(AbstractVar other) {
         return other.div(this);
     }
 
     @Override
-    public Var div(Scalar other) {
+    public AbstractVar div(Scalar other) {
 
         if (other.getValue() != 0) {
 
@@ -257,13 +257,13 @@ class Matrix extends Var implements Operation {
     }
 
     @Override
-    public Var div(Vector other) {
+    public AbstractVar div(Vector other) {
         System.out.printf("Operation division %s / %s impossible%n", other, this);
         return null;
     }
 
     @Override
-    public Var div(Matrix other) {
+    public AbstractVar div(Matrix other) {
         System.out.printf("Operation division %s / %s impossible%n", other, this);
         return null;
     }

@@ -1,15 +1,15 @@
 package by.it.skorobogatyi.calc.utils;
 
-import by.it.skorobogatyi.calc.variables.Var;
+import by.it.skorobogatyi.calc.variables.AbstractVar;
 
 public interface Operation {
 
-    Var add(Var other);
+    AbstractVar add(AbstractVar other);
 
-    Var sub(Var other);
+    AbstractVar sub(AbstractVar other);
 
-    Var mul(Var other);
+    AbstractVar mul(AbstractVar other);
 
-    Var div(Var other);
+    AbstractVar div(AbstractVar other);
 
 }

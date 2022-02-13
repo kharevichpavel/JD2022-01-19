@@ -1,7 +1,7 @@
 package by.it.skorobogatyi.calc.utils;
 
 import by.it.skorobogatyi.calc.printers.Printer;
-import by.it.skorobogatyi.calc.variables.Var;
+import by.it.skorobogatyi.calc.variables.AbstractVar;
 
 import java.util.Scanner;
 
@@ -25,7 +25,7 @@ public class Application {
             String line = scanner.nextLine();
 
             if (!line.equals(END)) {
-                Var result = parser.calc(line);
+                AbstractVar result = parser.calc(line);
                 printer.print(result);
             } else {
                 System.out.println("App finished");
