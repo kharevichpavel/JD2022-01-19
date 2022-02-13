@@ -9,7 +9,7 @@ public class TaskA2 {
     private static int[] counts={};
 
     public static void main(String[] args) {
-        Pattern pattern = Pattern.compile("[а-яА-ЯёЁ]{4,}");
+        Pattern pattern = Pattern.compile("[а-яА-ЯёЁ]+");
         Matcher matcher = pattern.matcher(Poem.text);
         while (matcher.find()){
             String word = matcher.group();
