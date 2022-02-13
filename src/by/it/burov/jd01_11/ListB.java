@@ -69,14 +69,14 @@ public class ListB<E> implements List<E> {
             return false;
         }
         final int tempSize = size;
-        if (length > elements.length - tempSize ) {
+        if (length > elements.length - tempSize) {
             int newCapacity = elements.length + (elements.length / 2) + 1;
             elements = Arrays.copyOf(elements, newCapacity);
         }
-        System.arraycopy(newList, 0, elements, tempSize , length);
+        System.arraycopy(newList, 0, elements, tempSize, length);
         size = tempSize + length;
         return true;
-}
+    }
 
     @Override
     public int size() {
@@ -96,7 +96,7 @@ public class ListB<E> implements List<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            private int position=0;
+            private int position = 0;
 
             @Override
             public boolean hasNext() {
@@ -122,12 +122,39 @@ public class ListB<E> implements List<E> {
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        final Object[] es = elements;
+        final int size = this.size;
+        int i = 0;
+        found:
+        {
+            if (o == null) {
+                for (; i < size; i++)
+                    if (es[i] == null)
+                        break found;
+            } else {
+                for (; i < size; i++)
+                    if (o.equals(es[i]))
+                        break found;
+            }
+            return false;
+        }
+        fastRemove(es, i);
+        return true;
+    }
+
+    private void fastRemove(Object[] es, int i) {
+        final int newSize;
+        if ((newSize = size - 1) > i)
+            System.arraycopy(es, i + 1, es, i, newSize - i);
+        es[size = newSize] = null;
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        for (Object e : c)
+            if (!contains(e))
+                return false;
+        return true;
     }
 
     @Override
@@ -137,7 +164,14 @@ public class ListB<E> implements List<E> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        boolean result = false;
+        for (Object obj : c) {
+            if (this.contains(obj)) {
+                this.remove(obj);
+                result = true;
+            }
+        }
+        return result;
     }
 
     @Override
@@ -147,21 +181,21 @@ public class ListB<E> implements List<E> {
 
     @Override
     public void clear() {
-
+        this.elements = (E[]) new Object[]{};
+        this.size = 0;
     }
 
     @Override
     public int indexOf(Object o) {
-        Object[] tempArray = elements;
         if (o == null) {
             for (int i = 0; i < size; i++) {
-                if (tempArray[i] == null) {
+                if (elements[i] == null) {
                     return i;
                 }
             }
         } else {
             for (int i = 0; i < size; i++) {
-                if (o.equals(tempArray[i])) {
+                if (o.equals(elements[i])) {
                     return i;
                 }
             }
