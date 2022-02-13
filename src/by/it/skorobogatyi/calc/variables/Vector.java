@@ -190,13 +190,13 @@ class Vector extends Var implements Operation {
 
     @Override
     public Var div(Vector other) {
-        System.out.printf("Operation division %s / %s impossible%n", this, other);
+        System.out.printf("Operation division %s / %s impossible%n", other, this);
         return null;
     }
 
     @Override
     public Var div(Matrix other) {
-        System.out.printf("Operation division %s / %s impossible%n", this, other);
+        System.out.printf("Operation division %s / %s impossible%n", other, this);
         return null;
     }
 

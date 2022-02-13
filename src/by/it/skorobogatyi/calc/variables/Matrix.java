@@ -89,7 +89,7 @@ class Matrix extends Var implements Operation {
 
     @Override
     public Var add(Vector other) {
-        System.out.printf("Operation addition %s + %s impossible%n", this, other);
+        System.out.printf("Operation addition %s + %s impossible%n", other, this);
         return null;
     }
 
@@ -97,13 +97,13 @@ class Matrix extends Var implements Operation {
     public Var add(Matrix other) {
 
         if (other.value.length != this.value.length) {
-            System.out.printf("Operation addition %s + %s impossible%n", this, other);
+            System.out.printf("Operation addition %s + %s impossible%n", other, this);
             return null;
         }
 
         for (int i = 0; i < this.value.length; i++) {
             if (other.value[i].length != this.value[i].length) {
-                System.out.printf("Operation addition %s + %s impossible%n", this, other);
+                System.out.printf("Operation addition %s + %s impossible%n", other, this);
                 return null;
             }
         }
@@ -142,7 +142,7 @@ class Matrix extends Var implements Operation {
 
     @Override
     public Var sub(Vector other) {
-        System.out.printf("Operation subtraction %s - %s impossible%n", this, other);
+        System.out.printf("Operation subtraction %s - %s impossible%n", other, this);
         return null;
     }
 
@@ -150,13 +150,13 @@ class Matrix extends Var implements Operation {
     public Var sub(Matrix other) {
 
         if (other.value.length != this.value.length) {
-            System.out.printf("Operation subtraction %s - %s impossible%n", this, other);
+            System.out.printf("Operation subtraction %s - %s impossible%n", other, this);
             return null;
         }
 
         for (int i = 0; i < this.value.length; i++) {
             if (other.value[i].length != this.value[i].length) {
-                System.out.printf("Operation subtraction %s - %s impossible%n", this, other);
+                System.out.printf("Operation subtraction %s - %s impossible%n", other, this);
                 return null;
             }
         }
@@ -195,7 +195,7 @@ class Matrix extends Var implements Operation {
     public Var mul(Vector other) {
 
         if (other.getValue().length != this.value[0].length) {
-            System.out.printf("Operation multiplication %s * %s impossible%n", this, other);
+            System.out.printf("Operation multiplication %s * %s impossible%n", other, this);
             return null;
         }
 
@@ -214,7 +214,7 @@ class Matrix extends Var implements Operation {
     public Var mul(Matrix other) {
 
         if (this.value[0].length != other.value.length) {
-            System.out.printf("Operation multiplication %s * %s impossible%n", this, other);
+            System.out.printf("Operation multiplication %s * %s impossible%n", other, this);
             return null;
         }
 
@@ -245,7 +245,7 @@ class Matrix extends Var implements Operation {
             double[][] returnMatrix = this.value.clone();
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < this.value[i].length; j++) {
-                    returnMatrix[i][j] = other.getValue() / returnMatrix[i][j];
+                    returnMatrix[i][j] = returnMatrix[i][j] / other.getValue();
                 }
             }
 
@@ -258,13 +258,13 @@ class Matrix extends Var implements Operation {
 
     @Override
     public Var div(Vector other) {
-        System.out.printf("Operation division %s / %s impossible%n", this, other);
+        System.out.printf("Operation division %s / %s impossible%n", other, this);
         return null;
     }
 
     @Override
     public Var div(Matrix other) {
-        System.out.printf("Operation division %s / %s impossible%n", this, other);
+        System.out.printf("Operation division %s / %s impossible%n", other, this);
         return null;
     }
 }
