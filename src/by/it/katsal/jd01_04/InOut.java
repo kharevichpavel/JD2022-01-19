@@ -1,4 +1,4 @@
-package by.it.katsal.JD01_04;
+package by.it.katsal.jd01_04;
 
 
 

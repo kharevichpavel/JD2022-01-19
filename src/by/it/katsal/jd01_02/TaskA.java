@@ -1,4 +1,4 @@
-package by.it.katsal.jd001_02;
+package by.it.katsal.jd01_02;
 
 import java.util.Scanner;
 
