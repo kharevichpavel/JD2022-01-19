@@ -46,18 +46,18 @@ public class ListA<E> implements List<E> {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
-
-    // stubs
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
 
     @Override
     public boolean isEmpty() {
+        return size==0;
+    }
+    // stubs
+
+    @Override
+    public boolean remove(Object o) {
         return false;
     }
 
@@ -67,8 +67,21 @@ public class ListA<E> implements List<E> {
     }
 
     @Override
-    public Iterator<E> iterator() {
-        return null;
+    public Iterator<E>  iterator() {
+
+        return new Iterator<E>() {
+            private int position = 0;
+
+            @Override
+            public boolean hasNext() {
+                return position < size;
+            }
+
+            @Override
+            public E next() {
+                return elements[position++];
+            }
+        };
     }
 
     @Override
