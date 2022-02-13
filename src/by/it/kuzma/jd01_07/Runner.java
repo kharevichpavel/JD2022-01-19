@@ -30,6 +30,9 @@ class Runner {
         Matrix var8 = new Matrix(var7);
         System.out.println(var8);
 
+        Matrix var9 = new Matrix("{ { 1.0, 2.0 }, { 3.0, 4.0 } }");
+        System.out.println(var9);
+
 
     }
 }
