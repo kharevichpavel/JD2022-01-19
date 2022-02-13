@@ -2,11 +2,10 @@ package by.it.skorobogatyi.jd01_11;
 
 import java.util.*;
 
-/* contains, size, indexOf (реализация остальных – фиктивная). */
 
 public class ListB<E> implements List<E> {
-    private E[] elements = (E[]) new Object[16];
 
+    private E[] elements = (E[]) new Object[16];
     private int size = 0;
 
     @Override

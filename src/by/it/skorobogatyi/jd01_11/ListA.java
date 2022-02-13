@@ -2,7 +2,8 @@ package by.it.skorobogatyi.jd01_11;
 
 import java.util.*;
 
-public class ListA<E> implements List<E>{
+
+public class ListA<E> implements List<E> {
 
     private E[] elements = (E[]) new Object[16];
     private int size = 0;
@@ -43,12 +44,12 @@ public class ListA<E> implements List<E>{
     /// stubbed
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
@@ -95,7 +96,7 @@ public class ListA<E> implements List<E>{
 
     @Override
     public void clear() {
-
+        size = 0;
     }
 
     @Override

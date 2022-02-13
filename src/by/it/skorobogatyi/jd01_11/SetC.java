@@ -1,15 +1,7 @@
 package by.it.skorobogatyi.jd01_11;
 
 import java.util.*;
-/*
-size(), +
-isEmpty(), +
-contains(Object o), +
-add(T e), +
-remove(Object o), +
-addAll(List<?> c), +
-containsAll(Collection<?> c),
-removeAll(Collection<?> c) */
+
 
 public class SetC<E> implements Set<E> {
 
@@ -134,7 +126,6 @@ public class SetC<E> implements Set<E> {
                 for (int j = 0; j < size; j++) {
                     if (Objects.equals(elements[j], forDeleting[i])) {
                         this.remove(forDeleting[i]);
-                        size--;
                     }
                 }
             }
@@ -165,6 +156,9 @@ public class SetC<E> implements Set<E> {
 
     @Override
     public void clear() {
+        for (int i = 0; i < size; i++) {
+            elements[i] = null;
+        }
         this.size = 0;
     }
 }
