@@ -1,6 +1,4 @@
-package by.it.yushkevich.jd01_08;
-
-import java.util.Arrays;
+package by.it.yushkevich.jd01_09;
 
 class Matrix extends Var {
 
