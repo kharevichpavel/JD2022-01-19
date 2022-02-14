@@ -11,9 +11,10 @@ public class VariablesStorage {
     public static String printVar() {
         StringBuilder stringBuilder = new StringBuilder();
         Set<Map.Entry<String, AbstractVar>> entrySet = variables.entrySet();
-        Object[] toArray = entrySet.toArray();
-        for (Object o : toArray) {
-            stringBuilder.append(o.toString()).append("\n");
+
+        for (Map.Entry<String, AbstractVar> entry : entrySet) {
+            stringBuilder.append(entry.getKey()).append("=").append(entry.getValue());
+            stringBuilder.append("\n");
         }
         return stringBuilder.toString();
     }
@@ -21,6 +22,11 @@ public class VariablesStorage {
     public static String sortVar() {
         StringBuilder stringBuilder = new StringBuilder();
         SortedMap<String, AbstractVar> sortedMap = new TreeMap<>(variables);
-        return null;
+        Set<Map.Entry<String, AbstractVar>> entries = sortedMap.entrySet();
+        for (Map.Entry<String, AbstractVar> entry : entries) {
+            stringBuilder.append(entry.getKey()).append("=").append(entry.getValue());
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
     }
 }
