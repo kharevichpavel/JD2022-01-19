@@ -21,10 +21,12 @@ public class TaskA2 {
         Set<Integer> cross = getCross(leftSet, rightSet);
         System.out.println(cross);
 
+
+
     }
 
     private static Set<Integer> getUnion(Set<Integer> setLeft, Set<Integer> setRight) {
-        HashSet<Integer> result = new HashSet<>(setLeft);
+        HashSet<Integer> result = new HashSet<>(setLeft) ;
         result.addAll(setRight);
         return result;
     }

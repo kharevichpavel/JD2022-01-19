@@ -4,7 +4,9 @@ import java.util.*;
 
 public class TaskC2 {
 
+
     public static void main(String[] args) {
+
 
         Integer[] first = {1,2,3,4,4,4,5,5,5,6,6};
         Integer[] second = {1,2,3,4,4,4,5,5,5,6,6};
@@ -17,20 +19,27 @@ public class TaskC2 {
         HashSet<Integer> leftSet = new HashSet<>(listLeft);
         TreeSet<Integer> rightSet = new TreeSet<>(listRight);
 
-        Set<Integer> union = getUnion(leftSet, rightSet);
+        Set<? extends Number> union = getUnion(leftSet, rightSet);
         System.out.println(union);
 
-        Set<Integer> cross = getCross(leftSet, rightSet);
+        Set<? extends Number> cross = getCross(leftSet, rightSet);
         System.out.println(cross);
     }
 
-    private static Set<Integer> getUnion(Set<?> ... sets) {
+    private static Set<? extends Number> getUnion(Set<? extends Number> ... sets) {
+        HashSet<? extends Number> returnSet = new HashSet<>();
+        for (int i = 0; i < sets.length; i++) {
+            Set<? extends Number> set = sets[i];
+            Iterator<? extends Number> iterator = set.iterator();
+            while (iterator.hasNext()) {
+//                returnSet.add(iterator.next());
+            }
 
-
+        }
         return null;
     }
 
-    private static Set<Integer> getCross(Set<?> ... sets) {
+    private static Set<? extends Number> getCross(Set<? extends Number> ... sets) {
 
         return null;
     }
