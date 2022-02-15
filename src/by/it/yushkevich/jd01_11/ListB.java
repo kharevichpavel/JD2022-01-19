@@ -104,17 +104,17 @@ public class ListB<E> implements List<E> {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size==0;
     }
 
     @Override
     public boolean contains(Object o) {
-        return false;
+    return indexOf(o)>=0;
     }
 
     @Override
@@ -164,7 +164,22 @@ public class ListB<E> implements List<E> {
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        if (o == null) {
+            for (int i = 0; i < size; i++) {
+                if (elements[i] == null) {
+                    return i;
+                }
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (o.equals(elements[i])) {
+                    return i;
+                }
+
+            }
+
+        }
+        return -1;
     }
 
     @Override
