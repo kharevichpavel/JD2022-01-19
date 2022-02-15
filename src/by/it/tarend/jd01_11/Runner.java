@@ -10,9 +10,9 @@ public class Runner {
 
         List<String> list = new ArrayList<>();
         processList(list);
-        list  = new LinkedList<>();
-        processList(list);
         list = new ListA<>();
+        processList(list);
+        list = new ListB<>();
         processList(list);
     }
 
@@ -22,19 +22,23 @@ public class Runner {
         list.add("two");
         list.add("three");
         list.add("four");
-        list.add("five");
+        list.add("five"); // add
+        System.out.println(list); // toString
+        list.remove(2); // remove
         System.out.println(list);
-        list.remove(2);
+        System.out.println(list.get(0));
+//        System.out.println("Iteration loop");
+//        Iterator<String> iterator = list.iterator();
+//        while (iterator.hasNext()) {
+//            System.out.print(iterator.next() + " ");
+//        }
+        list.set(2, "ten");
         System.out.println(list);
-        String first = list.get(0);
-        String last = list.get(3);
-        System.out.printf("first element %s \t last element %s%n", first, last);
-        System.out.println("Iteration loop");
-        Iterator<String> iterator = list.iterator();
-        while (iterator.hasNext()) {
-            System.out.print(iterator.next() + " ");
-        }
-        System.out.println();
+        list.add(1, "six");
+        System.out.println(list);
+        list.addAll(list);
+        System.out.println(list);
+
 
     }
 

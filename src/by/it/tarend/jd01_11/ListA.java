@@ -5,7 +5,8 @@ import java.util.*;
 
 public class ListA<E> implements List<E> {
 
-    private E[] elements = (E[]) new Object[16];
+    @SuppressWarnings("unchecked")
+    private E[] elements = (E[]) new Object[]{};
     private int size = 0;
 
     @Override
@@ -16,7 +17,7 @@ public class ListA<E> implements List<E> {
         }
         elements[size++] = e;
 
-        return false;
+        return true;
     }
 
     @Override
@@ -126,6 +127,7 @@ public class ListA<E> implements List<E> {
 
     @Override
     public E set(int index, E element) {
+        elements[index] = element;
         return null;
     }
 
@@ -136,7 +138,20 @@ public class ListA<E> implements List<E> {
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        if (o==null) {
+            for (int i = 0; i < size; i++) {
+                if (elements[i] == null) {
+                    return i;
+                }
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (o.equals(elements[i])) {
+                    return i;
+                }
+            }
+        }
+        return -1;
     }
 
     @Override
