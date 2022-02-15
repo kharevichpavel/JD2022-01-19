@@ -26,7 +26,15 @@ public class TaskA1 {
     }
 
     private void clearBad(List<Integer> grades) {
-        grades.removeIf(grade -> grade < 4);
+        Iterator<Integer> iterator = grades.iterator();
+        //noinspection Java8CollectionRemoveIf
+        while (iterator.hasNext()){
+            Integer grade = iterator.next();
+            if(grade <4){
+                iterator.remove();
+            }
+
+        }
 
 
     }
