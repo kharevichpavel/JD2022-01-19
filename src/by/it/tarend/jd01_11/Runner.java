@@ -27,11 +27,6 @@ public class Runner {
         list.remove(2); // remove
         System.out.println(list);
         System.out.println(list.get(0));
-//        System.out.println("Iteration loop");
-//        Iterator<String> iterator = list.iterator();
-//        while (iterator.hasNext()) {
-//            System.out.print(iterator.next() + " ");
-//        }
         list.set(2, "ten");
         System.out.println(list);
         list.add(1, "six");
