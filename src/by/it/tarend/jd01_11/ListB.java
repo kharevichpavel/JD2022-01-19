@@ -1,7 +1,5 @@
 package by.it.tarend.jd01_11;
 
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class ListB<E> implements List<E> {
@@ -110,7 +108,7 @@ public class ListB<E> implements List<E> {
     @Override
     public boolean contains(Object o) {
         for (int i = 0; i < size; i++) {
-            if (elements[i] instanceof Object) {
+            if (elements[i] != null) {
                 return true;
             }
         }
