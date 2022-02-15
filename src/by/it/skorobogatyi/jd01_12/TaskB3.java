@@ -51,24 +51,18 @@ public class TaskB3 {
     }
 
     static String process(LinkedList<String> peoples) {
-        LinkedList<String> garbage = new LinkedList<>();
-        LinkedList<String> nonGarbage = new LinkedList<>();
-        int innerCounter = 0;
-        while (innerCounter < peoples.size() + garbage.size() + nonGarbage.size()) {
+        Iterator<String> iterator = peoples.iterator();
+        while (iterator.hasNext()) {
+            iterator.next();
             counter++;
             if (counter % 2 == 0) {
-                garbage.add(peoples.pollFirst());
-            } else {
-                nonGarbage.add(peoples.pollFirst());
+                iterator.remove();
             }
-            innerCounter++;
         }
-        String returnValue = nonGarbage.peek();
-
-        if (nonGarbage.size() > 1) {
-            returnValue = process(nonGarbage);
+        if (peoples.size() > 1) {
+            process(peoples);
         }
-
-        return returnValue;
+        counter = 0;
+        return peoples.get(0);
     }
 }
