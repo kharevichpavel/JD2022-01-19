@@ -10,7 +10,11 @@ public class Runner {
 
         List<String> list = new ArrayList<>();
         processList(list);
+
         list = new ListA<>();
+        processList(list);
+
+        list = new ListB<>();
         processList(list);
 
     }
@@ -29,5 +33,13 @@ public class Runner {
         String last = list.get(3);
         System.out.printf("first = %s last = %s%n", first,last);
         System.out.println(list);
+
+        list.set(1,"HELLO");
+        System.out.println(list);
+        list.add(2,"HI");
+        System.out.println(list);
+
+        list.addAll(list);
+        System.out.println("sssssssssssss"+list);
     }
 }

@@ -14,7 +14,8 @@ public class ListA<E> implements List<E> {
             int newCapacity = elements.length + elements.length / 2 + 1;
             elements = Arrays.copyOf(elements, newCapacity);
         }
-        elements[size++] = e; // сначала добавляется е, после чего сайз увеличивается
+        elements[size] = e; // сначала добавляется е, после чего сайз увеличивается
+        size++;
         return true;
     }
 
