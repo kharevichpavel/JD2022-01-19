@@ -44,12 +44,7 @@ public class ListB<E> implements List<E> {
     @Override
     public boolean addAll(Collection<? extends E> c) {
         @SuppressWarnings("unchecked")
-        E[] newElements = (E[]) new Object[c.size()];
-        Iterator<? extends E> iterator = c.iterator();
-        int i = 0;
-        while (iterator.hasNext()) {
-            newElements[i++] = iterator.next();
-        }
+        E[] newElements = (E[]) c.toArray();
         if ((size+newElements.length) >= elements.length) {
             int newCapacity = (size + newElements.length) * 3 / 2 + 1;
             elements = Arrays.copyOf(elements, newCapacity);
@@ -142,11 +137,17 @@ public class ListB<E> implements List<E> {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] newArray = new Object[size];
+        for (int i = 0; i < elements.length; i++) {
+            newArray[i] = elements[i];
+        }
+        return newArray;
     }
 
     @Override
     public <T> T[] toArray(T[] a) {
+
+
         return null;
     }
 
