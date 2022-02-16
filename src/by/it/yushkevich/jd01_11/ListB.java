@@ -58,7 +58,7 @@ public class ListB<E> implements List<E> {
             int newCapacity = elements.length + (elements.length / 2) + 1;
             elements = Arrays.copyOf(elements, newCapacity);
         }
-        System.arraycopy(elements, index, elements, index + 1, size-index);
+        System.arraycopy(elements, index, elements, index + 1, size - index);
 
         elements[index] = element;
         size++;
@@ -74,12 +74,12 @@ public class ListB<E> implements List<E> {
         int lengthC = arrayC.length; // длина нового массива
 
         if (lengthC > elements.length - size) { //отмнеимаем от длинны размер, смотрел сколько свободных ячеек есть, если новым массив не влазит, то увеличиваем прежний
-            int newCapacity = elements.length + elements.length/2+1;
-            elements =Arrays.copyOf(elements, newCapacity);
+            int newCapacity = elements.length + elements.length / 2 + 1;
+            elements = Arrays.copyOf(elements, newCapacity);
         }
 
-        System.arraycopy(arrayC,0, elements,size, lengthC);
-        size = size+lengthC;
+        System.arraycopy(arrayC, 0, elements, size, lengthC);
+        size = size + lengthC;
 
 
         return true;
@@ -109,57 +109,30 @@ public class ListB<E> implements List<E> {
 
     @Override
     public boolean isEmpty() {
-        return size==0;
+        return size == 0;
     }
 
     @Override
     public boolean contains(Object o) {
-    return indexOf(o)>=0;
+        return indexOf(o) >= 0;
     }
 
     @Override
     public Iterator<E> iterator() {
-        return null;
-    }
+        return new Iterator<E>() {
+            private int position = 0;
 
-    @Override
-    public Object[] toArray() {
-        return new Object[0];
-    }
+            @Override
+            public boolean hasNext() {
+                return position < size;
+            }
 
-    @Override
-    public <T> T[] toArray(T[] a) {
-        return null;
-    }
+            @Override
+            public E next() {
+                return elements[position++];
+            }
 
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(int index, Collection<? extends E> c) {
-        return false;
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public void clear() {
-
+        };
     }
 
     @Override
@@ -180,6 +153,53 @@ public class ListB<E> implements List<E> {
 
         }
         return -1;
+    }
+
+
+
+    @Override
+    public Object[] toArray() {
+        return new Object[0];
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+        return null;
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        return false;
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+
+
+        return false;
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends E> c) {
+        return false;
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        return false;
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+        return false;
+    }
+
+    @Override
+    public void clear() {
+        // делаем из массива  новый пустой массив и делаем его размер нулевым
+        this.elements = (E[]) new Object[]{};
+        this.size = 0;
+
     }
 
     @Override
