@@ -1,29 +1,54 @@
 package by.it.yushkevich.jd01_13;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-public class TaskA {
+public class TaskB {
 
     public static void main(String[] args) {
 
+        inputText();
+
+    }
+
+
+    private static void inputText() {
+
+        Scanner scanner = new Scanner(System.in);
+        List<Double> list = new ArrayList<>();
+        double sum = 0;
         try {
-            if (Math.random() > 0.5)
-                new HashMap<String, String>(null);
-            else
-                Integer.parseInt("привет");
-        } catch (NumberFormatException | NullPointerException e) {
-            //e.printStackTrace();
+            while (true) {
+
+                String text = scanner.nextLine();
+                if (text.equals("END")) {
+                    break;
+                } else {
+                    Double num = Double.parseDouble(text);
+                    sum = sum+num;
+                    if (sum<0){
+                        throw new ArithmeticException();
+                    }
+                    list.add(num);
+                    System.out.println(num +" "+ sum+ " " +Math.sqrt(sum));
+                }
+
+            }
+        } catch (NumberFormatException e) {
             printOutInfo(e);
         }
+
     }
+
 
     private static void printOutInfo(RuntimeException e) {
 
         Class<? extends RuntimeException> eClass = e.getClass();
         String eName = eClass.getName();
         // System.out.println(eNam);
-        Class<TaskA> aClass = TaskA.class;
-        String aClassName = aClass.getName();
+        Class<TaskB> bClass = TaskB.class;
+        String aClassName = bClass.getName();
         //System.out.println(aClassName);
 
         StackTraceElement[] traceElements = e.getStackTrace();
@@ -47,4 +72,6 @@ public class TaskA {
 
 
     }
+
+
 }
