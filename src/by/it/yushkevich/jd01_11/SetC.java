@@ -114,6 +114,7 @@ public class SetC<E> implements Set<E> {
             E[] arrayC = (E[]) c.toArray();
             for (int i = 0; i < arrayC.length; i++) {
                 for (int j = 0; j < this.elements.size(); j++) {
+                    //подсмотрел
                     if (Objects.equals(elements.get(j), arrayC[i])) {
                         this.remove(arrayC[i]);
                     }
