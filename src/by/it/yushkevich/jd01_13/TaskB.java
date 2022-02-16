@@ -13,7 +13,7 @@ public class TaskB {
     }
 
 
-    private static void inputText() throws SqrtLogicException {
+    private static void inputText() {
 
         Scanner scanner = new Scanner(System.in);
         List<Double> list = new ArrayList<>();
@@ -36,29 +36,15 @@ public class TaskB {
                 }
 
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e){
+            printOutInfo(e);
+        } catch (ArithmeticException e){
             printOutInfo(e);
         }
 
     }
+// это норм , что сами выбросили и сами поймали?
 
-    private class SqrtLogicException extends ArithmeticException {
-        public SqrtLogicException() {
-
-        }
-
-        public SqrtLogicException(String message, Throwable exception) {
-            super(message, exception);
-        }
-
-        public SqrtLogicException(String message) {
-            super(message);
-        }
-
-        public SqrtLogicException(Throwable exception) {
-        super(exception);
-        }
-    }
 
 
     private static void printOutInfo(RuntimeException e) {
