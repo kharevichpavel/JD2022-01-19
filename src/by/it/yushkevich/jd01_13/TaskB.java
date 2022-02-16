@@ -13,7 +13,7 @@ public class TaskB {
     }
 
 
-    private static void inputText() {
+    private static void inputText() throws SqrtLogicException {
 
         Scanner scanner = new Scanner(System.in);
         List<Double> list = new ArrayList<>();
@@ -26,12 +26,13 @@ public class TaskB {
                     break;
                 } else {
                     Double num = Double.parseDouble(text);
-                    sum = sum+num;
-                    if (sum<0){
+                    sum = sum + num;
+                    if (sum < 0) {
                         throw new ArithmeticException();
+
                     }
                     list.add(num);
-                    System.out.println(num +" "+ sum+ " " +Math.sqrt(sum));
+                    System.out.println(num + " " + sum + " " + Math.sqrt(sum));
                 }
 
             }
@@ -39,6 +40,24 @@ public class TaskB {
             printOutInfo(e);
         }
 
+    }
+
+    private class SqrtLogicException extends ArithmeticException {
+        public SqrtLogicException() {
+
+        }
+
+        public SqrtLogicException(String message, Throwable exception) {
+            super(message, exception);
+        }
+
+        public SqrtLogicException(String message) {
+            super(message);
+        }
+
+        public SqrtLogicException(Throwable exception) {
+        super(exception);
+        }
     }
 
 
