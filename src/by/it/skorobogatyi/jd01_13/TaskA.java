@@ -16,20 +16,23 @@ public class TaskA {
         }
     }
 
-    private static void printException(RuntimeException e) {
+    public static void printException(RuntimeException e) {
+
         Class<? extends RuntimeException> aClass = e.getClass();
-
         String exceptionName = aClass.getName(); //name
-        System.out.println(exceptionName);
-        Class<TaskA> taskAClass = TaskA.class;
-        String taskAClassName = taskAClass.getName();
 
+        Class<TaskA> taskAClass = TaskA.class;
+        String taskAClassName = taskAClass.getName(); //reference class for comparison
         StackTraceElement[] stackTrace = e.getStackTrace();
+
         for (StackTraceElement stackTraceElement : stackTrace) {
             String className = stackTraceElement.getClassName(); //class
-            if (taskAClassName.equals(className)) {
+
+            if (taskAClassName.equals(className)) { //comparison
                 int lineNumber = stackTraceElement.getLineNumber(); //line
-                System.out.printf(" name: %s%nclass: %s%n line: %d%n", exceptionName, className, lineNumber);
+                System.out.printf(" name: %s%n" +
+                        "class: %s%n" +
+                        " line: %d%n", exceptionName, className, lineNumber);
                 break;
             }
         }

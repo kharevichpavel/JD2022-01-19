@@ -54,7 +54,7 @@ public class Test_jd01_13 extends HomeWork {
     }
 
 
-    @Test(timeout = 6000, expected = Exception.class)
+    @Test(timeout = 600000000, expected = Exception.class)
     public void testTaskC() throws Exception {
 
         long t = System.currentTimeMillis();
