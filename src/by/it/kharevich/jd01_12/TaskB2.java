@@ -4,35 +4,60 @@ import java.util.*;
 
 public class TaskB2 {
 
-    public static final String[] peoplesName = {"Bill,Bob,Jho,Pole,Ann,Mao,Maik,Alex,Leon"};
-
     public static void main(String[] args) {
-        List<String> peoples = new ArrayList<>();
-        for (int i = 0; i < peoplesName.length; i++) {
 
+        ArrayList<String> peoplesA = new ArrayList<>();
+        LinkedList<String> peoplesL = new LinkedList<>();
+        Scanner scanner = new Scanner(System.in);
+        int peopleCount = scanner.nextInt();
 
+        for (int i = 0; i < peopleCount; i++) {
+            peoplesA.add(Integer.toString(i));
+            peoplesL.add(Integer.toString(i));
         }
-        process ((ArrayList<String>) peoples);
 
-        System.out.println(" ");
+        process(peoplesA);
+        process(peoplesL);
+
+        String resultA = process(peoplesA);
+        System.out.println("Last Standing Hero (ArrayList) #" + resultA);
+        String resultB = process(peoplesL);
+        System.out.println("Last Standing Hero (LinkedList) #" + resultB);
     }
 
     static String process(ArrayList<String> peoples) {
-        int i = 0;
+        int counter = 0;
+        Iterator<String> peoplesIterator = peoples.iterator();
         while (peoples.size() != 1) {
-            for (i = 0; i < peoples.size(); i++) {
-                peoples.set(i, null);
-            }
-            while (true) {
-                if (!peoples.remove(null)) break;
-
+            if (peoplesIterator.hasNext()) {
+                peoplesIterator.next();
+                counter++;
+                if (counter == 2) {
+                    peoplesIterator.remove();
+                    counter = 0;
+                }
+            } else {
+                peoplesIterator = peoples.iterator();
             }
         }
-
-
-        return peoples.get(i);
+        return peoples.get(0);
     }
-//    static String process(LinkedList<String> peoples) {
-//        return null;
-//    }
+
+    static String process(LinkedList<String> peoples) {
+        int counter = 0;
+        Iterator<String> peoplesIterator = peoples.iterator();
+        while (peoples.size() != 1) {
+            if (peoplesIterator.hasNext()) {
+                peoplesIterator.next();
+                counter++;
+                if (counter == 2) {
+                    peoplesIterator.remove();
+                    counter = 0;
+                }
+            } else {
+                peoplesIterator = peoples.iterator();
+            }
+        }
+        return peoples.get(0);
+    }
 }
