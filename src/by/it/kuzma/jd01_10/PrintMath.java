@@ -15,50 +15,50 @@ public class PrintMath {
         Method[] declaredMethods = structure.getDeclaredMethods();
 
         for (Field field : fields) {
-            StringBuilder outFieldLine = new StringBuilder();
+            StringBuilder outField = new StringBuilder();
             int modifiers = field.getModifiers();
             if (Modifier.isPublic(modifiers)) {
-                outFieldLine.append("public ");
+                outField.append("public ");
             } else {
                 continue;
             }
             if (Modifier.isStatic(modifiers)) {
-                outFieldLine.append("static ");
+                outField.append("static ");
             } else {
                 continue;
             }
-            outFieldLine.append(field.getType().getSimpleName()).append(" ");
-            outFieldLine.append(field.getName());
-            System.out.println(outFieldLine);
+            outField.append(field.getType().getSimpleName()).append(" ");
+            outField.append(field.getName());
+            System.out.println(outField);
 
         }
 
         System.out.println("-".repeat(40));
 
         for (Method method : declaredMethods) {
-            StringBuilder outLine = new StringBuilder();
+            StringBuilder outMethod = new StringBuilder();
             int modifiers = method.getModifiers();
             if (Modifier.isPublic(modifiers)){
-                outLine.append("public ");
+                outMethod.append("public ");
             } else {
                 continue;
             }
             if (Modifier.isStatic(modifiers)){
-                outLine.append("static ");
+                outMethod.append("static ");
             } else {
                 continue;
             }
-            outLine.append(method.getReturnType().getSimpleName()).append(" ");
-            outLine.append(method.getName()).append('(');
+            outMethod.append(method.getReturnType().getSimpleName()).append(" ");
+            outMethod.append(method.getName()).append('(');
             String delimiter = "";
             Class<?>[] parameters = method.getParameterTypes();
             for (Class<?> parameter : parameters) {
-                outLine.append(delimiter).append(parameter.getSimpleName());
+                outMethod.append(delimiter).append(parameter.getSimpleName());
                 delimiter = ",";
             }
-            outLine.append(')');
+            outMethod.append(')');
 
-            System.out.println(outLine);
+            System.out.println(outMethod);
         }
     }
 }
