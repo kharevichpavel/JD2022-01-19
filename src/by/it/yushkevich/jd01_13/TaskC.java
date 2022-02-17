@@ -23,7 +23,7 @@ public class TaskC {
 
 
     }
-    
+
 
 
     static void readData() throws InterruptedException {
