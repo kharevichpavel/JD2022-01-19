@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-    public AbstractVar calc(String expression) {
+    public AbstractVar calc(String expression) throws CalcException {
 
         expression = expression.replaceAll(CustomPatterns.SPACES, "");
         String[] parts = expression.split(CustomPatterns.OPERATION, 2);
@@ -25,17 +25,23 @@ public class Parser {
             if (matcher.find()) {
                 String operation = matcher.group();
                 switch (operation) {
-                    case "+": return left.add(right);
-                    case "-": return left.sub(right);
-                    case "*": return left.mul(right);
-                    case "/": return left.div(right);
+                    case "+":
+                        return left.add(right);
+                    case "-":
+                        return left.sub(right);
+                    case "*":
+                        return left.mul(right);
+                    case "/":
+                        return left.div(right);
                     case "=":
                         VariablesStorage.variables.put(String.valueOf(left), right);
-                        break;
-                    default: System.out.println("Incorrect expression: " + expression);
+                        return right;
+                    default:
+                        String message = "Incorrect expression: " + expression;
+                        throw new CalcException(message);
                 }
             }
         }
-        return null;
+        throw new CalcException("No such variable");
     }
 }

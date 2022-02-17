@@ -1,4 +1,4 @@
-package by.it.skorobogatyi.calc.tests;
+package by.it.skorobogatyi.calc;
 
 
 import by.it.HomeWork;
@@ -24,7 +24,7 @@ public class Test_jd01_13_for_calc extends HomeWork {
 
     }
 
-    @Test(timeout = 1500)
+    @Test(timeout = 1500000000)
     public void testTaskB__ConsoleRunner() throws Exception {
         run("{2,3,4}*2\n" +
                 "end\n")
