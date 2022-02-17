@@ -7,39 +7,52 @@ import java.util.Scanner;
 public class TaskC {
 
     private static Scanner scanner;
+    private static List<Double> list = new ArrayList<>();
+    private static int exceptionCounter = 0;
 
-    public static void main(String[] args) throws InterruptedException {
+
+    public static void main(String[] args)  {
 
         scanner = new Scanner(System.in);
 
-        readData();
+        try {
+            readData();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
     }
+    
+
 
     static void readData() throws InterruptedException {
-        List<Integer> list = new ArrayList<>();
-        int exceptionCounter = 0;
+
 
         while (true) {
-            if (exceptionCounter == 5) {
-                throw new Error();
-            }
+
             try {
                 String text = scanner.nextLine();
-                int num = Integer.parseInt(text);
+                double num = Double.parseDouble(text);
                 list.add(num);
             } catch (NumberFormatException e) {
 
                 Thread.sleep(100);
+                exceptionCounter++;
 
+
+
+                if (exceptionCounter == 5) {
+                    throw new InterruptedException();
+
+
+                    }
                 for (int i = list.size() - 1; i >= 0; i--) {
                     System.out.print(list.get(i) + " ");
-
                 }
-                System.out.println();
+                // System.out.println();
 
-                exceptionCounter++;
+
 
             }
 
