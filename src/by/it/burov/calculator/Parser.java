@@ -1,24 +1,30 @@
-package by.it.burov.calc;
+package by.it.burov.calculator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Parcer {
+public class Parser {
 
-    public Var calc(String expression) {
+    private final VarRepository varRepository;
+
+    public Parser(VarRepository varRepository) {
+        this.varRepository = varRepository;
+    }
+
+    public Var calc(String expression) throws CalcException {
         expression = expression.replaceAll(Patterns.SPACES, "");
         String[] parts = expression.split(Patterns.OPERATION, 2);
         if (parts.length == 1) {
-            return Var.createVar(expression);
+            return varRepository.createVar(expression);
         }
-        Var left = Var.createVar(parts[1]);
+        Var right = varRepository.createVar(parts[1]);
         if(expression.contains("=")){
-            return Var.saveVars(parts[0],left);
+            String name = parts[0];
+            return varRepository.saveVars(name,right);
         }
-        Var right = Var.createVar(parts[0]);
+        Var left = varRepository.createVar(parts[0]);
         if (left == null || right == null) {
-            System.out.println("Incorrect expression " + expression);
-            return null;
+            throw new CalcException("Incorrect expression " + expression);
         }
         Matcher matcher = Pattern.compile(Patterns.OPERATION).matcher(expression);
         if (matcher.find()) {
@@ -34,7 +40,7 @@ public class Parcer {
                     return left.div(right);
             }
         }
-        return null;
+        throw new CalcException("Something went wrong");
     }
 }
 

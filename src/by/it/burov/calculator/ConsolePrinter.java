@@ -1,4 +1,4 @@
-package by.it.burov.calc;
+package by.it.burov.calculator;
 
 public class ConsolePrinter implements Printer {
     @Override
@@ -6,5 +6,10 @@ public class ConsolePrinter implements Printer {
         if(variable!=null){
             System.out.println(variable);
         }
+    }
+
+    @Override
+    public void print(Exception e) {
+        System.out.println(e.getMessage());
     }
 }
