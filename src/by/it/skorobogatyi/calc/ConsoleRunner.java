@@ -1,10 +1,10 @@
-package by.it.skorobogatyi.jd01_09;
+package by.it.skorobogatyi.calc;
 
 
-import by.it.skorobogatyi.jd01_09.utils.Parser;
-import by.it.skorobogatyi.jd01_09.printers.ConsolePrinter;
-import by.it.skorobogatyi.jd01_09.printers.Printer;
-import by.it.skorobogatyi.jd01_09.utils.Application;
+import by.it.skorobogatyi.calc.printers.ConsolePrinter;
+import by.it.skorobogatyi.calc.printers.Printer;
+import by.it.skorobogatyi.calc.utils.Application;
+import by.it.skorobogatyi.calc.utils.Parser;
 
 public class ConsoleRunner {
 
