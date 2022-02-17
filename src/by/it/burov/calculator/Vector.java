@@ -1,4 +1,4 @@
-package by.it.burov.calc;
+package by.it.burov.calculator;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -37,7 +37,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcException {
         double[] localValue = value.clone();
         if(other instanceof Scalar scalar){
             for (int i = 0; i < localValue.length; i++) {
@@ -51,13 +51,16 @@ class Vector extends Var {
                 }
                 return new Vector(localValue);
             }
+            else {
+                throw new CalcException(String.format("different length %s / %s%n", this, other));
+            }
         }
         return super.add(other);
     }
 
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
             double[] localValue = value.clone();
             if(other instanceof Scalar scalar){
                 for (int i = 0; i < localValue.length; i++) {
@@ -71,12 +74,15 @@ class Vector extends Var {
                     }
                     return new Vector(localValue);
                 }
+                else {
+                    throw new CalcException(String.format("different length %s / %s%n", this, other));
+                }
             }
             return super.sub(other);
         }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException {
         double[] localValue = value.clone();
         if(other instanceof Scalar scalar){
             for (int i = 0; i < localValue.length; i++) {
@@ -92,17 +98,19 @@ class Vector extends Var {
                 }
                 return new Scalar(sum);
             }
+            else {
+                throw new CalcException(String.format("different length %s / %s%n", this, other));
+            }
         }
         return super.mul(other);
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcException {
         double[] localValue = value.clone();
         if(other instanceof Scalar scalar){
             if(scalar.getValue() == 0) {
-                System.out.printf("ERROR: division by zero %s / %s%n", this, other);
-                return null;
+                throw  new CalcException(String.format("division by zero %s / %s%n", this, other));
             }else {
                 for (int i = 0; i < localValue.length; i++) {
                     localValue[i] /= scalar.getValue();

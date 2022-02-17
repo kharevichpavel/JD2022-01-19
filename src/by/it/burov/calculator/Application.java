@@ -1,4 +1,4 @@
-package by.it.burov.calc;
+package by.it.burov.calculator;
 
 
 import java.util.Scanner;
@@ -6,12 +6,12 @@ import java.util.Scanner;
 public class Application {
     private static final String END = "end";
     private final Printer printer;
-    private final Parcer parcer;
+    private final Parser parser;
 
 
-    public Application(Printer printer, Parcer parcer) {
+    public Application(Printer printer, Parser parser) {
         this.printer = printer;
-        this.parcer = parcer;
+        this.parser = parser;
     }
 
     public void run(){
@@ -20,8 +20,12 @@ public class Application {
         while (true){
             String line = scan.nextLine();
             if(!line.equals(END)){
-                Var result = parcer.calc(line);
-                printer.print(result);
+                try {
+                    Var result = parser.calc(line);
+                    printer.print(result);
+                }catch (CalcException e ){
+                    printer.print(e);
+                }
             }else{
                 System.out.println("App finished");
                 break;

@@ -1,4 +1,4 @@
-package by.it.burov.calc;
+package by.it.burov.calculator;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -54,87 +54,81 @@ class Matrix extends Var {
     }
 
     @Override
-    public Var add(Var other) {
-        double[][] localValue =  new double[value.length][value[0].length];
-        for (int i = 0; i < value.length; i++) {
-            for (int j = 0; j < value[0].length; j++) {
-                localValue[i][j] = value[i][j];
-            }
-        }
-        if(other instanceof Scalar scalar){
+    public Var add(Var other) throws CalcException {
+        double[][] localValue = getValue();
+        if (other instanceof Scalar scalar) {
             for (int i = 0; i < localValue.length; i++) {
                 for (int j = 0; j < localValue[i].length; j++) {
                     localValue[i][j] += scalar.getValue();
                 }
             }
             return new Matrix(localValue);
-        }
-        else if(other instanceof  Vector vector){
+        } else if (other instanceof Vector vector) {
             return super.add(other);
-        }
-        else if(other instanceof Matrix matrix){
-            if(this.value.length == matrix.value.length){
-                for (int i = 0; i < localValue.length; i++){
-                    for (int j = 0; j < localValue[i].length; j++) {
-                        localValue[i][j] += matrix.value[i][j];
-                    }
+        } else if (other instanceof Matrix matrix) {
+            if (localValue.length != matrix.value.length) {
+                throw new CalcException(String.format("different length %s / %s%n", this, other));
+            }
+
+            for (int i = 0; i < localValue.length; i++) {
+                if (localValue[i].length != matrix.value[i].length) {
+                    throw new CalcException(String.format("different length %s / %s%n", this, other));
                 }
-                return new Matrix(localValue);
+            }
+
+            for (int i = 0; i < localValue.length; i++) {
+                for (int j = 0; j < localValue[i].length; j++) {
+                    localValue[i][j] += matrix.value[i][j];
+                }
             }
         }
-        return super.add(other);
+        return new Matrix(localValue);
     }
 
     @Override
-    public Var sub(Var other) {
-        double[][] localValue =  new double[value.length][value[0].length];
-        for (int i = 0; i < value.length; i++) {
-            for (int j = 0; j < value[0].length; j++) {
-                localValue[i][j] = value[i][j];
-            }
-        }
-        if(other instanceof Scalar scalar){
+    public Var sub(Var other) throws CalcException {
+        double[][] localValue = getValue();
+        if (other instanceof Scalar scalar) {
             for (int i = 0; i < localValue.length; i++) {
                 for (int j = 0; j < localValue[i].length; j++) {
                     localValue[i][j] -= scalar.getValue();
                 }
             }
             return new Matrix(localValue);
-        }
-        else if(other instanceof  Vector vector){
+        } else if (other instanceof Vector vector) {
             return super.sub(other);
-        }
-        else if(other instanceof Matrix matrix){
-            if(this.value.length == matrix.value.length){
-                for (int i = 0; i < localValue.length; i++){
-                    for (int j = 0; j < localValue[i].length; j++) {
-                        localValue[i][j] -= matrix.value[i][j];
-                    }
+        } else if (other instanceof Matrix matrix) {
+            if (localValue.length != matrix.value.length) {
+                throw new CalcException(String.format("different length %s / %s%n", this, other));
+            }
+
+            for (int i = 0; i < localValue.length; i++) {
+                if (localValue[i].length != matrix.value[i].length) {
+                    throw new CalcException(String.format("different length %s / %s%n", this, other));
                 }
-                return new Matrix(localValue);
+            }
+
+            for (int i = 0; i < localValue.length; i++) {
+                for (int j = 0; j < localValue[i].length; j++) {
+                    localValue[i][j] -= matrix.value[i][j];
+                }
             }
         }
-        return super.sub(other);
+        return new Matrix(localValue);
     }
 
     @Override
-    public Var mul(Var other) {
-        double[][] localValue =  new double[value.length][value[0].length];
-        for (int i = 0; i < value.length; i++) {
-            for (int j = 0; j < value[0].length; j++) {
-                localValue[i][j] = value[i][j];
-            }
-        }
-        if(other instanceof Scalar scalar){
+    public Var mul(Var other) throws CalcException {
+        double[][] localValue = getValue();
+        if (other instanceof Scalar scalar) {
             for (int i = 0; i < localValue.length; i++) {
                 for (int j = 0; j < localValue[i].length; j++) {
                     localValue[i][j] *= scalar.getValue();
                 }
             }
             return new Matrix(localValue);
-        }
-        else if(other instanceof  Vector vector){
-            if(localValue[0].length == vector.getValue().length){
+        } else if (other instanceof Vector vector) {
+            if (localValue[0].length == vector.getValue().length) {
                 double[] localVector = new double[localValue[0].length];
                 for (int i = 0; i < localVector.length; i++) {
                     for (int j = 0; j < vector.getValue().length; j++) {
@@ -142,29 +136,35 @@ class Matrix extends Var {
                     }
                 }
                 return new Vector(localVector);
+            } else {
+                throw new CalcException(String.format("different length %s / %s%n", this, other));
             }
-            return super.mul(other);
-        }
-        else if(other instanceof Matrix matrix) {
-            if (localValue.length == matrix.value.length) {//
-                double[][] tempValue = new double[localValue.length][matrix.value[0].length];
-                for (int i = 0; i < localValue.length; i++) {
-                    for (int j = 0; j < matrix.value[0].length; j++) {
-                        for (int k = 0; k < matrix.value.length; k++)
-                            tempValue[i][j] = tempValue[i][j] + localValue[i][k] * matrix.value[k][j];
-                    }
+        } else if (other instanceof Matrix matrix) {
+            if (localValue.length != matrix.value.length) {
+                throw new CalcException(String.format("different length %s / %s%n", this, other));
+            }
+
+            for (int i = 0; i < localValue.length; i++) {
+                if (localValue[i].length != matrix.value[i].length) {
+                    throw new CalcException(String.format("different length %s / %s%n", this, other));
                 }
-                localValue = Arrays.copyOf(tempValue,tempValue.length);
-                return new Matrix(localValue);
             }
-            return super.mul(other);
+
+            double[][] tempValue = new double[localValue.length][matrix.value[0].length];
+            for (int i = 0; i < localValue.length; i++) {
+                for (int j = 0; j < matrix.value[0].length; j++) {
+                    for (int k = 0; k < matrix.value.length; k++)
+                        tempValue[i][j] = tempValue[i][j] + localValue[i][k] * matrix.value[k][j];
+                }
             }
-        return super.mul(other);
+            localValue = Arrays.copyOf(tempValue, tempValue.length);
+        }
+        return new Matrix(localValue);
     }
 
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcException {
         return super.div(other);
     }
 
