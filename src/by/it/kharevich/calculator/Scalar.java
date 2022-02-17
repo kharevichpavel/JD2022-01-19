@@ -17,7 +17,7 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcException{
         if (other instanceof Scalar otherScalar) {
             return new Scalar(this.value + otherScalar.value);
         } else
@@ -25,7 +25,7 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var sub(Var other) { // 2-{1,2,3} ==> {1,2,3}-2
+    public Var sub(Var other) throws CalcException{ // 2-{1,2,3} ==> {1,2,3}-2
         if (other instanceof Scalar otherScalar) {
             return new Scalar(this.value - otherScalar.value);
         }
@@ -33,7 +33,7 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException{
         if (other instanceof Scalar otherScalar) {
             return new Scalar(this.value * otherScalar.value);
         } else
@@ -41,11 +41,11 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcException {
         if (other instanceof Scalar otherScalar) {
             if (otherScalar.value == 0) {
-                System.out.printf("ERROR: division by zero %s / %s%n", this, other);
-                return null; //TODO replace with Exception
+                String message = String.format("ERROR: division by zero %s / %s%n", this, other);
+                throw new CalcException(message);
             }
             return new Scalar(this.value / otherScalar.value);
         }

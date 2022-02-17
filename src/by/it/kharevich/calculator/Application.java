@@ -16,11 +16,15 @@ public class Application {
     public void run() {
         System.out.println("App started");
         Scanner scanner = new Scanner(System.in);
-        while (true){
+        while (true) {
             String line = scanner.nextLine();
             if (!line.equals(END)) {
-                Var result= parser.calc(line);
-                printer.print(result);
+                try {
+                    Var result = parser.calc(line);
+                    printer.print(result);
+                } catch (CalcException e) {
+                    printer.print(e);
+                }
             } else {
                 System.out.println("App finished");
                 break;

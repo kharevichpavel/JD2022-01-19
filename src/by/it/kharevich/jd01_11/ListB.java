@@ -1,7 +1,6 @@
 package by.it.kharevich.jd01_11;
 
 import java.util.*;
-import java.util.function.UnaryOperator;
 
 public class ListB <T> implements List <T> {
     @SuppressWarnings("unchecked")
@@ -11,11 +10,16 @@ public class ListB <T> implements List <T> {
 
     @Override
     public String toString() {
-        StringJoiner maker = new StringJoiner(", ","[","]");
+        StringBuilder string = new StringBuilder();
+        string.append("[");
         for (int i = 0; i < size; i++) {
-            maker.add(elements[i].toString());
+            string.append(elements[i]);
+            if (i + 1 < size) {
+                string.append(", ");
+            }
         }
-        return maker.toString();
+        string.append("]");
+        return string.toString();
     }
 
     @Override
@@ -42,20 +46,23 @@ public class ListB <T> implements List <T> {
     }
 
     @Override
-    public void add(int index, T element) {
-
+    public T set(int index, T element) {
+        T returnValue = elements[index];
+        elements[index]=element;
+        return returnValue;
     }
 
     @Override
-    public T set(int index, T element) {
-
-        T returnValue = elements[index];
+    public void add(int index, T element) {
+        System.arraycopy(elements,0,elements,0,index);
+        System.arraycopy(elements,index,elements,index+1,size-index);
         elements[index]=element;
-        System.arraycopy(elements,index,elements,index,size);
-        elements[size++]=element;
+        size++;
+    }
 
-
-        return returnValue;
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        return false;
     }
 
     @Override
@@ -106,11 +113,6 @@ public class ListB <T> implements List <T> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends T> c) {
         return false;
     }
 

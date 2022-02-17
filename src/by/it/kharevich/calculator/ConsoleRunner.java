@@ -4,7 +4,8 @@ public class ConsoleRunner {
 
     public static void main(String[] args) {
         Printer printer = new ConsolePrinter();
-        Parser parser = new Parser();
+        VarReposito varReposito = new VarReposito();
+        Parser parser = new Parser(varReposito);
         Application application = new Application(printer, parser);
         application.run();
 

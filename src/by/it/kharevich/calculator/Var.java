@@ -2,42 +2,24 @@ package by.it.kharevich.calculator;
 
 abstract class Var implements Operation {
 
-    public static Var create(String varValue) {
-        if (varValue.matches(by.it._classwork_.jd01_09.Patterns.SCALAR)){
-            return new Scalar(varValue);
-        } else if (varValue.matches(by.it._classwork_.jd01_09.Patterns.VECTOR)){
-            return new Vector(varValue);
- //       } else if (varValue.matches(Patterns.MATRIX)){
- //           return new Matrix(varValue);
-        } else
-            return null; //TODO ex
+    @Override
+    public Var add(Var other) throws CalcException {
+        throw new CalcException(String.format("Operation addition %s + %s impossible%n", this, other));
     }
 
     @Override
-    public Var add(Var other) {
-        System.out.printf("Operation addition %s + %s impossible%n",this, other);
-        return null;
+    public Var sub(Var other) throws CalcException {
+        throw new CalcException(String.format("Operation subtraction %s - %s impossible%n", this, other));
     }
 
     @Override
-    public Var sub(Var other) {
-        System.out.printf("Operation subtraction %s - %s impossible%n",this, other);
-
-        return null;
+    public Var mul(Var other) throws CalcException {
+        throw new CalcException(String.format("Operation multiplication %s * %s impossible%n", this, other));
     }
 
     @Override
-    public Var mul(Var other) {
-        System.out.printf("Operation multiplication %s * %s impossible%n",this, other);
-
-        return null;
-    }
-
-    @Override
-    public Var div(Var other) {
-        System.out.printf("Operation division %s / %s impossible%n",this, other);
-
-        return null;
+    public Var div(Var other) throws CalcException {
+        throw new CalcException(String.format("Operation division %s / %s impossible%n", this, other));
     }
 
     @Override
