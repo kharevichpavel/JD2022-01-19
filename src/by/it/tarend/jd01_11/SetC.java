@@ -31,7 +31,7 @@ public class SetC<E> implements Set<E> {
             }
         } else {
             for (int i = 0; i < size; i++) {
-                if (this.elements[i] == null) {
+                if (elements[i] == null) {
                     continue;
                 }
                 if (elements[i].equals(o)) {
@@ -103,7 +103,21 @@ public class SetC<E> implements Set<E> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        @SuppressWarnings("unchecked")
+        E[] entryArray = (E[]) c.toArray();
+        boolean[] isContain = new boolean[entryArray.length];
+        for (int i = 0; i < entryArray.length; i++) {
+            if (this.contains(entryArray[i])) {
+                isContain[i] = true;
+            }
+        }
+        for (boolean b : isContain) {
+            if (!b) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override
@@ -112,9 +126,7 @@ public class SetC<E> implements Set<E> {
         E[] editionArray = (E[]) c.toArray();
         boolean isAdd = false;
         for (E element : editionArray) {
-            if (this.contains(element)) {
-                continue;
-            } else {
+            if (!this.contains(element)) {
                 this.add(element);
                 isAdd = true;
             }
