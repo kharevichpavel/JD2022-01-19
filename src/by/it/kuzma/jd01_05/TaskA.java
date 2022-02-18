@@ -25,7 +25,7 @@ public class TaskA {
     private static void step2() {
         double a = 1.21;
         double b = 0.371;
-        double y = tan(pow(a + b, 2)) - cbrt(a + 1.5) + a * pow(b, 5);
+        double y = tan(pow(a + b, 2)) - cbrt(a + 1.5) + a * pow(b, 5) - b / log(a * a);
         System.out.printf("For a=%f b=%f y=%f%n", a, b, y);
     }
 
@@ -34,7 +34,7 @@ public class TaskA {
         System.out.println("-".repeat(30));
         System.out.println("   A     X     F");
         System.out.println("-".repeat(30));
-        for (double a = -5; a <= 12; a=+3.75) {
+        for (double a = -5; a <= 12; a+=3.75) {
             double f = exp(a * x) - 3.45 * a;
             System.out.printf(" %8.4f  %8.4f  %12.6g%n", a, x, f);
 
