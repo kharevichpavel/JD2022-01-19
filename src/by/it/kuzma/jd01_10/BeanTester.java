@@ -8,11 +8,13 @@ public class BeanTester {
 
         Class<Bean> beanClass = Bean.class;
         Method[] methods = beanClass.getDeclaredMethods();
-        //Object o = beanClass;
+        Bean bean = beanClass.getConstructor().newInstance();
 
         for (Method method : methods) {
             if (method.isAnnotationPresent(Param.class)){
-                System.out.println(method.getName());
+                Param annotation = method.getAnnotation(Param.class);
+                System.out.print(method.getName()+" ");
+                System.out.println(method.invoke(bean, annotation.a(), annotation.b()));
 
 
             }
