@@ -91,7 +91,7 @@ public class SetC<E> implements Set<E> {
     public boolean remove(Object o) {
         if (this.contains(o)) {
             for (int i = 0; i < size; i++) {
-                if (elements[i].equals(o)) {
+                if (elements[i] == o) {
                     System.arraycopy(elements, i+1, elements, i, size - i - 1);
                     elements[size--] = null;
                 }
@@ -116,7 +116,6 @@ public class SetC<E> implements Set<E> {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -141,6 +140,14 @@ public class SetC<E> implements Set<E> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
+        if (this.containsAll(c)) {
+            @SuppressWarnings("unchecked")
+            E[] removeArray = (E[]) c.toArray();
+            for (E e : removeArray) {
+                this.remove(e);
+            }
+            return true;
+        }
         return false;
     }
 
@@ -158,7 +165,7 @@ public class SetC<E> implements Set<E> {
 
     @Override
     public void clear() {
-
+        this.removeAll(this);
 
     }
 }
