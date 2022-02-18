@@ -20,13 +20,21 @@ class Matrix extends Var {
         this.value = secondMatrix;
     }
 
- /*   public Matrix(String strMatrix) {
+ /*   public double Matrix(String strMatrix) {
         strMatrix = strMatrix.replaceAll("[{ }]", "");
         String[] strMatrixarr = strMatrix.split(",");
-        this.value = new double[strVectorArr.length];
-        for (int i = 0; i < value.length; i++) {
-            value[i] = Double.parseDouble(strVectorArr[i]);
-        }*/
+        String[][] parts = new String[0][];
+        for (int i = 0; i < strMatrixarr.length; i++) {
+            String[] arrstrMatrix = strMatrixarr[i].split(",");
+            for (int i1 = 0; i1 < arrstrMatrix.length; i1++) {
+                parts[i][i1]= arrstrMatrix[i];
+                double result = Double.parseDouble(parts[i][i1]);
+
+            }
+
+        }
+        this.value = parts;
+    }*/
 
     @Override
     public String toString() {
