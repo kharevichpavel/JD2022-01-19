@@ -1,14 +1,17 @@
 package by.it.tarend.jd01_12;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Scanner;
 
-public class TaskB2 {
+public class TaskB3 {
 
     static int counter = 0;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        int n = 4096;
         ArrayList<String> arrayPeoples = new ArrayList<>();
         LinkedList<String> linkedPeoples = new LinkedList<>();
 
@@ -16,10 +19,17 @@ public class TaskB2 {
             arrayPeoples.add(Integer.toString(i+1));
             linkedPeoples.add(Integer.toString(i+1));
         }
-        System.out.println(arrayPeoples);
-        System.out.println(linkedPeoples);
-        System.out.println(process(arrayPeoples));
-        System.out.println(process(linkedPeoples));
+
+        long t0 = System.nanoTime();
+        process(arrayPeoples);
+        long t1 = System.nanoTime() - t0;
+        t0 = System.nanoTime();
+        process(linkedPeoples);
+        long t2 = System.nanoTime() - t0;
+
+        System.out.println(t1);
+        System.out.println(t2);
+
     }
 
     private static String process(ArrayList<String> peoples) {
@@ -29,9 +39,12 @@ public class TaskB2 {
             counter++;
             if (counter % 2 == 0) {
                 iterator.remove();
-                counter = 0;
             }
         }
+        if (counter % 2 != 0) {
+            counter = 1;
+        } else
+            counter = 0;
         if (peoples.size() > 1) {
             process(peoples);
         }
@@ -46,9 +59,12 @@ public class TaskB2 {
             counter++;
             if (counter % 2 == 0) {
                 iterator.remove();
-                counter = 0;
             }
         }
+/*        if (counter % 2 != 0) {
+            counter = 1;
+        } else
+            counter = 0;*/
         if (peoples.size() > 1) {
             process(peoples);
         }
