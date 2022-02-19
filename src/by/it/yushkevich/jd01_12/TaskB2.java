@@ -5,49 +5,49 @@ import java.util.*;
 public class TaskB2 {
 
 
-    private static final int COUNT = 25;
-    private static int counter;
+    private static final int COUNT = 3;
+    public static int counterArr;
+    public static int counterLink;
+    public static int counter;
 
     public static void main(String[] args) {
 
-
         ArrayList<String> peoplesArrayList = new ArrayList<>();
         LinkedList<String> peoplesLinkedList = new LinkedList<>();
-//filling arrays
+
+        fillingList(peoplesArrayList, peoplesLinkedList);
+
+        process(peoplesArrayList);
+        process(peoplesLinkedList);
+    }
+
+    private static void fillingList(ArrayList<String> peoplesArrayList, LinkedList<String> peoplesLinkedList) {
         for (int i = 1; i <= COUNT; i++) {
             peoplesArrayList.add("[Num " + i + "]");
             peoplesLinkedList.add("[Num " + i + "]");
         }
-
-
-// start counting
-        // process(peoplesArrayList);
-        process(peoplesLinkedList);
-
-
     }
+
 
     static String process(ArrayList<String> peoples) {
 
         Iterator<String> iterator = peoples.iterator();
 
-
         while (iterator.hasNext()) {
             iterator.next();
-            counter++;
+            counterArr++;
 
-            if (counter % 2 == 0) {
+            if (counterArr % 2 == 0) {
                 iterator.remove();
-
             }
+
         }
 
         if (peoples.size() > 1) {
             process(peoples);
         }
-        //counter = 0;
-
-
+        //зачем тут обнулять?!? не рботает без этого
+        counterArr = 0;
         return peoples.get(0);
     }
 
@@ -55,22 +55,20 @@ public class TaskB2 {
 
         Iterator<String> iterator = peoples.iterator();
 
-
         while (iterator.hasNext()) {
             iterator.next();
-            counter++;
+            counterLink++;
 
-            if (counter % 2 == 0) {
+            if (counterLink % 2 == 0) {
                 iterator.remove();
-
             }
+
         }
 
         if (peoples.size() > 1) {
             process(peoples);
         }
-        //counter = 0;
-
+        counterLink = 0;
 
         return peoples.get(0);
     }
