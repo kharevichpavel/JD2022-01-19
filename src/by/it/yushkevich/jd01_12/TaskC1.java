@@ -24,7 +24,7 @@ public class TaskC1 {
         }
         System.out.println(map.toString());
 
-        map.
+       // map.
 
 
 
