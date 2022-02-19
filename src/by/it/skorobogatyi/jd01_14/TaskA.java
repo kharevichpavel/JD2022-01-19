@@ -6,11 +6,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static java.io.File.separator;
+
 
 public class TaskA {
 
-    private static final String DOT = ".";
     private static final String ROOT = "src";
     private static final String BIN_NAME = "dataTaskA.bin";
     private static final String TXT_NAME = "resultTaskA.txt";
@@ -18,7 +17,7 @@ public class TaskA {
 
     public static void main(String[] args) {
 
-        String binFileName = getFilename(TaskA.class, ROOT, BIN_NAME);
+        String binFileName = FilenameGetter.getFilename(TaskA.class, ROOT, BIN_NAME);
 
         writeInBinaryFile(binFileName);
 
@@ -31,27 +30,6 @@ public class TaskA {
 
     }
 
-    public static String getFilename(Class<?> aClass, String root, String filename) {
-        String userDir = System.getProperty("user.dir");
-        String fullRootDir = userDir + separator + root + separator;
-        String returnString = aClass.getPackageName().replace(DOT, separator);
-        filename = returnString + separator + filename;
-        return fullRootDir + filename;
-    }
-
-    private static void outputToTXTFile(List<Integer> integers) {
-        String txtFileName = getFilename(TaskA.class, ROOT, TXT_NAME);
-        try (PrintWriter printWriter = new PrintWriter(txtFileName)) {
-            double sum = 0;
-            for (Integer integer : integers) {
-                printWriter.printf("%d ", integer);
-                sum += integer;
-            }
-            printWriter.printf(Locale.ENGLISH, "%navg=%f", sum / integers.size());
-        } catch (IOException e) {
-            throw new RuntimeException("IO error", e);
-        }
-    }
 
     private static void writeInBinaryFile(String filename) {
         try (
@@ -96,5 +74,19 @@ public class TaskA {
             sum += integer;
         }
         System.out.printf(Locale.ENGLISH, "%navg=%f", sum / integers.size());
+    }
+
+    private static void outputToTXTFile(List<Integer> integers) {
+        String txtFileName = FilenameGetter.getFilename(TaskA.class, ROOT, TXT_NAME);
+        try (PrintWriter printWriter = new PrintWriter(txtFileName)) {
+            double sum = 0;
+            for (Integer integer : integers) {
+                printWriter.printf("%d ", integer);
+                sum += integer;
+            }
+            printWriter.printf(Locale.ENGLISH, "%navg=%f", sum / integers.size());
+        } catch (IOException e) {
+            throw new RuntimeException("IO error", e);
+        }
     }
 }
