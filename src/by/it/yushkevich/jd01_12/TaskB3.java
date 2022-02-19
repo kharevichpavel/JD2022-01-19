@@ -1,23 +1,38 @@
 package by.it.yushkevich.jd01_12;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
-public class TaskB2 {
+public class TaskB3 {
 
 
-    private static final int COUNT = 3;
+    private static final int COUNT = 100;
     private static int counterArr;
     private static int counterLink;
 
     public static void main(String[] args) {
 
+
         ArrayList<String> peoplesArrayList = new ArrayList<>();
         LinkedList<String> peoplesLinkedList = new LinkedList<>();
-
         fillingList(peoplesArrayList, peoplesLinkedList);
 
+        long startArr = (System.nanoTime());
         process(peoplesArrayList);
+        long endARR = (System.nanoTime());
+        long deltaArr = (endARR - startArr) / 1000;
+
+        long startLink = (System.nanoTime());
         process(peoplesLinkedList);
+        long endLink = (System.nanoTime());
+        long deltaLink = (endLink - startLink) / 1000;
+
+
+        System.out.println("ArrayList --- " + deltaArr + " микросекунд");
+        System.out.println("LinkedList --- " + deltaLink + " микросекунд");
+
+
     }
 
     private static void fillingList(ArrayList<String> peoplesArrayList, LinkedList<String> peoplesLinkedList) {
@@ -70,7 +85,8 @@ public class TaskB2 {
         counterLink = 0;
 
 
-
         return peoples.get(0);
     }
+
+
 }
