@@ -23,7 +23,9 @@ public class TaskA {
 
     private static void writeBinaryFile(String filename) {
         try (
-                DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(filename)));
+                DataOutputStream dataOutputStream = new DataOutputStream(
+                        new BufferedOutputStream(
+                                new FileOutputStream(filename)));
         ) {
             for (int i = 0; i<20;i++){
                 int value = ThreadLocalRandom.current().nextInt(2000);
@@ -36,7 +38,9 @@ public class TaskA {
 
     private static void outputToConsole(String filename, List<Integer> intValues) {
         try (
-                DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(new FileInputStream(filename)));
+                DataInputStream dataInputStream = new DataInputStream(
+                        new BufferedInputStream(
+                                new FileInputStream(filename)));
         ){
             while (dataInputStream.available()>0){
                 int value = dataInputStream.readInt();
