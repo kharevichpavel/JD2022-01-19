@@ -13,21 +13,22 @@ public class TaskB3 {
 
     public static void main(String[] args) {
 
-
         ArrayList<String> peoplesArrayList = new ArrayList<>();
         LinkedList<String> peoplesLinkedList = new LinkedList<>();
+
         fillingList(peoplesArrayList, peoplesLinkedList);
 
+        //arraylist time
         long startArr = (System.nanoTime());
         process(peoplesArrayList);
         long endARR = (System.nanoTime());
         long deltaArr = (endARR - startArr) / 1000;
 
+        //linkedList time
         long startLink = (System.nanoTime());
         process(peoplesLinkedList);
         long endLink = (System.nanoTime());
         long deltaLink = (endLink - startLink) / 1000;
-
 
         System.out.println("ArrayList --- " + deltaArr + " микросекунд");
         System.out.println("LinkedList --- " + deltaLink + " микросекунд");
