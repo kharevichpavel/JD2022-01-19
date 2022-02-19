@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 public class TaskB1 {
 
+    private static String WORD = "[a-zA-Z']+";
+
     public static void main(String[] args) {
 
         HashMap<String, Integer> hashMap = new HashMap<>();
@@ -14,7 +16,7 @@ public class TaskB1 {
         while (true) {
             String text = sc.nextLine();
             if (!text.equals("end")) {
-                Pattern pattern = Pattern.compile("[a-zA-Z']+");
+                Pattern pattern = Pattern.compile(WORD);
                 Matcher matcher = pattern.matcher(text);
                 while (matcher.find()) {
                     String word = matcher.group();
