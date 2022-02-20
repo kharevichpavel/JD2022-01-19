@@ -33,8 +33,8 @@ public class TaskB {
             for (int j = 0; j < 4; j++) {
                 System.out.printf("%-9s%-10d%-10d%-10d%-10d%-5d%n", secondName[i], salaryForFourQuarters[0][0], salaryForFourQuarters[0][1], salaryForFourQuarters[0][2], salaryForFourQuarters[0][3], totalPersonal(salaryForFourQuarters[0]));
                 System.out.printf("%-9s%-10d%-10d%-10d%-10d%-5d%n", secondName[i], salaryForFourQuarters[1][0], salaryForFourQuarters[1][1], salaryForFourQuarters[1][2], salaryForFourQuarters[1][3], totalPersonal(salaryForFourQuarters[1]));
-                System.out.printf("%-9s%-10d%-10d%-10d%-10d%-5d%n", secondName[i], salaryForFourQuarters[2][0], salaryForFourQuarters[2][1], salaryForFourQuarters[2][2], salaryForFourQuarters[2][3], totalPersonal(salaryForFourQuarters[2]));
-                System.out.printf("%-9s%-10d%-10d%-10d%-10d%-5d%n", secondName[i], salaryForFourQuarters[3][0], salaryForFourQuarters[3][1], salaryForFourQuarters[3][2], salaryForFourQuarters[3][3], totalPersonal(salaryForFourQuarters[3]));
+//                System.out.printf("%-9s%-10d%-10d%-10d%-10d%-5d%n", secondName[i], salaryForFourQuarters[2][0], salaryForFourQuarters[2][1], salaryForFourQuarters[2][2], salaryForFourQuarters[2][3], totalPersonal(salaryForFourQuarters[2]));
+  //              System.out.printf("%-9s%-10d%-10d%-10d%-10d%-5d%n", secondName[i], salaryForFourQuarters[3][0], salaryForFourQuarters[3][1], salaryForFourQuarters[3][2], salaryForFourQuarters[3][3], totalPersonal(salaryForFourQuarters[3]));
 
             }
             System.out.println("------------------------------------------------------");
@@ -47,10 +47,9 @@ public class TaskB {
         int total = 0;
         for (int i = 0; i < array.length; i++) {
             for (int j = 1; j < array[0].length; j++) {
-                total = total + array[i][j];
+                total +=  array[i][j];
             }
         }
-
         return total;
     }
 
