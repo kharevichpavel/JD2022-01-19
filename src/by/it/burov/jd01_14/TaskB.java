@@ -18,6 +18,13 @@ public class TaskB {
 
     public static void main(String[] args) {
         String inFile = PathFinder.getFilename(TaskB.class,ROOT,FILENAME);
+        readFile(inFile);
+        System.out.printf("words=%d,punctuation marks=%d",quantityWords,quantityPunctuationMarks);
+        String outFile = PathFinder.getFilename(TaskB.class,ROOT,TXT);
+        outToTxt(outFile);
+    }
+
+    private static void readFile(String inFile) {
         try (BufferedReader reader = new BufferedReader(
                 new FileReader(inFile))){
             String line;
@@ -39,8 +46,9 @@ public class TaskB {
         } catch (IOException  e) {
             e.printStackTrace();
         }
-        System.out.printf("words=%d,punctuation marks=%d",quantityWords,quantityPunctuationMarks);
-        String outFile = PathFinder.getFilename(TaskB.class,ROOT,TXT);
+    }
+
+    private static void outToTxt(String outFile) {
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(outFile))){
             writer.write(String.format("words=%d,punctuation marks=%d",quantityWords,quantityPunctuationMarks));
         }catch (IOException e){
