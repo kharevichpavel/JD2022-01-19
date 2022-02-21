@@ -2,7 +2,7 @@ package by.it.tarend.calc;
 
 import java.util.Scanner;
 
-public class  Application {
+public class Application {
 
     public static final String END = "end";
     private final Printer printer;
@@ -19,11 +19,15 @@ public class  Application {
     public void run() {
         System.out.println("App start");
         Scanner sc = new Scanner(System.in);
-        while (true){
+        while (true) {
             String line = sc.nextLine();
             if (!line.equals(END)) {
-            Var result= parser.calc(line);
-                printer.print(result);
+                try {
+                    Var result = parser.calc(line);
+                    printer.print(result);
+                } catch (CalcException e) {
+                    printer.printError(e);
+                }
             } else {
                 System.out.println("App finished");
                 break;
@@ -37,6 +41,7 @@ public class  Application {
                 System.out.println("App finished");
                 break;
             }
-*/        }
+*/
+        }
     }
 }

@@ -7,18 +7,27 @@ public class Parser {
 
     // 2+2 {1, 2, 3}+{1,1,1}  {{1,1,1},{2,2,2}} + {{1,1,1}, {3,3,3}}
 
-    public Var calc(String expression) {
+    final private VarRepository varRepository;
+
+    public Parser(VarRepository varRepository) {
+        this.varRepository = varRepository;
+    }
+
+    public Var calc(String expression) throws CalcException {
         expression = expression.replaceAll(Patterns.SPACES, "");
         String[] parts = expression.split(Patterns.OPERATION, 2);
         if (parts.length == 1) {
-            return Var.create(expression); // TODO вынести в отдельный класс
+            return varRepository.create(expression); // TODO вынести в отдельный класс
         }
 
-        Var left = Var.create(parts[0]);
-        Var right = Var.create(parts[1]);
+        Var right = varRepository.create(parts[1]);
+        if (expression.contains("=")) {
+            String name = parts[0];
+            return varRepository.save(name, right);
+        }
+        Var left = varRepository.create(parts[0]);
         if (left == null || right == null) {
-            System.out.println("Incorrect expression" + expression);
-            return null;
+            throw new CalcException("Incorrect expression " + expression);
         }
 
         Matcher matcher = Pattern.compile(Patterns.OPERATION).matcher(expression);
@@ -31,6 +40,6 @@ public class Parser {
                 case "/": return left.div(right);
             }
         }
-        return null;
+        throw new CalcException("???");
     }
 }
