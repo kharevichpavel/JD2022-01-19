@@ -48,7 +48,7 @@ public class TaskA {
         try (
                 DataInputStream dataInputStream = new DataInputStream(
                 new BufferedInputStream(
-                        new FileInputStream(fileName)));
+                        new FileInputStream(fileName)))
         ) {
             while (dataInputStream.available() > 0) {
                 int value = dataInputStream.readInt();
@@ -71,7 +71,7 @@ public class TaskA {
 
     private static void outputToTxtFile(ArrayList<Integer> listOfIntegers, String txtFileName) {
 
-        try (PrintWriter printWriter = new PrintWriter(txtFileName);
+        try (PrintWriter printWriter = new PrintWriter(txtFileName)
         ) {
             double sum2 = 0;
             for (Integer integer : listOfIntegers) {
