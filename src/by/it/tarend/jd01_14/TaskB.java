@@ -13,7 +13,6 @@ public class TaskB {
     public static final String WORDS = "[а-яА-ЯёЁ]+";
     public static final String PUNCTUATION_MARKS = "[\\p{Punct}]+";
 
-
     public static void main(String[] args) {
 
         String fileNameToRead = PathFinder.getFileName(TaskB.class, ROOT, FILENAME_TO_READ);
@@ -33,7 +32,7 @@ public class TaskB {
         outputToTxtFile(output, txtFileName);
     }
 
-    private static void outputToTxtFile(String output, String txtFileName) {
+    public static void outputToTxtFile(String output, String txtFileName) {
 
         try (PrintWriter printWriter = new PrintWriter(txtFileName)) {
             printWriter.print(output);

@@ -78,7 +78,7 @@ public class TaskA {
                 printWriter.print(integer + " ");
                 sum2 += integer;
             }
-            printWriter.printf(Locale.ENGLISH, "%navg=%8.3f%n", sum2/ listOfIntegers.size());
+            printWriter.printf(Locale.ENGLISH, "%navg=%f%n", sum2/ listOfIntegers.size());
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException("IO error", e);
