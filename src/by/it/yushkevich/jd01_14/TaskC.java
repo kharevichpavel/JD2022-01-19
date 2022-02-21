@@ -1,6 +1,9 @@
 package by.it.yushkevich.jd01_14;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class TaskC {
 
@@ -8,56 +11,73 @@ public class TaskC {
     public static final String DOT = ".";
     public static final String USER_DIR = "user.dir";
     public static final String SEPARATOR = File.separator;
+    public static final String NAME_TXT = "resultTaskC.txt";
 
 
     public static void main(String[] args) {
 
-        getNameFile(TaskC.class);
+        String filePath = getNameFile(TaskC.class);
+        System.out.println(filePath);
+
+//getParentName
+        File buffFile = new File(filePath);
+        System.out.println("BuffFilepath   =   " + buffFile);
+
+        File parentFile = new File(buffFile.getParent());
+        System.out.println(parentFile);
+
+
+        String nameTxtFile = PathFinder.getFileName(TaskC.class, ROOT, NAME_TXT);
+
+        printOutToConsole(parentFile, nameTxtFile);
 
 
     }
 
+
+    private static void printOutToConsole(File parentName, String txtNameFile) {
+       try(
+        BufferedWriter writer = new BufferedWriter(new FileWriter(txtNameFile));
+       ){ File[] files = parentName.listFiles();
+           for (File file : files) {
+               if (file.isDirectory()) {
+                   writer.write("dir:"+file.getName()+"\n");
+                   System.out.printf("dir:%s%n",file.getName());
+                   for (File listFile : file.listFiles()) {
+                       if (listFile.isFile()) {
+                           writer.write("file:"+listFile.getName()+"\n");
+                           System.out.printf("file:%s%n",listFile.getName());
+                       } else {
+                           writer.write("dir:"+listFile.getName()+"\n");
+                           System.out.printf("dir:%s%n",listFile.getName());
+                       }
+                   }
+               } else {
+                   writer.write("file:"+file.getName()+"\n");
+                   System.out.printf("file:%s%n",file.getName());
+               }
+           }
+
+       } catch (IOException e) {
+           throw new RuntimeException("IO exception", e);
+       }
+
+    }
+
+//    private static String getParentName(String nameFile) {
+//        File file = new File(nameFile);
+//        String parentName = file.getParent();
+//
+//        return parentName;
+//
+//    }
+
+
     private static String getNameFile(Class<TaskC> cClass) {
-        String fileNameDir = System.getProperty(USER_DIR);
 
+        String fileName = System.getProperty(USER_DIR) + SEPARATOR + ROOT + SEPARATOR + cClass.getPackageName().replace(TaskC.DOT, "\\");
 
-        String fileNameDirFull = fileNameDir + File.separator + ROOT;
-        String className = cClass.getName();
-        String classSimpleName = cClass.getSimpleName();
-        String classPackName = cClass.getPackageName();
-
-
-
-        System.out.println(fileNameDir);
-        System.out.println(fileNameDirFull);
-        System.out.println(".".repeat(100));
-        System.out.println("ClassName = "+className);
-        System.out.println("Simple name  = "+classSimpleName);
-        System.out.println("Pack Name = "+classPackName);
-
-        String fileName = fileNameDir + SEPARATOR + ROOT + SEPARATOR + classPackName.replace(".","\\");
-        File file = new File(fileName);
-        String parent = file.getParent();
-        File file1 = new File(parent);
-        if (file1.isDirectory()){
-            System.out.println(file1.getName());
-        }
-        File[] files = file1.listFiles();
-        for (File fileInArray : files) {
-            String[] listOfDirectories = fileInArray.list();
-            System.out.println("Dir  ---->"+ fileInArray.getName());
-            for (String directory : listOfDirectories) {
-
-                System.out.println("  File Name---->"+ directory);
-            }
-
-        }
-
-        System.out.println("-".repeat(100));
-        System.out.println(fileName);
-        System.out.println(parent);
-
-        return null;
+        return fileName;
     }
 
 
