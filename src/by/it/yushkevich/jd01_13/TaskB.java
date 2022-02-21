@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.Double.isNaN;
+
+
 public class TaskB {
 
     public static void main(String[] args) {
@@ -27,7 +30,7 @@ public class TaskB {
                 } else {
                     Double num = Double.parseDouble(text);
                     sum = sum + num;
-                    if (sum < 0) {
+                    if (isNaN(Math.sqrt(sum))) {
                         throw new ArithmeticException();
 
                     }

@@ -1,8 +1,6 @@
 package by.it.skorobogatyi.jd01_12;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 public class TaskB3 {
 
@@ -51,18 +49,16 @@ public class TaskB3 {
     }
 
     static String process(LinkedList<String> peoples) {
-        Iterator<String> iterator = peoples.iterator();
-        while (iterator.hasNext()) {
-            iterator.next();
-            counter++;
-            if (counter % 2 == 0) {
-                iterator.remove();
-            }
-        }
-        if (peoples.size() > 1) {
-            process(peoples);
-        }
         counter = 0;
-        return peoples.get(0);
+        while (peoples.size() > 1) {
+            if (counter % 2 == 0) {
+                peoples.addLast(peoples.pop());
+            } else {
+                peoples.pop();
+            }
+            counter++;
+        }
+
+        return peoples.getFirst();
     }
 }
