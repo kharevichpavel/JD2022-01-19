@@ -136,7 +136,7 @@ public class ListB<E> implements List<E> {
     @Override
     public Object[] toArray() {
         Object[] newArray = new Object[size];
-        for (int i = 0; i < elements.length; i++) {
+        for (int i = 0; i < size; i++) {
             newArray[i] = elements[i];
         }
         return newArray;
@@ -151,7 +151,11 @@ public class ListB<E> implements List<E> {
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        int index = indexOf(o);
+        if (index > -1) {
+            remove(index);
+        }
+        return index>-1;
     }
 
     @Override
