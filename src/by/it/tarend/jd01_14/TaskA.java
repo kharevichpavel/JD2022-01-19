@@ -66,7 +66,7 @@ public class TaskA {
             System.out.print(integer + " ");
             sum += integer;
         }
-        System.out.printf(Locale.ENGLISH, "%navg=%8.3f%n", sum/ listOfIntegers.size());
+        System.out.printf(Locale.ENGLISH, "%navg=%f%n", sum/ listOfIntegers.size());
     }
 
     private static void outputToTxtFile(ArrayList<Integer> listOfIntegers, String txtFileName) {
