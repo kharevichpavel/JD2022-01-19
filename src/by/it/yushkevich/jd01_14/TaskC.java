@@ -19,19 +19,17 @@ public class TaskC {
         String filePath = getNameFile(TaskC.class);
         System.out.println(filePath);
 
-//getParentName
-        File buffFile = new File(filePath);
-        System.out.println("BuffFilepath   =   " + buffFile);
-
-        File parentFile = new File(buffFile.getParent());
-        System.out.println(parentFile);
-
-
+        File parentFile = getParentFile(filePath);
         String nameTxtFile = PathFinder.getFileName(TaskC.class, ROOT, NAME_TXT);
-
         printOutToConsole(parentFile, nameTxtFile);
 
 
+    }
+
+    private static File getParentFile(String filePath) {
+        File buffFile = new File(filePath);
+        File parentFile = new File(buffFile.getParent());
+        return parentFile;
     }
 
 
@@ -41,7 +39,7 @@ public class TaskC {
        ){ File[] files = parentName.listFiles();
            for (File file : files) {
                if (file.isDirectory()) {
-                   writer.write("dir:"+file.getName()+"\n");
+                   writer.write("dir:"+file.getName()+"\n");   //writer.write( String.format("dir:%s%n", file.getName()))
                    System.out.printf("dir:%s%n",file.getName());
                    for (File listFile : file.listFiles()) {
                        if (listFile.isFile()) {
