@@ -1,4 +1,6 @@
-package by.it._classwork_.calculator;
+package by.it._classwork_.calculator.model;
+
+import by.it._classwork_.calculator.exceptions.CalcException;
 
 interface Operation {
     Var add(Var other) throws CalcException;

@@ -1,10 +1,12 @@
-package by.it._classwork_.calculator;
+package by.it._classwork_.calculator.model;
 
-abstract class Var implements Operation {
+import by.it._classwork_.calculator.exceptions.CalcException;
+
+public abstract class Var implements Operation {
 
 
     @Override
-    public Var add(Var other)  throws CalcException{
+    public Var add(Var other)  throws CalcException {
         throw new CalcException(String.format("Operation addition %s + %s impossible%n",this, other));
     }
 

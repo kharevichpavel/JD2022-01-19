@@ -1,29 +1,35 @@
 package by.it._classwork_.calculator;
 
+import by.it._classwork_.calculator.controllers.MainController;
+import by.it._classwork_.calculator.model.Var;
+import by.it._classwork_.calculator.servces.CalcService;
+import by.it._classwork_.calculator.view.Printer;
+
 import java.util.Scanner;
 
 public class Application {
 
     public static final String END = "end";
     private final Printer printer;
-    private final Parser parser;
+    private final CalcService calcService;
+    private final MainController controller;
 
-    public Application(Printer printer, Parser parser) {
+    public Application(Printer printer, CalcService calcService, MainController controller) {
         this.printer = printer;
-        this.parser = parser;
+        this.calcService = calcService;
+        this.controller = controller;
     }
 
     public void run() {
         System.out.println("App started");
         Scanner scanner = new Scanner(System.in);
-        while (true){
+        while (true) {
             String line = scanner.nextLine();
             if (!line.equals(END)) {
                 try {
-                    Var result= parser.calc(line);
+                    Var result = controller.process(line);
                     printer.print(result);
-                }
-                catch (CalcException e){
+                } catch (ArithmeticException e) {
                     printer.print(e);
                 }
             } else {

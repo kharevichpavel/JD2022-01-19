@@ -1,6 +1,8 @@
-package by.it._classwork_.calculator;
+package by.it._classwork_.calculator.model;
 
-class Vector extends Var {
+import by.it._classwork_.calculator.exceptions.CalcException;
+
+public class Vector extends Var {
 
     public Vector(double[] value) {
         this.value = value.clone();

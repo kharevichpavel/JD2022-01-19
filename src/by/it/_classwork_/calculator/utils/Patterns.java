@@ -1,4 +1,4 @@
-package by.it._classwork_.calculator;
+package by.it._classwork_.calculator.utils;
 
 public class Patterns {
 

@@ -1,4 +1,6 @@
-package by.it._classwork_.calculator;
+package by.it._classwork_.calculator.view;
+
+import by.it._classwork_.calculator.model.Var;
 
 public class ConsolePrinter implements Printer {
     @Override
