@@ -35,7 +35,7 @@ public class TaskC {
 
     private static void printOutToConsole(File parentName, String txtNameFile) {
        try(
-        BufferedWriter writer = new BufferedWriter(new FileWriter(txtNameFile));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(txtNameFile))
        ){ File[] files = parentName.listFiles();
            for (File file : files) {
                if (file.isDirectory()) {
@@ -73,7 +73,8 @@ public class TaskC {
 
     private static String getNameFile(Class<TaskC> cClass) {
 
-        String fileName = System.getProperty(USER_DIR) + SEPARATOR + ROOT + SEPARATOR + cClass.getPackageName().replace(TaskC.DOT, "\\");
+        String fileName = System.getProperty(USER_DIR) + SEPARATOR + ROOT +
+                SEPARATOR + cClass.getPackageName().replace(TaskC.DOT, "\\");
 
         return fileName;
     }
