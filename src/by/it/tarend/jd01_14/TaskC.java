@@ -15,7 +15,7 @@ public class TaskC {
 
         File surnameDirectory = new File(pathToSurname);
 
-        String listOfAll = getListOfAll(pathToSurname, surnameDirectory); // нужно запилить рекурсию для большего уровня вложений, а то говнокод(
+        String listOfAll = getListOfAll(pathToSurname, surnameDirectory);
 
         String txtFileName = PathFinder.getFileName(TaskC.class, ROOT, FILENAME_TO_WRITE);
         TaskB.outputToTxtFile(listOfAll, txtFileName);
@@ -24,19 +24,21 @@ public class TaskC {
     }
 
     @SuppressWarnings("ConstantConditions")
-    private static String getListOfAll(String pathToSurname, File surnameDirectory) {
-        String[] listOfSurnameDirectory = surnameDirectory.list();
+    private static String getListOfAll(String pathToDirectory, File directory) {
+        String[] listOfDirectory = directory.list();
         StringBuilder listOfAll = new StringBuilder("");
-        for (String s : listOfSurnameDirectory) {
-            File subDirectory = new File(pathToSurname + File.separator + s);
+        for (String element : listOfDirectory) {
+            String pathToElement = pathToDirectory + File.separator + element;
+            File subDirectory = new File(pathToElement);
             if (subDirectory.isDirectory()) {
-                listOfAll.append("dir:").append(s).append("\n");
-                String[] listOfSubDirectory = subDirectory.list();
+                listOfAll.append("dir:").append(element).append("\n");
+                listOfAll.append(getListOfAll(pathToElement, subDirectory));
+/*                String[] listOfSubDirectory = subDirectory.list();
                 for (String file : listOfSubDirectory) {
                     listOfAll.append("file:").append(file).append("\n");
-                }
+                }*/
             } else {
-                listOfAll.append("file:").append(s).append("\n");
+                listOfAll.append("file:").append(element).append("\n");
             }
         }
         return listOfAll.toString();
