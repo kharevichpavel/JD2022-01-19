@@ -1,31 +1,35 @@
-package by.it.tarend.calc;
+package by.it.tarend.calc.services;
+
+import by.it.tarend.calc.exceptions.CalcException;
+import by.it.tarend.calc.repositories.VarRepository;
+import by.it.tarend.calc.utils.Patterns;
+import by.it.tarend.calc.repositories.MapRepository;
+import by.it.tarend.calc.model.Var;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Parser {
+public class CalcService {
 
-    // 2+2 {1, 2, 3}+{1,1,1}  {{1,1,1},{2,2,2}} + {{1,1,1}, {3,3,3}}
+    private final VarRepository repository;
 
-    final private VarRepository varRepository;
-
-    public Parser(VarRepository varRepository) {
-        this.varRepository = varRepository;
+    public CalcService(VarRepository repository) {
+        this.repository = repository;
     }
 
     public Var calc(String expression) throws CalcException {
         expression = expression.replaceAll(Patterns.SPACES, "");
         String[] parts = expression.split(Patterns.OPERATION, 2);
         if (parts.length == 1) {
-            return varRepository.create(expression); // TODO вынести в отдельный класс
+            return repository.create(expression); // TODO вынести в отдельный класс
         }
 
-        Var right = varRepository.create(parts[1]);
+        Var right = repository.create(parts[1]);
         if (expression.contains("=")) {
             String name = parts[0];
-            return varRepository.save(name, right);
+            return repository.save(name, right);
         }
-        Var left = varRepository.create(parts[0]);
+        Var left = repository.create(parts[0]);
         if (left == null || right == null) {
             throw new CalcException("Incorrect expression " + expression);
         }

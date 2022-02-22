@@ -1,4 +1,6 @@
-package by.it.tarend.calc;
+package by.it.tarend.calc.model;
+
+import by.it.tarend.calc.exceptions.CalcException;
 
 interface Operation {
     Var add(Var other) throws CalcException;

@@ -1,18 +1,26 @@
 package by.it.tarend.calc;
 
+import by.it.tarend.calc.controllers.MainController;
+import by.it.tarend.calc.exceptions.ApplicationException;
+import by.it.tarend.calc.model.Var;
+import by.it.tarend.calc.services.CalcService;
+import by.it.tarend.calc.view.Printer;
+
 import java.util.Scanner;
 
 public class Application {
 
     public static final String END = "end";
     private final Printer printer;
-    private final Parser parser;
+    private final CalcService calcService;
     private final Reader reader;
+    private final MainController controller;
 
-    public Application(Printer printer, Parser parser, Reader reader) {
+    public Application(Printer printer, CalcService calcService, Reader reader, MainController controller) {
         this.printer = printer;
-        this.parser = parser;
+        this.calcService = calcService;
         this.reader = reader;
+        this.controller = controller;
     }
 
 
@@ -23,25 +31,15 @@ public class Application {
             String line = sc.nextLine();
             if (!line.equals(END)) {
                 try {
-                    Var result = parser.calc(line);
+                    Var result = controller.process(line);
                     printer.print(result);
-                } catch (CalcException e) {
+                } catch (ApplicationException e) {
                     printer.printError(e);
                 }
             } else {
                 System.out.println("App finished");
                 break;
             }
-/*        while (true) {
-            String command = reader.readFromConsole();
-            if (!command.equals(END)) {
-                Var result = parser.calc(command);
-                printer.print(result);
-            } else {
-                System.out.println("App finished");
-                break;
-            }
-*/
         }
     }
 }

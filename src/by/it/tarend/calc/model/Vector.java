@@ -1,8 +1,10 @@
-package by.it.tarend.calc;
+package by.it.tarend.calc.model;
 
-class Vector extends Var {
+import by.it.tarend.calc.exceptions.CalcException;
 
-    private double[] value;
+public class Vector extends Var {
+
+    private final double[] value;
 
     public Vector(double[] value) {
         this.value = value.clone();

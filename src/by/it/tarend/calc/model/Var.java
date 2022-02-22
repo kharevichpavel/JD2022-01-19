@@ -1,9 +1,11 @@
-package by.it.tarend.calc;
+package by.it.tarend.calc.model;
 
-abstract class Var implements Operation {
+import by.it.tarend.calc.exceptions.CalcException;
+
+public abstract class Var implements Operation {
 
     @Override
-    public Var add(Var other) throws CalcException{
+    public Var add(Var other) throws CalcException {
         throw new CalcException(String.format("Operation addition %s + %s impossible%n", this, other));
 
     }

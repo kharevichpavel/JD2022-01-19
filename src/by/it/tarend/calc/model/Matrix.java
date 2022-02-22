@@ -1,10 +1,12 @@
-package by.it.tarend.calc;
+package by.it.tarend.calc.model;
+
+import by.it.tarend.calc.exceptions.CalcException;
 
 import java.util.Arrays;
 
-class Matrix extends Var {
+public class Matrix extends Var {
 
-    private double[][] value;
+    private final double[][] value;
 
     public Matrix(double[][] value) {
 

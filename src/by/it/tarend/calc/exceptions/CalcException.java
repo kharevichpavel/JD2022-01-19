@@ -1,4 +1,4 @@
-package by.it.tarend.calc;
+package by.it.tarend.calc.exceptions;
 
 public class CalcException extends Exception {
 

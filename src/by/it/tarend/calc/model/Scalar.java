@@ -1,8 +1,10 @@
-package by.it.tarend.calc;
+package by.it.tarend.calc.model;
 
-class Scalar extends Var {
+import by.it.tarend.calc.exceptions.CalcException;
 
-    private double value;
+public class Scalar extends Var {
+
+    private final double value;
 
     public Scalar(double value) {
         this.value = value;

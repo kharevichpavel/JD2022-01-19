@@ -1,4 +1,4 @@
-package by.it.tarend.calc;
+package by.it.tarend.calc.utils;
 
 public class Patterns {
 

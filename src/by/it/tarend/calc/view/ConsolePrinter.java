@@ -1,4 +1,6 @@
-package by.it.tarend.calc;
+package by.it.tarend.calc.view;
+
+import by.it.tarend.calc.model.Var;
 
 public class ConsolePrinter implements Printer {
     @Override
