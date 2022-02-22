@@ -13,7 +13,7 @@ public class VarRepository {
 Var getByName(String name){
     return variables.get(name);
 }
-    public  Var create(String varValueOrName) {
+    public  Var create(String varValueOrName) throws CalcException {
         if (varValueOrName.matches(Patterns.SCALAR)){
             return new Scalar(varValueOrName);
         }else if (varValueOrName.matches(Patterns.VECTOR)){
@@ -23,6 +23,6 @@ Var getByName(String name){
         }else if(variables.containsKey(varValueOrName)){
             return getByName(varValueOrName);
         }
-            return null;//TODO ex
+            throw new CalcException("not found"+varValueOrName);
     }
 }
