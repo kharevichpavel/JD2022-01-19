@@ -4,9 +4,9 @@ import java.util.*;
 
 public class TaskA2 {
     public static void main(String[] args) {
-        Integer[] left = {1,2,3,4,5,5,6,6,7,8};
+        Integer[] left = {1,2,3,4,4,4,5,5,5,6,6};
         List<Integer> listLeft = Arrays.asList(left);
-        List<Integer> listRight = Arrays.asList(4,4,5,5,8,9,7);
+        List<Integer> listRight = Arrays.asList(4, 4, 5, 5, 9, 9, 8, 7, 6, 5, 4, 6);
         Set <Integer> leftSet = new HashSet<>(listLeft);
         Set <Integer> rightSet = new TreeSet<>(listRight ) ;
         System.out.printf("Left set=%s%n", leftSet );
