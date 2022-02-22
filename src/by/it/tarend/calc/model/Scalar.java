@@ -1,8 +1,10 @@
-package by.it.tarend.calc;
+package by.it.tarend.calc.model;
 
-class Scalar extends Var {
+import by.it.tarend.calc.exceptions.CalcException;
 
-    private double value;
+public class Scalar extends Var {
+
+    private final double value;
 
     public Scalar(double value) {
         this.value = value;
@@ -17,22 +19,22 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcException {
         if (other instanceof Scalar otherScalar) {
             return new Scalar(this.value + otherScalar.value);
         } else return other.add(this);
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
         if (other instanceof Scalar otherScalar) {
             return new Scalar(this.value - otherScalar.value);
         } else
-            return other.div(this).mul(new Scalar(-1));
+            return other.sub(this).mul(new Scalar(-1));
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException {
         if (other instanceof Scalar otherScalar) {
             return new Scalar(this.value * otherScalar.value);
         } else
@@ -40,10 +42,11 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcException {
         if (other instanceof Scalar otherScalar) {
             if (otherScalar.value == 0) {
-                return super.div(other); // TODO replace with Exception
+                String message = String.format("division by zero %s / %s%n", this, other);
+                throw new CalcException(message);
             }
             return new Scalar(this.value / otherScalar.value);
         }

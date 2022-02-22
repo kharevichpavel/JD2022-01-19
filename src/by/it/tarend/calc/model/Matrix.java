@@ -1,10 +1,12 @@
-package by.it.tarend.calc;
+package by.it.tarend.calc.model;
+
+import by.it.tarend.calc.exceptions.CalcException;
 
 import java.util.Arrays;
 
-class Matrix extends Var {
+public class Matrix extends Var {
 
-    private double[][] value;
+    private final double[][] value;
 
     public Matrix(double[][] value) {
 
@@ -42,7 +44,7 @@ class Matrix extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcException {
         double[][] localValue = this.value.clone();
         for (int i = 0; i < localValue.length; i++) {
             localValue[i] = Arrays.copyOf(this.value[i], this.value[i].length);
@@ -68,7 +70,7 @@ class Matrix extends Var {
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
         double[][] localValue = this.value.clone();
         for (int i = 0; i < localValue.length; i++) {
             localValue[i] = Arrays.copyOf(this.value[i], this.value[i].length);
@@ -95,7 +97,7 @@ class Matrix extends Var {
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException {
         double[][] localValue = this.value.clone();
         for (int i = 0; i < localValue.length; i++) {
             localValue[i] = Arrays.copyOf(this.value[i], this.value[i].length);
@@ -134,7 +136,7 @@ class Matrix extends Var {
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcException {
         return super.div(other);
     }
 

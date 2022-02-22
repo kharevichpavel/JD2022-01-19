@@ -1,8 +1,10 @@
-package by.it.tarend.calc;
+package by.it.tarend.calc.model;
 
-class Vector extends Var {
+import by.it.tarend.calc.exceptions.CalcException;
 
-    private double[] value;
+public class Vector extends Var {
+
+    private final double[] value;
 
     public Vector(double[] value) {
         this.value = value.clone();
@@ -22,7 +24,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcException {
         double[] localValue = value.clone();
         if (other instanceof Scalar otherScalar) {
             for (int i = 0; i < localValue.length; i++) {
@@ -41,7 +43,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
         double[] localValue = value.clone();
         if (other instanceof Scalar otherScalar) {
             for (int i = 0; i < localValue.length; i++) {
@@ -60,7 +62,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException {
         double[] localValue = value.clone();
         if (other instanceof Scalar otherScalar) {
             for (int i = 0; i < localValue.length; i++) {
@@ -80,7 +82,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcException {
         double[] localValue = value.clone();
         if (other instanceof Scalar otherScalar) {
             if (otherScalar.getValue() != 0) {
