@@ -22,6 +22,7 @@ public class TaskA {
         saveMatrixToTxtFile(matrix, fileName);
         List<String> strings = getTextFromTxtFile(fileName);
         printToConsole(strings);
+
     }
 
     private static void printToConsole(List<String> strings) {
