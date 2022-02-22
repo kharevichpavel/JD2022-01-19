@@ -15,33 +15,33 @@ public class TaskA {
     private static final String MATRIX = "matrix.txt";
 
     public static void main(String[] args) {
-        int[][] matrix = createMatrix(6,4,-15,15);
-        String filename = PathFinder.getFilename(TaskA.class,SRC,MATRIX);
-        save2DArrayToTxtFile(matrix,filename);
+        int[][] matrix = createMatrix(6, 4, -15, 15);
+        String filename = PathFinder.getFilename(TaskA.class, SRC, MATRIX);
+        save2DArrayToTxtFile(matrix, filename);
         List<String> lines = getLinesFromTxtFile(filename);
         printToConsole(lines);
     }
 
-    private static int[][] createMatrix(int rows, int columns, int minValue, int maxValue){
+    private static int[][] createMatrix(int rows, int columns, int minValue, int maxValue) {
         int[][] array = new int[rows][columns];
-        for (int[] row : array){
-            for (int i = 0; i <row.length; i++){
-                row[i] = minValue + ThreadLocalRandom.current().nextInt(maxValue-minValue+1);
+        for (int[] row : array) {
+            for (int i = 0; i < row.length; i++) {
+                row[i] = minValue + ThreadLocalRandom.current().nextInt(maxValue - minValue + 1);
             }
         }
         return array;
     }
 
     private static void save2DArrayToTxtFile(int[][] matrix, String filename) {
-        try(PrintWriter printWriter = new PrintWriter(filename)){
-            for (int[]row : matrix){
+        try (PrintWriter printWriter = new PrintWriter(filename)) {
+            for (int[] row : matrix) {
                 for (int element : row) {
-                    printWriter.printf("%3d ",element);
+                    printWriter.printf("%3d ", element);
                 }
                 printWriter.println();
-                }
-        }catch (FileNotFoundException e){
-            throw new RuntimeException("IO error: " + filename,e);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("IO error: " + filename, e);
         }
     }
 
@@ -49,7 +49,7 @@ public class TaskA {
         try {
             return Files.readAllLines(Paths.get(filename));
         } catch (IOException e) {
-            throw new RuntimeException("IO error: " + filename,e);
+            throw new RuntimeException("IO error: " + filename, e);
         }
     }
 
