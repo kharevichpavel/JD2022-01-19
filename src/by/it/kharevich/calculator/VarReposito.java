@@ -17,9 +17,9 @@ public class VarReposito {
     }
 
     public Var create(String varValueOrName) {
-        if (varValueOrName.matches(by.it._classwork_.jd01_09.Patterns.SCALAR)) {
+        if (varValueOrName.matches(Patterns.SCALAR)) {
             return new Scalar(varValueOrName);
-        } else if (varValueOrName.matches(by.it._classwork_.jd01_09.Patterns.VECTOR)) {
+        } else if (varValueOrName.matches(Patterns.VECTOR)) {
             return new Vector(varValueOrName);
 //       } else if (varValueOrName.matches(Patterns.MATRIX)){
 //           return new Matrix(varValueOrName);
