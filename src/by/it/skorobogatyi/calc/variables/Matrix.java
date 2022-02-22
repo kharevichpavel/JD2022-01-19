@@ -1,5 +1,6 @@
 package by.it.skorobogatyi.calc.variables;
 
+import by.it.skorobogatyi.calc.utils.CalcException;
 import by.it.skorobogatyi.calc.utils.Operation;
 
 class Matrix extends AbstractVar implements Operation {
@@ -70,7 +71,7 @@ class Matrix extends AbstractVar implements Operation {
 
 
     @Override
-    public AbstractVar add(AbstractVar other) {
+    public AbstractVar add(AbstractVar other) throws CalcException {
         return other.add(this);
     }
 
@@ -88,23 +89,23 @@ class Matrix extends AbstractVar implements Operation {
     }
 
     @Override
-    public AbstractVar add(Vector other) {
-        System.out.printf("Operation addition %s + %s impossible%n", other, this);
-        return null;
+    public AbstractVar add(Vector other) throws CalcException {
+        String message = String.format("Operation addition %s + %s impossible%n", other, this);
+        throw new CalcException(message);
     }
 
     @Override
-    public AbstractVar add(Matrix other) {
+    public AbstractVar add(Matrix other) throws CalcException {
 
         if (other.value.length != this.value.length) {
-            System.out.printf("Operation addition %s + %s impossible%n", other, this);
-            return null;
+            String message = String.format("Operation addition %s + %s impossible%n", other, this);
+            throw new CalcException(message);
         }
 
         for (int i = 0; i < this.value.length; i++) {
             if (other.value[i].length != this.value[i].length) {
-                System.out.printf("Operation addition %s + %s impossible%n", other, this);
-                return null;
+                String message = String.format("Operation addition %s + %s impossible%n", other, this);
+                throw new CalcException(message);
             }
         }
 
@@ -123,7 +124,7 @@ class Matrix extends AbstractVar implements Operation {
 
 
     @Override
-    public AbstractVar sub(AbstractVar other) {
+    public AbstractVar sub(AbstractVar other) throws CalcException {
        return other.sub(this);
     }
 
@@ -141,23 +142,23 @@ class Matrix extends AbstractVar implements Operation {
     }
 
     @Override
-    public AbstractVar sub(Vector other) {
-        System.out.printf("Operation subtraction %s - %s impossible%n", other, this);
-        return null;
+    public AbstractVar sub(Vector other) throws CalcException {
+        String message = String.format("Operation subtraction %s - %s impossible%n", other, this);
+        throw new CalcException(message);
     }
 
     @Override
-    public AbstractVar sub(Matrix other) {
+    public AbstractVar sub(Matrix other) throws CalcException {
 
         if (other.value.length != this.value.length) {
-            System.out.printf("Operation subtraction %s - %s impossible%n", other, this);
-            return null;
+            String message = String.format("Operation subtraction %s - %s impossible%n", other, this);
+            throw new CalcException(message);
         }
 
         for (int i = 0; i < this.value.length; i++) {
             if (other.value[i].length != this.value[i].length) {
-                System.out.printf("Operation subtraction %s - %s impossible%n", other, this);
-                return null;
+                String message = String.format("Operation subtraction %s - %s impossible%n", other, this);
+                throw new CalcException(message);
             }
         }
 
@@ -176,7 +177,7 @@ class Matrix extends AbstractVar implements Operation {
 
 
     @Override
-    public AbstractVar mul(AbstractVar other) {
+    public AbstractVar mul(AbstractVar other) throws CalcException {
         return other.mul(this);
     }
 
@@ -192,11 +193,11 @@ class Matrix extends AbstractVar implements Operation {
     }
 
     @Override
-    public AbstractVar mul(Vector other) {
+    public AbstractVar mul(Vector other) throws CalcException {
 
         if (other.getValue().length != this.value[0].length) {
-            System.out.printf("Operation multiplication %s * %s impossible%n", other, this);
-            return null;
+            String message = String.format("Operation multiplication %s * %s impossible%n", other, this);
+            throw new CalcException(message);
         }
 
         double[] returnVector = new double[this.value.length];
@@ -211,11 +212,11 @@ class Matrix extends AbstractVar implements Operation {
     }
 
     @Override
-    public AbstractVar mul(Matrix other) {
+    public AbstractVar mul(Matrix other) throws CalcException {
 
         if (this.value[0].length != other.value.length) {
-            System.out.printf("Operation multiplication %s * %s impossible%n", other, this);
-            return null;
+            String message = String.format("Operation multiplication %s * %s impossible%n", other, this);
+            throw new CalcException(message);
         }
 
         double[][] returnMatrix = new double[this.value.length][other.value[0].length];
@@ -233,12 +234,12 @@ class Matrix extends AbstractVar implements Operation {
 
 
     @Override
-    public AbstractVar div(AbstractVar other) {
+    public AbstractVar div(AbstractVar other) throws CalcException {
         return other.div(this);
     }
 
     @Override
-    public AbstractVar div(Scalar other) {
+    public AbstractVar div(Scalar other) throws CalcException {
 
         if (other.getValue() != 0) {
 
@@ -252,19 +253,19 @@ class Matrix extends AbstractVar implements Operation {
             return new Matrix(returnMatrix);
         }
 
-        System.out.printf("Operation division %s / %s impossible%n", this, other);
-        return null;
+        String message = String.format("Operation division %s / %s impossible%n", this, other);
+        throw new CalcException(message);
     }
 
     @Override
-    public AbstractVar div(Vector other) {
-        System.out.printf("Operation division %s / %s impossible%n", other, this);
-        return null;
+    public AbstractVar div(Vector other) throws CalcException {
+        String message = String.format("Operation division %s / %s impossible%n", other, this);
+        throw new CalcException(message);
     }
 
     @Override
-    public AbstractVar div(Matrix other) {
-        System.out.printf("Operation division %s / %s impossible%n", other, this);
-        return null;
+    public AbstractVar div(Matrix other) throws CalcException {
+        String message = String.format("Operation division %s / %s impossible%n", other, this);
+        throw new CalcException(message);
     }
 }
