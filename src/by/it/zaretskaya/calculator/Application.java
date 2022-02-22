@@ -19,8 +19,13 @@ public class Application {
         while (true){
             String line = scanner.nextLine();
             if (!line.equals(END)) {
-                Var result= parser.calc(line);
+                try{
+                    Var result= parser.calc(line);
                 printer.print (result);
+                }
+                catch (CalcException e){
+                printer.print(e);
+                }
             }else{
                 System.out.println("App finished");
                 break;

@@ -3,31 +3,27 @@ package by.it.zaretskaya.calculator;
 abstract class Var implements Operation {
 
     @Override
-     public Var add(Var other) {
-         System.out.printf("Operation addition %s + %s impossible%n",this,other);
+     public Var add(Var other) throws CalcException{
+       throw new CalcException( String.format("Operation addition %s + %s impossible%n",this,other));
 
-         return null;
      }
 
      @Override
-     public Var sub(Var other) {
-         System.out.printf("Operation subtraction %s - %s impossible%n",this,other);
+     public Var sub(Var other) throws CalcException{
+         throw new CalcException( String.format("Operation subtraction %s - %s impossible%n",this,other));
 
-         return null;
      }
 
      @Override
-     public Var mul(Var other) {
-         System.out.printf("Operation multiplication %s * %s impossible%n",this,other);
+     public Var mul(Var other) throws CalcException{
+         throw new CalcException( String.format("Operation multiplication %s * %s impossible%n",this,other));
 
-         return null;
      }
 
      @Override
-     public Var div(Var other) {
-         System.out.printf("Operation division %s / %s impossible%n",this,other);
+     public Var div(Var other) throws CalcException {
+         throw new CalcException( String.format("Operation division %s / %s impossible%n",this,other));
 
-         return null;
      }
 
     @Override

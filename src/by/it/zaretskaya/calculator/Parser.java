@@ -5,13 +5,13 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-private VarRepository varRepository;
+private final VarRepository varRepository;
 
     public Parser(VarRepository varRepository) {
         this.varRepository = varRepository;
     }
 
-    public Var calc(String expression) {
+    public Var calc(String expression) throws CalcException {
         expression = expression.replaceAll(Patterns.SPACES,"");
         String[] parts= expression.split(Patterns.OPERATION,2);
         if (parts.length==1){
@@ -25,8 +25,8 @@ private VarRepository varRepository;
         }
         Var left=varRepository.create(parts[0]);
         if (left==null|| right==null){
-            System.out.println("Incorrect expression"+expression);
-            return null;
+            throw new CalcException("Incorrect expression"+expression);
+
         }
         Matcher matcher= Pattern.compile(Patterns.OPERATION).matcher(expression);
         if (matcher.find()){
@@ -39,6 +39,6 @@ private VarRepository varRepository;
             }
 
         }
-        return null;
+        throw new CalcException("?????");
     }
 }

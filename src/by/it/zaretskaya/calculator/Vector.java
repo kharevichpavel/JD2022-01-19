@@ -15,7 +15,7 @@ class Vector extends Var {
  public double[] getValue() {return value.clone(); }
 
  @Override
- public Var add(Var other) {
+ public Var add(Var other) throws CalcException {
   double[] localValue = value.clone();
   if(other instanceof Scalar scalar){
   for (int i = 0; i < localValue.length; i++) {
