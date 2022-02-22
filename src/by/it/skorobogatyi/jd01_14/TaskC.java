@@ -28,7 +28,7 @@ public class TaskC {
             printDirectoryContents(files, stringWriter);
         } catch (IOException e) {
             throw new RuntimeException("ERROR:", e);
-        } ;
+        }
 
     }
 
@@ -67,7 +67,8 @@ public class TaskC {
     private static String getDirectoryName() {
 
         String userDir = System.getProperty("user.dir");
-        String returnString = ROOT + separator + TaskC.class.getPackageName().replace(DOT, separator).replace("\\jd01_14", "");
+        String returnString = ROOT + separator +
+                TaskC.class.getPackageName().replace(DOT, separator).replace("\\jd01_14", "");
         return userDir + separator + returnString;
     }
 }
