@@ -39,19 +39,23 @@ public class TaskC {
        ){ File[] files = parentName.listFiles();
            for (File file : files) {
                if (file.isDirectory()) {
-                   writer.write("dir:"+file.getName()+"\n");   //writer.write( String.format("dir:%s%n", file.getName()))
+                   writer.write("dir:"+file.getName());   //writer.write( String.format("dir:%s%n", file.getName()))
+                   writer.newLine();
                    System.out.printf("dir:%s%n",file.getName());
                    for (File listFile : file.listFiles()) {
                        if (listFile.isFile()) {
-                           writer.write("file:"+listFile.getName()+"\n");
+                           writer.write("file:"+listFile.getName());
+                           writer.newLine();
                            System.out.printf("file:%s%n",listFile.getName());
                        } else {
-                           writer.write("dir:"+listFile.getName()+"\n");
+                           writer.write("dir:"+listFile.getName());
+                           writer.newLine();
                            System.out.printf("dir:%s%n",listFile.getName());
                        }
                    }
                } else {
-                   writer.write("file:"+file.getName()+"\n");
+                   writer.write("file:"+file.getName());
+                   writer.newLine();
                    System.out.printf("file:%s%n",file.getName());
                }
            }
