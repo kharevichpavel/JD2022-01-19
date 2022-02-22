@@ -4,12 +4,12 @@ import by.it.skorobogatyi.calc.variables.AbstractVar;
 
 public interface Operation {
 
-    AbstractVar add(AbstractVar other);
+    AbstractVar add(AbstractVar other) throws CalcException;
 
-    AbstractVar sub(AbstractVar other);
+    AbstractVar sub(AbstractVar other) throws CalcException;
 
-    AbstractVar mul(AbstractVar other);
+    AbstractVar mul(AbstractVar other) throws CalcException;
 
-    AbstractVar div(AbstractVar other);
+    AbstractVar div(AbstractVar other) throws CalcException;
 
 }

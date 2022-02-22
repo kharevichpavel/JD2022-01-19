@@ -1,5 +1,6 @@
 package by.it.skorobogatyi.calc.variables;
 
+import by.it.skorobogatyi.calc.utils.CalcException;
 import by.it.skorobogatyi.calc.utils.Operation;
 
 class Vector extends AbstractVar implements Operation {
@@ -52,7 +53,7 @@ class Vector extends AbstractVar implements Operation {
 
 
     @Override
-    public AbstractVar add(AbstractVar other) {
+    public AbstractVar add(AbstractVar other) throws CalcException {
         return other.add(this);
     }
 
@@ -67,7 +68,7 @@ class Vector extends AbstractVar implements Operation {
     }
 
     @Override
-    public AbstractVar add(Vector other) {
+    public AbstractVar add(Vector other) throws CalcException {
 
         if (this.value.length == other.value.length) {
 
@@ -78,19 +79,19 @@ class Vector extends AbstractVar implements Operation {
             return new Vector(localValue);
         }
 
-        System.out.printf("Operation addition %s + %s impossible%n", this, other);
-        return null;
+        String message = String.format("Operation addition %s + %s impossible%n", other, this);
+        throw new CalcException(message);
     }
 
     @Override
-    public AbstractVar add(Matrix other) {
-        System.out.printf("Operation addition %s + %s impossible%n", this, other);
-        return null;
+    public AbstractVar add(Matrix other) throws CalcException {
+        String message = String.format("Operation addition %s + %s impossible%n", this, other);
+        throw new CalcException(message);
     }
 
 
     @Override
-    public AbstractVar sub(AbstractVar other) {
+    public AbstractVar sub(AbstractVar other) throws CalcException {
         return other.sub(this);
     }
 
@@ -105,7 +106,7 @@ class Vector extends AbstractVar implements Operation {
     }
 
     @Override
-    public AbstractVar sub(Vector other) {
+    public AbstractVar sub(Vector other) throws CalcException {
 
         if (this.value.length == other.value.length) {
 
@@ -116,19 +117,19 @@ class Vector extends AbstractVar implements Operation {
             return new Vector(localValue);
 
         }
-        System.out.printf("Operation subtraction %s - %s impossible%n", this, other);
-        return null;
+        String message = String.format("Operation subtraction %s - %s impossible%n", other, this);
+        throw new CalcException(message);
     }
 
     @Override
-    public AbstractVar sub(Matrix other) {
-        System.out.printf("Operation subtraction %s - %s impossible%n", this, other);
-        return null;
+    public AbstractVar sub(Matrix other) throws CalcException {
+        String message = String.format("Operation subtraction %s - %s impossible%n", this, other);
+        throw new CalcException(message);
     }
 
 
     @Override
-    public AbstractVar mul(AbstractVar other) {
+    public AbstractVar mul(AbstractVar other) throws CalcException {
         return other.mul(this);
     }
 
@@ -143,7 +144,7 @@ class Vector extends AbstractVar implements Operation {
     }
 
     @Override
-    public AbstractVar mul(Vector other) {
+    public AbstractVar mul(Vector other) throws CalcException {
 
         if (this.value.length == other.value.length) {
             double[] localValue = value.clone();
@@ -157,47 +158,37 @@ class Vector extends AbstractVar implements Operation {
             return new Scalar(vectorInnerSum);
         }
 
-        System.out.printf("Operation multiplication %s * %s impossible%n", this, other);
-        return null;
+        String message = String.format("Operation multiplication %s * %s impossible%n", this, other);
+        throw new CalcException(message);
     }
 
     @Override
-    public AbstractVar mul(Matrix other) {
+    public AbstractVar mul(Matrix other) throws CalcException {
         return other.mul(this);
     }
 
 
     @Override
-    public AbstractVar div(AbstractVar other) {
+    public AbstractVar div(AbstractVar other) throws CalcException {
         return other.div(this);
     }
 
     @Override
-    public AbstractVar div(Scalar other) {
-
-        if (other.getValue() != 0) {
-
-            double[] localValue = value.clone();
-            for (int i = 0; i < localValue.length; i++) {
-                localValue[i] = localValue[i] / other.getValue();
-            }
-            return new Vector(localValue);
-        }
-
-        System.out.printf("Operation division %s / %s impossible%n", this, other);
-        return null;
+    public AbstractVar div(Scalar other) throws CalcException {
+        String message = String.format("Operation division %s / %s impossible%n", other, this);
+        throw new CalcException(message);
     }
 
     @Override
-    public AbstractVar div(Vector other) {
-        System.out.printf("Operation division %s / %s impossible%n", other, this);
-        return null;
+    public AbstractVar div(Vector other) throws CalcException {
+        String message = String.format("Operation division %s / %s impossible%n", other, this);
+        throw new CalcException(message);
     }
 
     @Override
-    public AbstractVar div(Matrix other) {
-        System.out.printf("Operation division %s / %s impossible%n", other, this);
-        return null;
+    public AbstractVar div(Matrix other) throws CalcException {
+        String message = String.format("Operation division %s / %s impossible%n", other, this);
+        throw new CalcException(message);
     }
 
 
