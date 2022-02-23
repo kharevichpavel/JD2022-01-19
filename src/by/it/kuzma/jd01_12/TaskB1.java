@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class TaskB1 {
 
-    public static final String SIGNS = "[^\\w-']";
+    public static final String SYMBOL = "[^\\w-']";
 
     public static void main(String[] args) {
 
@@ -15,7 +15,7 @@ public class TaskB1 {
         while (true){
             String nextText = scanner.next();
             if (!nextText.equals("end")){
-                nextText = nextText.replaceAll(SIGNS,"");
+                nextText = nextText.replaceAll(SYMBOL,"");
                 if (!nextText.equals("")){
                     if (!words.containsKey(nextText)){
                         words.put(nextText,1);
