@@ -22,17 +22,32 @@ public class ListA<E> implements List<E> {
 
     @Override
     public E remove(int index) {
-        return null;
+        E returnValue = elements[index ];
+System.arraycopy(elements, index + 1, elements, index, size - index -1);
+elements [size--]= null;
+
+
+
+
+        return null ;
     }
 
     @Override
     public E get(int index) {
-        return null;
+        return elements[index ] ;
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        StringJoiner joiner = new StringJoiner(", ", "[", "]");
+        for (int i = 0; i < size ; i++) {
+            joiner.add(elements[i].toString() );
+            
+        }
+
+
+
+        return joiner.toString();
     }
 
 
