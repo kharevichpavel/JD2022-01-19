@@ -5,7 +5,7 @@ import by.it.kharevich.jd02_01.entity.Good;
 import by.it.kharevich.jd02_01.utils.RandomData;
 import by.it.kharevich.jd02_01.utils.Sleeper;
 
-public class CustomerWorker extends Thread implements CustomerAction{
+public class CustomerWorker extends Thread implements CustomerAction {
 
     private final Customer customer;
     private final Store store;

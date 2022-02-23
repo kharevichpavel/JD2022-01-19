@@ -5,11 +5,11 @@ import by.it.kharevich.jd02_01.exceptions.StoreException;
 import by.it.kharevich.jd02_01.utils.RandomData;
 import by.it.kharevich.jd02_01.utils.Sleeper;
 
-import java.awt.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Store extends  Thread{
+public class Store extends Thread {
 
     @Override
     public void run() {
@@ -20,7 +20,7 @@ public class Store extends  Thread{
             int countCustomer = RandomData.get(2);
             for (int i = 0; i < countCustomer; i++) {
                 Customer customer = new Customer(++number);
-                CustomerWorker customerWorker = new CustomerWorker(this,customer);
+                CustomerWorker customerWorker = new CustomerWorker(this, customer);
                 threads.add(customerWorker);
                 customerWorker.start();
             }

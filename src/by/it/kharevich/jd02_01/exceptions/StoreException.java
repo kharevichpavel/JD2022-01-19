@@ -1,6 +1,6 @@
 package by.it.kharevich.jd02_01.exceptions;
 
-public class StoreException extends RuntimeException{
+public class StoreException extends RuntimeException {
 
     public StoreException() {
     }

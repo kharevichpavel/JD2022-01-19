@@ -1,6 +1,5 @@
 package by.it.kharevich.jd02_01.entity;
 
-import java.awt.*;
 
 public class Customer {
 

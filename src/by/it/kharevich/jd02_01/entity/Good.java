@@ -11,7 +11,7 @@ public class Good {
     }
 
     public Good() {
-        this("noname",0);
+        this("noName", 0);
     }
 
     @Override
