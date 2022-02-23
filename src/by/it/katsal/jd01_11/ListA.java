@@ -29,7 +29,7 @@ elements [size--]= null;
 
 
 
-        return null ;
+        return returnValue  ;
     }
 
     @Override
