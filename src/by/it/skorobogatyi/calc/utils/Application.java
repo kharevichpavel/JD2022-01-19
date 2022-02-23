@@ -25,8 +25,13 @@ public class Application {
             String line = scanner.nextLine();
 
             if (!line.equals(END)) {
-                AbstractVar result = parser.calc(line);
-                printer.print(result);
+                AbstractVar result;
+                try {
+                    result = parser.calc(line);
+                    printer.print(result);
+                } catch (CalcException e) {
+                    printer.print(e);
+                }
             } else {
                 System.out.println("App finished");
                 break;

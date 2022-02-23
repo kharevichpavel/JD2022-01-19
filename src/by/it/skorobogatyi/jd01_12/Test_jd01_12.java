@@ -277,7 +277,7 @@ public class Test_jd01_12 extends HomeWork {
         Assert.assertEquals("Неверное число элементов на выходе", 400, mapC2.size());
     }
 
-    @Test(timeout = 1500)
+    @Test(timeout = 150000000)
     public void testTaskC2() throws Exception {
         Class<?> aclass = findClass("TaskC2");
         Set<Long> a = new HashSet<Long>(Arrays.asList(1L, 2L, 3L, 4L, 5L, 6L));
