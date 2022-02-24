@@ -5,17 +5,26 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
+    private VarRepository varRepository;
 
+    public Parser(VarRepository varRepository) {
+        this.varRepository = varRepository;
+    }
 
     public Var calc(String expression) {
         expression = expression.replaceAll(Patterns.SPACES, "");
         String[] parts = expression.split(Patterns.OPERATION, 2);
 
         if (parts.length == 1){
-            return Var.create(expression);
+            return varRepository.create(expression);
         }
-        Var left = Var.create(parts[0]);
-        Var right = Var.create(parts[1]);
+        Var right = varRepository.create(parts[1]);
+        if (expression.contains(("="))){
+            String name = parts[0];
+            return varRepository.save(name, right);
+
+        }
+        Var left = varRepository.create(parts[0]);
         if (left == null || right == null){
             System.out.println("Incorrect expression " +expression);
             return null;

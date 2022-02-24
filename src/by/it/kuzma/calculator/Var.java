@@ -2,16 +2,7 @@ package by.it.kuzma.calculator;
 
 abstract class Var implements Operation {
 
-    public static Var create(String varValue) {
-        if (varValue.matches(Patterns.SCALAR)){
-            return new Scalar(varValue);
-        } else if (varValue.matches(Patterns.VECTOR)){
-            return new Vector(varValue);
-        } else if (varValue.matches(Patterns.MATRIX)){
-            return new Matrix(varValue);
-        }
-        return null;//TODO ex
-    }
+
 
     @Override
     public Var add(Var other) {
