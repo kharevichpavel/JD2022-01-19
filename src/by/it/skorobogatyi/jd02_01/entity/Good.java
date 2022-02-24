@@ -14,13 +14,8 @@ public class Good {
     }
 
 
-    public Good() {
-        this.name = "noname";
-        this.price = BigDecimal.valueOf(0);
-    }
-
     @Override
     public String toString() {
-        return "good " + name + " \\ " + "price= " + price;
+        return "good " + name + " \\ " + "price = " + price;
     }
 }

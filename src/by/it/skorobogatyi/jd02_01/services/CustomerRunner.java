@@ -15,13 +15,14 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
 
     private final Customer customer;
     private final StoreRunner storeRunner;
-    private final String storeName;
+    private final Store store;
 
 
-    public CustomerRunner(Customer customer, StoreRunner storeRunner, Store storeName) {
+    public CustomerRunner(Customer customer, StoreRunner storeRunner, Store store) {
         this.customer = customer;
-        this.storeName = storeName.name;
         this.storeRunner = storeRunner;
+        this.store = store;
+        this.setName("Thread for " + customer);
     }
 
 
@@ -32,13 +33,11 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
 
         takeCart();
 
-        int goodsCounter = RandomData.getRandomNumber(2, 5);
+        int goodsCounter = RandomData.getRandomNumberOfGoods(this);
 
         for (int i = 0; i < goodsCounter; i++) {
             Good good = chooseGood();
             putToCart(good);
-
-            System.out.println(customer + " choose " + good);
         }
 
         goOut();
@@ -47,41 +46,8 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
     @Override
     public void enteredStore() {
 
+        store.plusCustomersAmount();
         System.out.println(customer + " entered the store");
-    }
-
-    @Override
-    public Good chooseGood() {
-
-        System.out.println(customer + " started to choose");
-
-        int timeForGoodChoice = RandomData.getRandomNumber(500, 2000);
-
-        Sleeper.sleep(timeForGoodChoice);
-
-        int randomGoodNumber = RandomData.getRandomNumber(PriceListRepo.priceList.size() - 1);
-        Map.Entry<String, BigDecimal> goodEntry =
-                PriceListRepo
-                .priceList
-                .entrySet()
-                .stream()
-                .toList()
-                .get(randomGoodNumber);
-
-        Good good = new Good(goodEntry.getKey(), goodEntry.getValue());
-
-        System.out.println(customer + " have chosen the good");
-
-        double timeForPuttingGoodInCart = RandomData.getRandomNumber(100, 300);
-        Sleeper.sleep(timeForPuttingGoodInCart);
-
-        return good;
-    }
-
-    @Override
-    public void goOut() {
-
-        System.out.println(customer + " goes out");
     }
 
     @Override
@@ -92,11 +58,44 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
     }
 
     @Override
+    public Good chooseGood() {
+
+        System.out.println(customer + " started to choose something");
+
+        int timeForGoodChoice = RandomData.getRandomNumberForGoodsChoosing(this);
+        Sleeper.sleep(timeForGoodChoice);
+
+        int randomGoodNumber = RandomData.getRandomGoodNumber();
+
+        Map.Entry<String, BigDecimal> goodEntry =
+                PriceListRepo
+                .priceList
+                .entrySet()
+                .stream()
+                .toList()
+                .get(randomGoodNumber);
+
+        Good good = new Good(goodEntry.getKey(), goodEntry.getValue());
+
+        double timeForPuttingGoodInCart = RandomData.getRandomNumberForGoodsPacking(this);
+        Sleeper.sleep(timeForPuttingGoodInCart);
+
+        return good;
+    }
+
+    @Override
     public int putToCart(Good good) {
 
         ArrayList<Good> goodList = customer.getShoppingCart().goodList;
         goodList.add(good);
+        System.out.println(customer + " choose " + good);
         return goodList.size();
+    }
+
+    @Override
+    public void goOut() {
+        store.minusCustomersAmount();
+        System.out.println(customer + " goes home");
     }
 }
 

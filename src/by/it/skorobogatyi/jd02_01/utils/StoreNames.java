@@ -1,7 +1,6 @@
 package by.it.skorobogatyi.jd02_01.utils;
 
 public enum StoreNames {
-
     Evroopt,
     Gippo,
     Pyatiorochka,
@@ -12,6 +11,6 @@ public enum StoreNames {
     Green,
     Groshyk,
     Alkomarket
-
     }
+
 

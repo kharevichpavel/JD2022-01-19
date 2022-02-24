@@ -1,6 +1,5 @@
 package by.it.skorobogatyi.jd02_01.services;
 
-import by.it.skorobogatyi.jd02_01.entity.Customer;
 import by.it.skorobogatyi.jd02_01.entity.Pensioner;
 import by.it.skorobogatyi.jd02_01.entity.Store;
 import by.it.skorobogatyi.jd02_01.entity.Student;
@@ -13,6 +12,8 @@ import java.util.List;
 
 public class StoreRunner extends Thread {
 
+    public static final String YELLOW_COLOUR_OUTPUT = "\u001B[33m";
+    public static final String END_OF_COLOUR_FORMATTING = "\u001B[0m";
     public final Store store;
 
     public StoreRunner(Store store) {
@@ -25,48 +26,78 @@ public class StoreRunner extends Thread {
         System.out.println("Store " + store.name + " opened");
 
         int customerNumber = 0;
+
         List<Thread> threads = new ArrayList<>();
 
-        for (int iteration = 0; iteration < 120; iteration++) {
+        for (int secondOfRun = 0; secondOfRun < 120; secondOfRun++) {
+            System.out.println(YELLOW_COLOUR_OUTPUT + "Passed " + secondOfRun +
+                    " seconds, number of buyers = " + store.getCustomersAmount() + END_OF_COLOUR_FORMATTING);
 
-            int customersAmount = RandomData.getRandomNumber(2); //can delete later
 
-            int customerRole = RandomData.getRandomNumber(3);
+            int customersAmount = RandomData.getRandomNumber(10, 15);
 
             for (int i = 0; i < customersAmount; i++) {
 
-                Customer customer;
-                switch (customerRole) {
-                    case 0 -> customer = new Pensioner(++customerNumber);
-                    case 1, 2 -> customer = new Student(++customerNumber);
-                    default -> customer = new Customer(++customerNumber);
+                if (secondOfRun <= 30) {
+                    if (store.getCustomersAmount() <= secondOfRun + 10) {
+                        generateAndProceedNewCustomerRunner(++customerNumber, threads);
+
+                    }
+
+                } else if (secondOfRun <= 60) {
+                    if (store.getCustomersAmount() <= 40 + (30 - secondOfRun)) {
+                        generateAndProceedNewCustomerRunner(++customerNumber, threads);
+                    }
+
+                } else if (secondOfRun <= 90) {
+                    if (store.getCustomersAmount() <= secondOfRun - 60 + 10) {
+                        generateAndProceedNewCustomerRunner(++customerNumber, threads);
+
+                    }
+                } else {
+                    if (store.getCustomersAmount() <= 40 + (30 - secondOfRun + 60)) {
+                        generateAndProceedNewCustomerRunner(++customerNumber, threads);
+
+                    }
                 }
-
-                String customerType = customer.getClass().getSimpleName();
-                CustomerRunner customerRunner;
-                customerRunner = switch (customerType) {
-                    case "Student" -> new StudentRunner(customer, this, store);
-                    case "Pensioner" -> new PensionerRunner(customer, this, store);
-                    default -> new CustomerRunner(customer, this, store);
-                };
-
-                threads.add(customerRunner);
-                customerRunner.start();
-
-                Sleeper.sleep(1000);
             }
+            Sleeper.sleep(1000);
+        }
+        System.out.println(YELLOW_COLOUR_OUTPUT + "Shop is closing" + END_OF_COLOUR_FORMATTING);
 
-            for (Thread thread : threads) {
-                try {
-                    thread.join();
-                } catch (InterruptedException e) {
-                    throw new StoreException(e);
-                }
+        joinThreads(threads);
+
+        System.out.println(YELLOW_COLOUR_OUTPUT + "Store " + store.name + " closed" + END_OF_COLOUR_FORMATTING);
+    }
+
+    private void joinThreads(List<Thread> threads) {
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new StoreException(e);
             }
         }
-        System.out.println("Store " + store.name + " closed");
+    }
 
+    private void generateAndProceedNewCustomerRunner(int customerNumber, List<Thread> threads) {
+        CustomerRunner customerRunner = generateNewCustomerRunner(customerNumber);
+        threads.add(customerRunner);
+        customerRunner.start();
+    }
 
+    private CustomerRunner generateNewCustomerRunner(int customerNumber) {
+
+        int customerRole = RandomData.getRandomNumber(3); //choosing customer role
+
+        CustomerRunner customerRunner;
+
+        switch (customerRole) {
+            case 0 -> customerRunner = new StudentRunner(new Pensioner(customerNumber), this, store);
+            case 1, 2 -> customerRunner = new PensionerRunner(new Student(customerNumber), this, store);
+            default -> customerRunner = new CustomerRunner(new Student(customerNumber), this, store);
+        }
+        return customerRunner;
     }
 }
 

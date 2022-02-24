@@ -8,11 +8,11 @@ public class PriceListRepo {
 
     public static Map<String, BigDecimal> priceList = new HashMap<>();
 
-    public static void fillHashmap() {
+    public static void fillPriceList() {
 
         priceList.put("Orange", BigDecimal.valueOf(5));
         priceList.put("Beer", BigDecimal.valueOf(2));
-        priceList.put("Ink \"Chars'o'Nil\"", BigDecimal.valueOf(2.5));
+        priceList.put("Cognac \"Chars'o'Nil\"", BigDecimal.valueOf(2.5));
         priceList.put("Apple", BigDecimal.valueOf(1.5));
         priceList.put("Cake", BigDecimal.valueOf(10));
         priceList.put("Cheese", BigDecimal.valueOf(16));
