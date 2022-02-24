@@ -26,18 +26,7 @@ public class TaskB {
 
     }
 
-    private static void printToConsole(String javaFileContent) {
-        System.out.println(javaFileContent);
-        System.out.println();
-    }
 
-    private static void printToFileTxt(String textFromJava, String filename) {
-        try (PrintWriter printWriter = new PrintWriter(filename)) {
-            printWriter.printf("%s%n", textFromJava);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("Smth went wrong", e);
-        }
-    }
 
     private static String deleteAllComments(String fileNameJava) {
 
@@ -66,21 +55,20 @@ public class TaskB {
                         end = i + 2;
                         stringBuilder.delete(start, end);
                     }
-                }
-                for (int k = 0; k < stringBuilder.length() - 1; k++) {
-                    if (stringBuilder.charAt(k) == '/' && stringBuilder.charAt(k + 1) == '/') {
-                        start = k;
-                        isStartFound = true;
-                    }
-                    if (stringBuilder.charAt(k) == '\n' && isStartFound) {
-                        end = k++;
-                        stringBuilder.delete(start, end);
-                    }
-                }
 
+                    else {
+                        if (stringBuilder.charAt(i) == '/' && stringBuilder.charAt(i + 1) == '/') {
+                            start = i;
+                            isStartFound = true;
+                        }
+                        if (stringBuilder.charAt(i) == '\n' && isStartFound) {
+                            end = i++;
+                            stringBuilder.delete(start, end);
+                        }
+                    }
+                }
 
             }
-
             /* как-то так
             вот так вот */
 
@@ -89,5 +77,18 @@ public class TaskB {
         }
         return stringBuilder.toString();
 
+    }
+
+    private static void printToConsole(String javaFileContent) {
+        System.out.println(javaFileContent);
+        System.out.println();
+    }
+
+    private static void printToFileTxt(String textFromJava, String filename) {
+        try (PrintWriter printWriter = new PrintWriter(filename)) {
+            printWriter.printf("%s%n", textFromJava);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("Smth went wrong", e);
+        }
     }
 }
