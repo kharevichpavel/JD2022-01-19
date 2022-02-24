@@ -5,9 +5,9 @@ import by.it.kharevich.jd02_01.entity.Good;
 import by.it.kharevich.jd02_01.utils.RandomData;
 import by.it.kharevich.jd02_01.utils.Sleeper;
 
-public class CustomerWorker extends Thread implements CustomerAction {
-
+public class CustomerWorker extends Thread implements CustomerAction, ShoppingCardAction {
     private final Customer customer;
+
     private final Store store;
 
     public CustomerWorker(Store store, Customer customer) {
@@ -19,7 +19,9 @@ public class CustomerWorker extends Thread implements CustomerAction {
     @Override
     public void run() {
         enteredStore();
+        takeCart();
         Good good = chooseGood();
+
         System.out.println(customer + " choose " + good);
         goOut();
     }
@@ -28,6 +30,11 @@ public class CustomerWorker extends Thread implements CustomerAction {
     public void enteredStore() {
         System.out.println(customer + " entered to store");
 
+    }
+
+    @Override
+    public void takeCart() {
+        System.out.println(customer + " take cart");
     }
 
     @Override
@@ -40,7 +47,14 @@ public class CustomerWorker extends Thread implements CustomerAction {
     }
 
     @Override
+    public int putToCart(Good good) {
+        System.out.println(customer + " to put goods in cart");
+        return 0;
+    }
+
+    @Override
     public void goOut() {
         System.out.println(customer + " go out");
     }
+
 }
