@@ -21,15 +21,15 @@ public class TaskB {
     // comment
         String fileNameToRead = PathFinder.getFileName(TaskB.class, ROOT, FILENAME_TO_READ);
         StringBuilder textFromFile = readFileToString(fileNameToRead);
-        System.out.println(textFromFile);
 
+        String textWithoutComments = removeComments(textFromFile.toString());
         String txtFileNameToWrite = PathFinder.getFileName(TaskB.class, ROOT, FILENAME_TO_WRITE);
-        outputToTxtFile(textFromFile.toString(), txtFileNameToWrite);
+        outputToTxtFile(textWithoutComments, txtFileNameToWrite);
     /**
     * 123
     * 321
     */
-        System.out.println(textFromFile);
+        System.out.println(textWithoutComments);
     }
 
     private static StringBuilder readFileToString(String fileNameToRead) {
@@ -54,6 +54,31 @@ public class TaskB {
         } catch (FileNotFoundException e) {
             throw new RuntimeException("IO error", e);
         }
+    }
+
+    static String removeComments(String textToRemoveComments) {
+        StringBuilder result = new StringBuilder();
+        boolean isOneLineCommentOpen = false;
+        boolean isMultyLineCommentOpen = false;
+        char[] chars = textToRemoveComments.toCharArray();
+        for (int i = 0; i < chars.length - 1; i++) {
+            if ((chars[i] == SLASH) && (chars[i + 1] == SLASH)) {
+                isOneLineCommentOpen = true;
+            } else if ((chars[i] == SLASH) && (chars[i + 1] == STAR)) {
+                isMultyLineCommentOpen = true;
+            }
+            if (isOneLineCommentOpen && (chars[i] == '\n')) {
+                isOneLineCommentOpen = false;
+            } else if (isMultyLineCommentOpen && (chars[i] == STAR) && (chars[i + 1] == SLASH)) {
+                isMultyLineCommentOpen = false;
+                i++;
+                continue;
+            }
+            if (!isOneLineCommentOpen && !isMultyLineCommentOpen) {
+                result.append(chars[i]);
+            }
+        }
+        return result.toString();
     }
 }
 
