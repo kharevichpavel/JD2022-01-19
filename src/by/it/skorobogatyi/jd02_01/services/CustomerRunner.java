@@ -21,7 +21,6 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
     public CustomerRunner(Customer customer, StoreRunner storeRunner, Store storeName) {
         this.customer = customer;
         this.storeName = storeName.name;
-        this.setName("Worker for " + customer.toString());
         this.storeRunner = storeRunner;
     }
 
@@ -56,9 +55,9 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
 
         System.out.println(customer + " started to choose");
 
-        int timeout = RandomData.getRandomNumber(500, 2000);
+        int timeForGoodChoice = RandomData.getRandomNumber(500, 2000);
 
-        Sleeper.sleep(timeout);
+        Sleeper.sleep(timeForGoodChoice);
 
         int randomGoodNumber = RandomData.getRandomNumber(PriceListRepo.priceList.size() - 1);
         Map.Entry<String, BigDecimal> goodEntry =
@@ -73,7 +72,8 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
 
         System.out.println(customer + " have chosen the good");
 
-        Sleeper.sleep(RandomData.getRandomNumber(100, 300));
+        double timeForPuttingGoodInCart = RandomData.getRandomNumber(100, 300);
+        Sleeper.sleep(timeForPuttingGoodInCart);
 
         return good;
     }

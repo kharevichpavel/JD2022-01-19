@@ -9,10 +9,10 @@ public class Sleeper {
     }
 
 
-    public static void sleep(int millis){
+    public static void sleep(double millis){
 
         try {
-            Thread.sleep(millis / Constants.SPEEDUP);
+            Thread.sleep((long) millis);
         } catch (InterruptedException e) {
             throw new StoreException(e);
         }
