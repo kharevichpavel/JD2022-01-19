@@ -1,9 +1,11 @@
 package by.it._classwork_.jd02_02.services;
 
-import by.it._classwork_.jd02_02.utils.RandomData;
-import by.it._classwork_.jd02_02.utils.Sleeper;
+import by.it._classwork_.calculator.exceptions.ApplacitionException;
 import by.it._classwork_.jd02_02.entity.Customer;
 import by.it._classwork_.jd02_02.entity.Good;
+import by.it._classwork_.jd02_02.entity.Queue;
+import by.it._classwork_.jd02_02.utils.RandomData;
+import by.it._classwork_.jd02_02.utils.Sleeper;
 
 public class CustomerWorker extends Thread implements CustomerAction {
 
@@ -14,6 +16,8 @@ public class CustomerWorker extends Thread implements CustomerAction {
         this.customer = customer;
         this.store = store;
         this.setName("Worker for " + customer.toString() + " ");
+        store.getManager().customerIn();
+
     }
 
     @Override
@@ -22,6 +26,7 @@ public class CustomerWorker extends Thread implements CustomerAction {
         Good good = chooseGood();
         System.out.println(customer + " choose " + good);
         goOut();
+        store.getManager().customerGoOut();
     }
 
     @Override
@@ -36,6 +41,24 @@ public class CustomerWorker extends Thread implements CustomerAction {
         Sleeper.sleep(timeout);
         System.out.println(customer + " finished choose goods");
         return new Good();
+    }
+
+    @Override
+    public void goToQueue() {
+        System.out.println(customer + " waiting in Queue");
+        synchronized (customer) {
+            Queue queue = store.getQueue();
+            queue.add(customer);
+            customer.setWaiting(true);
+            while (customer.isWaiting()) {
+                try {
+                    customer.wait();
+                } catch (InterruptedException e) {
+                    throw new ApplacitionException(e);
+                }
+            }
+        }
+        System.out.println(customer + " left the Queue");
     }
 
     @Override
