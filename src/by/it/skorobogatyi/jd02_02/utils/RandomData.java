@@ -26,34 +26,37 @@ public class RandomData {
 
         if (runner instanceof StudentRunner) {
             return getRandomNumber(2);
+
         } else {
             return getRandomNumber(2, 5);
         }
     }
 
-    public static int getRandomNumberForGoodsChoosing(CustomerRunner runner) {
+    public static int getRandomTimeForGoodsChoosing(CustomerRunner runner) {
 
         if (runner instanceof PensionerRunner) {
             return (int) (getRandomNumber(500, 2000) * Constants.PENSIONER_SLOW);
+
         } else {
             return getRandomNumber(500, 2000);
         }
     }
 
-    public static double getRandomNumberForGoodsPacking(CustomerRunner runner) {
+    public static double getRandomTimeForGoodsPacking(CustomerRunner runner) {
 
         if (runner instanceof PensionerRunner) {
             return (int) (getRandomNumber(100, 300) * Constants.PENSIONER_SLOW);
+
         } else {
             return getRandomNumber(100, 300);
         }
     }
 
-    public static int getRandomNumberForStoreNames(int number) {
+    public static int getRandomStoreNameIndex(int number) {
         return getRandomNumber(number - 1);
     }
 
-    public static int getRandomGoodNumber(Store store) {
+    public static int getRandomGoodsAmount(Store store) {
         return getRandomNumber(store.getStorage().priceList.size() - 1);
     }
 }

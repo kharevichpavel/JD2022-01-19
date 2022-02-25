@@ -8,8 +8,7 @@ import by.it.skorobogatyi.jd02_02.utils.Sleeper;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.it.skorobogatyi.jd02_02.utils.Constants.FORMATTING_END;
-import static by.it.skorobogatyi.jd02_02.utils.Constants.YELLOW_COLOUR;
+import static by.it.skorobogatyi.jd02_02.utils.ColouredPrinter.printForStore;
 
 public class StoreRunner extends Thread {
 
@@ -24,7 +23,7 @@ public class StoreRunner extends Thread {
     @Override
     public void run() {
 
-        System.out.println("Store " + store.name + " opened");
+        printForStore("Store " + store.name + " opened");
 
         int customerNumber = 0;
 
@@ -78,9 +77,9 @@ public class StoreRunner extends Thread {
     }
 
     private void startToCloseShop(List<Thread> threads) {
-        System.out.println(YELLOW_COLOUR + "Shop is closing" + FORMATTING_END);
+        printForStore("Shop is closing");
         joinThreads(threads);
-        System.out.println(YELLOW_COLOUR + "Store " + store.name + " closed" + FORMATTING_END);
+        printForStore("Store " + store.name + " closed");
     }
 
     private void joinThreads(List<Thread> threads) {

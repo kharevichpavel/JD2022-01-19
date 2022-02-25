@@ -1,6 +1,9 @@
 package by.it.skorobogatyi.jd02_02.services;
 
-import by.it.skorobogatyi.jd02_02.entity.*;
+import by.it.skorobogatyi.jd02_02.entity.Cashier;
+import by.it.skorobogatyi.jd02_02.entity.Customer;
+import by.it.skorobogatyi.jd02_02.entity.Good;
+import by.it.skorobogatyi.jd02_02.entity.Store;
 import by.it.skorobogatyi.jd02_02.utils.RandomData;
 import by.it.skorobogatyi.jd02_02.utils.Sleeper;
 
@@ -8,8 +11,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static by.it.skorobogatyi.jd02_02.utils.Constants.BLUE_COLOUR;
-import static by.it.skorobogatyi.jd02_02.utils.Constants.FORMATTING_END;
+import static by.it.skorobogatyi.jd02_02.utils.ColouredPrinter.printForCashier;
+import static by.it.skorobogatyi.jd02_02.utils.ColouredPrinter.printForCheck;
 
 public class CashierRunner implements Runnable {
 
@@ -19,14 +22,15 @@ public class CashierRunner implements Runnable {
     public CashierRunner(Cashier cashier, Store store) {
         this.cashier = cashier;
         this.store = store;
+
     }
 
     @Override
     public void run() {
 
-        System.out.println(BLUE_COLOUR + cashier + " started to work" + FORMATTING_END);
+        printForCashier(cashier + " started to work");
 
-        while (!store.getManager().shopClosed()) {
+        while (store.getManager().shopOpened()) {
             Optional<Customer> optionalCustomer = store.getQueue().extract();
 
             if (optionalCustomer.isPresent()) {
@@ -34,31 +38,44 @@ public class CashierRunner implements Runnable {
                 serviceCustomer(customer);
 
             } else {
-                Sleeper.sleep(100);
+                Sleeper.sleep(10);
             }
         }
 
-        finishWorkForCashier();
+        if (store.getQueue().extract().isEmpty()) {
+            finishWorkForCashier();
+        }
 
     }
 
-    private void serviceCustomer(Customer customer) {
-        System.out.println(BLUE_COLOUR + cashier + " started to service" + customer + FORMATTING_END);
+    private synchronized void serviceCustomer(Customer customer) {
+
+        printForCashier(cashier + " started service" + customer);
+        printForCashier("_".repeat(50));
+
+        printForCheck("| Goods in cart for " + customer + ":");
 
         ArrayList<Good> goodListOfCustomer = customer.getShoppingCart().goodList;
+        BigDecimal checkForCustomer = BigDecimal.valueOf(0);
+
         for (Good good : goodListOfCustomer) {
             String goodName = good.name;
             BigDecimal goodPrice = good.price;
-
+            checkForCustomer = checkForCustomer.add(goodPrice);
+            printForCheck("| " + goodName + " for price " + goodPrice);
         }
 
+        printForCheck("| Check for " + customer + ": " + checkForCustomer);
+        printForCashier("_".repeat(50));
+
+        cashier.setMoney(cashier.getMoney().add(checkForCustomer));
 
         int timeForCashier = RandomData.getRandomNumber(2000, 5000);
         Sleeper.sleep(timeForCashier);
 
-        System.out.println(BLUE_COLOUR + cashier + " finished service" + customer + FORMATTING_END);
+        printForCashier(cashier + " finished service " + customer);
 
-        synchronized (customer.getMonitor()) {
+        synchronized (customer) {
             customer.setWaiting(false);
             customer.notify();
         }
@@ -66,7 +83,7 @@ public class CashierRunner implements Runnable {
 
     private void finishWorkForCashier() {
         BigDecimal money = cashier.getMoney();
-        System.out.println(BLUE_COLOUR + cashier + " finished to work, money for work day = " + money.toString() + FORMATTING_END);
+        printForCashier(cashier + " finished to work, money for work day = " + money.toString());
 
     }
 }

@@ -16,6 +16,6 @@ public class Good {
 
     @Override
     public String toString() {
-        return "good " + name + " \\ " + "price = " + price;
+        return name + " \\ " + "price = " + price;
     }
 }

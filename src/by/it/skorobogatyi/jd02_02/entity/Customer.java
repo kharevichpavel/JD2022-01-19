@@ -6,6 +6,12 @@ public class Customer {
     private ShoppingCart shoppingCart;
     private boolean waiting;
 
+
+    public Customer(int number) {
+        this.name = "Customer №" + number;
+    }
+
+
     public boolean isWaiting() {
         return waiting;
     }
@@ -14,11 +20,6 @@ public class Customer {
         this.waiting = waiting;
     }
 
-    public Customer(int number) {
-        this.name = "Customer №" + number;
-    }
-
-
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
@@ -26,12 +27,6 @@ public class Customer {
     public void setShoppingCart() {
         this.shoppingCart = new ShoppingCart();
     }
-
-    public Object getMonitor() {
-        return this;
-    }
-
-
 
     @Override
     public String toString() {

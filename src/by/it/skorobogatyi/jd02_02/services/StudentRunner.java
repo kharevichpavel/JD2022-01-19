@@ -15,7 +15,7 @@ public class StudentRunner extends CustomerRunner {
         this.customer = customer;
         this.storeRunner = storeRunner;
         this.store = store;
-        this.setName("Thread for" + customer);
+        this.setName("Thread for " + customer);
 
     }
 }

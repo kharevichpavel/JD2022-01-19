@@ -39,6 +39,10 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
             putToCart(good);
         }
 
+        if (goodsCounter > 0) {
+            goToQueue();
+        }
+
         goOut();
     }
 
@@ -60,10 +64,10 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
 
         System.out.println(customer + " started to choose something");
 
-        int timeForGoodChoice = RandomData.getRandomNumberForGoodsChoosing(this);
+        int timeForGoodChoice = RandomData.getRandomTimeForGoodsChoosing(this);
         Sleeper.sleep(timeForGoodChoice);
 
-        int randomGoodNumber = RandomData.getRandomGoodNumber(store);
+        int randomGoodNumber = RandomData.getRandomGoodsAmount(store);
 
         Map.Entry<String, BigDecimal> goodEntry =
                 store.getStorage()
@@ -75,7 +79,7 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
 
         Good good = new Good(goodEntry.getKey(), goodEntry.getValue());
 
-        double timeForPuttingGoodInCart = RandomData.getRandomNumberForGoodsPacking(this);
+        double timeForPuttingGoodInCart = RandomData.getRandomTimeForGoodsPacking(this);
         Sleeper.sleep(timeForPuttingGoodInCart);
 
         return good;
@@ -87,10 +91,11 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
         System.out.println(customer + " waiting in queue");
 
         synchronized (customer) {
-            Queue queue = store.getQueue();
-            queue.add(customer);
+            ShopQueue shopQueue = store.getQueue();
+            shopQueue.add(customer);
 
             customer.setWaiting(true);
+
             while (customer.isWaiting()) {
                 try {
                     customer.wait();

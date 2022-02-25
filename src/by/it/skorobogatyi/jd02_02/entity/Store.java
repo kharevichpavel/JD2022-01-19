@@ -6,14 +6,14 @@ import by.it.skorobogatyi.jd02_02.utils.StoreNames;
 public class Store {
 
     public final String name;
-    private final Queue queue;
+    private final ShopQueue shopQueue;
     private final Manager manager;
     private final GoodsAndPricesStorage storage;
 
 
-    public Store(String name, Queue queue, Manager manager) {
+    public Store(String name, ShopQueue shopQueue, Manager manager) {
         this.name = name;
-        this.queue = queue;
+        this.shopQueue = shopQueue;
         this.manager = manager;
         this.storage = new GoodsAndPricesStorage();
     }
@@ -23,21 +23,24 @@ public class Store {
         return manager;
     }
 
-    public Queue getQueue() {
-        return queue;
+    public ShopQueue getQueue() {
+        return shopQueue;
     }
 
     public static Store generateStore(int planCount) {
 
         int numberOfStoreNames = StoreNames.values().length;
 
-        int randomStoreNumber = RandomData.getRandomNumberForStoreNames(numberOfStoreNames);
+        int randomStoreNumber = RandomData.getRandomStoreNameIndex(numberOfStoreNames);
 
         StoreNames randomStoreValue = StoreNames.values()[randomStoreNumber];
 
         String storeName = String.valueOf(randomStoreValue);
 
-        return new Store(storeName, new Queue(), new Manager(planCount));
+        ShopQueue queue = new ShopQueue();
+        Manager manager = new Manager(planCount);
+
+        return new Store(storeName, queue, manager);
     }
 
     public GoodsAndPricesStorage getStorage() {
