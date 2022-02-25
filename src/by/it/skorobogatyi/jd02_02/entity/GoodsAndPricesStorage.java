@@ -1,15 +1,15 @@
-package by.it.skorobogatyi.jd02_02.utils;
+package by.it.skorobogatyi.jd02_02.entity;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PriceListRepo {
+public class GoodsAndPricesStorage {
 
-    public static Map<String, BigDecimal> priceList = new HashMap<>();
+    public Map<String, BigDecimal> priceList;
 
-    public static void fillPriceList() {
-
+    public GoodsAndPricesStorage() {
+        priceList = new HashMap<>();
         priceList.put("Orange", BigDecimal.valueOf(5));
         priceList.put("Beer", BigDecimal.valueOf(2));
         priceList.put("Cognac \"Chars'o'Nil\"", BigDecimal.valueOf(2.5));
@@ -20,5 +20,4 @@ public class PriceListRepo {
         priceList.put("Tea", BigDecimal.valueOf(3));
         priceList.put("Coffee", BigDecimal.valueOf(3));
     }
-
 }

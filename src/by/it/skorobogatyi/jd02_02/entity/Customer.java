@@ -27,6 +27,10 @@ public class Customer {
         this.shoppingCart = new ShoppingCart();
     }
 
+    public Object getMonitor() {
+        return this;
+    }
+
 
 
     @Override

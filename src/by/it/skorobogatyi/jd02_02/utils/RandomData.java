@@ -1,5 +1,6 @@
 package by.it.skorobogatyi.jd02_02.utils;
 
+import by.it.skorobogatyi.jd02_02.entity.Store;
 import by.it.skorobogatyi.jd02_02.services.CustomerRunner;
 import by.it.skorobogatyi.jd02_02.services.PensionerRunner;
 import by.it.skorobogatyi.jd02_02.services.StudentRunner;
@@ -52,7 +53,7 @@ public class RandomData {
         return getRandomNumber(number - 1);
     }
 
-    public static int getRandomGoodNumber() {
-        return getRandomNumber(PriceListRepo.priceList.size() - 1);
+    public static int getRandomGoodNumber(Store store) {
+        return getRandomNumber(store.getStorage().priceList.size() - 1);
     }
 }

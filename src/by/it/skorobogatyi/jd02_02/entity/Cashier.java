@@ -1,8 +1,12 @@
 package by.it.skorobogatyi.jd02_02.entity;
 
+import java.math.BigDecimal;
+
 public class Cashier {
 
-public final String name;
+private final String name;
+private BigDecimal money = BigDecimal.valueOf(0);
+
 
     public Cashier(int number) {
         name = "Cashier № " + number;
@@ -11,5 +15,13 @@ public final String name;
     @Override
     public String toString() {
         return name;
+    }
+
+    public BigDecimal getMoney() {
+        return money;
+    }
+
+    public void setMoney(BigDecimal money) {
+        this.money = money;
     }
 }

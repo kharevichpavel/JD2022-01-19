@@ -1,26 +1,33 @@
 package by.it.skorobogatyi.jd02_02.entity;
 
-import by.it.skorobogatyi.jd02_02.utils.PriceListRepo;
 import by.it.skorobogatyi.jd02_02.utils.RandomData;
 import by.it.skorobogatyi.jd02_02.utils.StoreNames;
 
 public class Store {
 
     public final String name;
-    private int customersAmount;
     private final Queue queue;
+    private final Manager manager;
+    private final GoodsAndPricesStorage storage;
 
 
-    public Store(String name, Queue queue) {
+    public Store(String name, Queue queue, Manager manager) {
         this.name = name;
         this.queue = queue;
+        this.manager = manager;
+        this.storage = new GoodsAndPricesStorage();
+    }
+
+
+    public Manager getManager() {
+        return manager;
     }
 
     public Queue getQueue() {
         return queue;
     }
 
-    public static Store generateStore() {
+    public static Store generateStore(int planCount) {
 
         int numberOfStoreNames = StoreNames.values().length;
 
@@ -30,20 +37,10 @@ public class Store {
 
         String storeName = String.valueOf(randomStoreValue);
 
-        Store store = new Store(storeName, queue);
-        PriceListRepo.fillPriceList();
-        return store;
+        return new Store(storeName, new Queue(), new Manager(planCount));
     }
 
-    public void plusCustomersAmount() {
-        customersAmount++;
-    }
-
-    public void minusCustomersAmount() {
-        customersAmount--;
-    }
-
-    public int getCustomersAmount() {
-        return customersAmount;
+    public GoodsAndPricesStorage getStorage() {
+        return storage;
     }
 }

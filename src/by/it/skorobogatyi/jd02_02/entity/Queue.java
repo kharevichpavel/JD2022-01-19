@@ -8,18 +8,12 @@ public class Queue {
 
     private final Deque<Customer> customerDeque = new ArrayDeque<>();
 
-    private final Object monitior = new Object;
-
-    public void add(Customer customer) {
-        synchronized (monitior) {
-            customerDeque.addLast(customer);
-        }
+    public synchronized void add(Customer customer) {
+        customerDeque.addLast(customer);
     }
 
-    public Optional<Customer> extract() {
-        synchronized (monitior) {
-            return Optional.ofNullable(customerDeque.pollFirst());
-        }
+    public synchronized Optional<Customer> extract() {
+        return Optional.ofNullable(customerDeque.pollFirst());
     }
 
 

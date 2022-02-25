@@ -1,11 +1,7 @@
 package by.it.skorobogatyi.jd02_02.services;
 
-import by.it.skorobogatyi.jd02_02.entity.Customer;
-import by.it.skorobogatyi.jd02_02.entity.Good;
-import by.it.skorobogatyi.jd02_02.entity.Queue;
-import by.it.skorobogatyi.jd02_02.entity.Store;
+import by.it.skorobogatyi.jd02_02.entity.*;
 import by.it.skorobogatyi.jd02_02.exceptions.StoreException;
-import by.it.skorobogatyi.jd02_02.utils.PriceListRepo;
 import by.it.skorobogatyi.jd02_02.utils.RandomData;
 import by.it.skorobogatyi.jd02_02.utils.Sleeper;
 
@@ -25,6 +21,7 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
         this.storeRunner = storeRunner;
         this.store = store;
         this.setName("Thread for " + customer);
+        store.getManager().customerIn();
     }
 
 
@@ -48,7 +45,6 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
     @Override
     public void enteredStore() {
 
-        store.plusCustomersAmount();
         System.out.println(customer + " entered the store");
     }
 
@@ -67,10 +63,10 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
         int timeForGoodChoice = RandomData.getRandomNumberForGoodsChoosing(this);
         Sleeper.sleep(timeForGoodChoice);
 
-        int randomGoodNumber = RandomData.getRandomGoodNumber();
+        int randomGoodNumber = RandomData.getRandomGoodNumber(store);
 
         Map.Entry<String, BigDecimal> goodEntry =
-                PriceListRepo
+                store.getStorage()
                 .priceList
                 .entrySet()
                 .stream()
@@ -87,7 +83,9 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
 
     @Override
     public void goToQueue() {
+
         System.out.println(customer + " waiting in queue");
+
         synchronized (customer) {
             Queue queue = store.getQueue();
             queue.add(customer);
@@ -97,7 +95,7 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
                 try {
                     customer.wait();
                 } catch (InterruptedException e) {
-                    throw new StoreException(e);
+                    throw new StoreException("ERROR: ", e);
                 }
             }
         }
@@ -116,8 +114,8 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
 
     @Override
     public void goOut() {
-        store.minusCustomersAmount();
         System.out.println(customer + " goes home");
+        store.getManager().customerOut();
     }
 }
 
