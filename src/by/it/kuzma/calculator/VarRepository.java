@@ -16,7 +16,7 @@ public class VarRepository {
        return variables.get(name);
     }
 
-    public Var create(String varValueOrName) {
+    public Var create(String varValueOrName) throws CalcException {
         if (varValueOrName.matches(Patterns.SCALAR)){
             return new Scalar(varValueOrName);
         } else if (varValueOrName.matches(Patterns.VECTOR)){
@@ -28,7 +28,7 @@ public class VarRepository {
         }
 
 
-        return null;//TODO ex
+        throw new CalcException("not found" + varValueOrName);
     }
 }
 

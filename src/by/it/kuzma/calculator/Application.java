@@ -6,12 +6,12 @@ public class Application {
 
     public static final String END = "end";
     private final Printer printer;
-    private final Parser parcer;
+    private final Parser parser;
 
 
-    public Application(Printer printer, Parser parcer) {
+    public Application(Printer printer, Parser parser) {
         this.printer = printer;
-        this.parcer = parcer;
+        this.parser = parser;
     }
 
     public void run() {
@@ -21,8 +21,12 @@ public class Application {
         while (true){
             String line = scanner.nextLine();
             if (!line.equals(END)) {
-                Var result=parcer.calc(line);
-                printer.print(result);
+                try {
+                Var result= parser.calc(line);
+                    printer.print(result);
+                } catch (CalcException e){
+                    printer.print(e);
+                }
             } else {
                 System.out.println("App finished");
                 break;
