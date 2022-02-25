@@ -8,12 +8,17 @@ public class Store {
 
     public final String name;
     private int customersAmount;
+    private final Queue queue;
 
 
-    public Store(String name) {
+    public Store(String name, Queue queue) {
         this.name = name;
+        this.queue = queue;
     }
 
+    public Queue getQueue() {
+        return queue;
+    }
 
     public static Store generateStore() {
 
@@ -25,7 +30,7 @@ public class Store {
 
         String storeName = String.valueOf(randomStoreValue);
 
-        Store store = new Store(storeName);
+        Store store = new Store(storeName, queue);
         PriceListRepo.fillPriceList();
         return store;
     }

@@ -2,7 +2,9 @@ package by.it.skorobogatyi.jd02_02.services;
 
 import by.it.skorobogatyi.jd02_02.entity.Customer;
 import by.it.skorobogatyi.jd02_02.entity.Good;
+import by.it.skorobogatyi.jd02_02.entity.Queue;
 import by.it.skorobogatyi.jd02_02.entity.Store;
+import by.it.skorobogatyi.jd02_02.exceptions.StoreException;
 import by.it.skorobogatyi.jd02_02.utils.PriceListRepo;
 import by.it.skorobogatyi.jd02_02.utils.RandomData;
 import by.it.skorobogatyi.jd02_02.utils.Sleeper;
@@ -81,6 +83,26 @@ public class CustomerRunner extends Thread implements CustomerAction, ShoppingCa
         Sleeper.sleep(timeForPuttingGoodInCart);
 
         return good;
+    }
+
+    @Override
+    public void goToQueue() {
+        System.out.println(customer + " waiting in queue");
+        synchronized (customer) {
+            Queue queue = store.getQueue();
+            queue.add(customer);
+
+            customer.setWaiting(true);
+            while (customer.isWaiting()) {
+                try {
+                    customer.wait();
+                } catch (InterruptedException e) {
+                    throw new StoreException(e);
+                }
+            }
+        }
+
+        System.out.println(customer + " left queue");
     }
 
     @Override
