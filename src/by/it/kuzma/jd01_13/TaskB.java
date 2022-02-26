@@ -34,7 +34,7 @@ public class TaskB {
         Class<? extends RuntimeException> eClass = e.getClass();
         String eClassName = eClass.getName();//name
         Class<TaskB> taskAClass = TaskB.class;
-        String aClassName = taskAClass.getName();//class
+        String aClassName = taskAClass.getName();
         StackTraceElement[] stackTrace = e.getStackTrace();
         for (StackTraceElement stackTraceElement : stackTrace) {
             String className = stackTraceElement.getClassName();
