@@ -55,7 +55,7 @@ public class CustomerWorker extends Thread implements CustomerAction {
 
     @Override
     public void goOut() {
-        System.out.println(customer + " go out");
+        System.out.println(customer + " goes out");
 
     }
 
