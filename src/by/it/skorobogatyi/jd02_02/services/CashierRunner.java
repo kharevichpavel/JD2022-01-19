@@ -11,13 +11,13 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static by.it.skorobogatyi.jd02_02.utils.ColouredPrinter.printForCashier;
-import static by.it.skorobogatyi.jd02_02.utils.ColouredPrinter.printForCheck;
+import static by.it.skorobogatyi.jd02_02.utils.ColouredPrinter.blueColourPrint;
 
 public class CashierRunner implements Runnable {
 
     private final Cashier cashier;
     private final Store store;
+    private Customer customer;
 
     public CashierRunner(Cashier cashier, Store store) {
         this.cashier = cashier;
@@ -28,52 +28,51 @@ public class CashierRunner implements Runnable {
     @Override
     public void run() {
 
-        printForCashier(cashier + " started to work");
 
-        while (store.getManager().shopOpened()) {
+        while (!store.getManager().shopClosed()) {
+
+
             Optional<Customer> optionalCustomer = store.getQueue().extract();
-
             if (optionalCustomer.isPresent()) {
-                Customer customer = optionalCustomer.get();
-                serviceCustomer(customer);
+
+                if (cashier.isPaused) {
+                    blueColourPrint(cashier + " started to work");
+                    cashier.isPaused = false;
+                }
+                customer = optionalCustomer.get();
+                serviceCustomer();
 
             } else {
+
+                if (!cashier.isPaused) {
+                    blueColourPrint(cashier + " paused his work");
+                    cashier.isPaused = true;
+
+                } else {
+                    Sleeper.sleep(10);
+                }
                 Sleeper.sleep(10);
             }
         }
 
-        if (store.getQueue().extract().isEmpty()) {
-            finishWorkForCashier();
-        }
-
+        finishWorkForCashier();
     }
 
-    private synchronized void serviceCustomer(Customer customer) {
+    private void serviceCustomer() {
 
-        printForCashier(cashier + " started service" + customer);
-        printForCashier("_".repeat(50));
-
-        printForCheck("| Goods in cart for " + customer + ":");
-
-        ArrayList<Good> goodListOfCustomer = customer.getShoppingCart().goodList;
-        BigDecimal checkForCustomer = BigDecimal.valueOf(0);
-
-        for (Good good : goodListOfCustomer) {
-            String goodName = good.name;
-            BigDecimal goodPrice = good.price;
-            checkForCustomer = checkForCustomer.add(goodPrice);
-            printForCheck("| " + goodName + " for price " + goodPrice);
-        }
-
-        printForCheck("| Check for " + customer + ": " + checkForCustomer);
-        printForCashier("_".repeat(50));
-
-        cashier.setMoney(cashier.getMoney().add(checkForCustomer));
-
+        blueColourPrint(cashier + " started service " + customer);
         int timeForCashier = RandomData.getRandomNumber(2000, 5000);
         Sleeper.sleep(timeForCashier);
 
-        printForCashier(cashier + " finished service " + customer);
+        BigDecimal checkForCustomer = BigDecimal.valueOf(0);
+        ArrayList<Good> goodListOfCustomer = customer.getShoppingCart().goodList;
+        StringBuilder goodsForPrint = new StringBuilder();
+
+        checkForCustomer = countAndPrintCheckForCustomer(goodsForPrint, checkForCustomer, goodListOfCustomer);
+
+        cashier.setMoney(cashier.getMoney().add(checkForCustomer));
+
+        blueColourPrint(cashier + " finished service " + customer);
 
         synchronized (customer) {
             customer.setWaiting(false);
@@ -81,9 +80,29 @@ public class CashierRunner implements Runnable {
         }
     }
 
+    private BigDecimal countAndPrintCheckForCustomer(StringBuilder goodsForPrint, BigDecimal checkForCustomer, ArrayList<Good> goodListOfCustomer) {
+
+        goodsForPrint.append("_".repeat(50)).append("\n");
+        goodsForPrint.append("| Goods in cart for ").append(customer).append(":\n");
+
+        for (Good good : goodListOfCustomer) {
+            String goodName = good.name;
+            BigDecimal goodPrice = good.price;
+            String goodElement = goodName + " for price " + goodPrice + "\n";
+            goodsForPrint.append("| ").append(goodElement);
+            checkForCustomer = checkForCustomer.add(goodPrice);
+        }
+
+        goodsForPrint.append("| Check for ").append(customer).append(": ").append(checkForCustomer).append("\n");
+        goodsForPrint.append("-".repeat(50)).append("\n");
+        blueColourPrint(String.valueOf(goodsForPrint));
+
+        return checkForCustomer;
+    }
+
     private void finishWorkForCashier() {
         BigDecimal money = cashier.getMoney();
-        printForCashier(cashier + " finished to work, money for work day = " + money.toString());
+        blueColourPrint(cashier + " finished to work, money for work day = " + money.toString());
 
     }
 }

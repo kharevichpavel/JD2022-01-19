@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public class ShopQueue {
 
-    private final Deque<Customer> customerDeque = new ArrayDeque<>();
+    private volatile Deque<Customer> customerDeque = new ArrayDeque<>();
 
     public synchronized void add(Customer customer) {
         customerDeque.addLast(customer);
@@ -16,5 +16,7 @@ public class ShopQueue {
         return Optional.ofNullable(customerDeque.pollFirst());
     }
 
-
+    public synchronized int size() {
+        return customerDeque.size();
+    }
 }

@@ -6,6 +6,7 @@ public class Cashier {
 
 private final String name;
 private BigDecimal money = BigDecimal.valueOf(0);
+public boolean isPaused;
 
 
     public Cashier(int number) {

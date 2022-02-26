@@ -8,12 +8,13 @@ import by.it.skorobogatyi.jd02_02.utils.Sleeper;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.it.skorobogatyi.jd02_02.utils.ColouredPrinter.printForStore;
+import static by.it.skorobogatyi.jd02_02.utils.ColouredPrinter.yellowColourPrint;
 
 public class StoreRunner extends Thread {
 
     public final Store store;
     private final List<Thread> threads;
+    private volatile int numberOfCashiers;
 
     public StoreRunner(Store store) {
         this.store = store;
@@ -23,30 +24,36 @@ public class StoreRunner extends Thread {
     @Override
     public void run() {
 
-        printForStore("Store " + store.name + " opened");
+        yellowColourPrint("Store " + store.name + " opened");
 
         int customerNumber = 0;
 
-        for (int i = 1; i <= 2; i++) {
-            getAndRunNewCashierAndCashierWorker(i, threads);
-        }
+        ManagerRunner managerRunner = getAndRunManager(threads, this);
 
         Manager managerOfThisStore = store.getManager();
-
+        int secondsPassed = 0;
         while (managerOfThisStore.shopOpened()) {
 
-            int customersAmount = RandomData.getRandomNumber(2);
+            int customersAmount = RandomData.getRandomNumber(100, 1000);
             for (int i = 0; i < customersAmount && managerOfThisStore.shopOpened(); i++) {
 
                 generateAndRunNewCustomerRunner(++customerNumber, threads);
                 Sleeper.sleep(1000);
+                secondsPassed++;
             }
         }
 
         startToCloseShop(threads);
     }
 
-    private void getAndRunNewCashierAndCashierWorker(int number, List<Thread> threads) {
+    private ManagerRunner getAndRunManager(List<Thread> threads, StoreRunner storeRunner) {
+        ManagerRunner managerRunner = new ManagerRunner(store, threads, storeRunner);
+        this.threads.add(managerRunner);
+        managerRunner.start();
+        return managerRunner;
+    }
+
+    public void getAndRunNewCashier(int number, List<Thread> threads) {
         CashierRunner cashierRunner = new CashierRunner(new Cashier(number), store);
         Thread thread = new Thread(cashierRunner);
         threads.add(thread);
@@ -77,9 +84,9 @@ public class StoreRunner extends Thread {
     }
 
     private void startToCloseShop(List<Thread> threads) {
-        printForStore("Shop is closing");
+        yellowColourPrint("Shop is closing");
         joinThreads(threads);
-        printForStore("Store " + store.name + " closed");
+        yellowColourPrint("Store " + store.name + " closed");
     }
 
     private void joinThreads(List<Thread> threads) {
@@ -90,6 +97,14 @@ public class StoreRunner extends Thread {
                 throw new StoreException(e);
             }
         }
+    }
+
+    public int getNumberOfCashiers() {
+        return numberOfCashiers;
+    }
+
+    public void setNumberOfCashiers(int numberOfCashiers) {
+        this.numberOfCashiers = numberOfCashiers;
     }
 }
 
