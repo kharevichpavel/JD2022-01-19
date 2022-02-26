@@ -1,10 +1,12 @@
-package by.it.burov.calculator;
+package by.it.burov.calculator.model;
+
+import by.it.burov.calculator.ecxeptions.CalcException;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class Matrix extends Var {
+public class Matrix extends Var {
 
     private final double[][] value;
 
@@ -18,12 +20,12 @@ class Matrix extends Var {
 
     public Matrix(String stringValue) {
         int lines = 0;
-        Pattern patternColumns = Pattern.compile("[\\{]+");
+        Pattern patternColumns = Pattern.compile("[{]+");
         Matcher matcher1 = patternColumns.matcher(stringValue);
         while (matcher1.find()) {
             lines++;
         }
-        Pattern patternLines = Pattern.compile("[\\d.?\\d]+");
+        Pattern patternLines = Pattern.compile("[\\d.?]+");
         Matcher matcher2 = patternLines.matcher(stringValue);
         String[] stringArray = {};
 
@@ -46,9 +48,7 @@ class Matrix extends Var {
     public double[][] getValue() {
         double[][] localValue =  new double[value.length][value[0].length];
         for (int i = 0; i < value.length; i++) {
-            for (int j = 0; j < value[0].length; j++) {
-                localValue[i][j] = value[i][j];
-            }
+            System.arraycopy(value[i], 0, localValue[i], 0, value[0].length);
         }
         return localValue;
     }
@@ -63,7 +63,7 @@ class Matrix extends Var {
                 }
             }
             return new Matrix(localValue);
-        } else if (other instanceof Vector vector) {
+        } else if (other instanceof Vector) {
             return super.add(other);
         } else if (other instanceof Matrix matrix) {
             if (localValue.length != matrix.value.length) {
@@ -95,7 +95,7 @@ class Matrix extends Var {
                 }
             }
             return new Matrix(localValue);
-        } else if (other instanceof Vector vector) {
+        } else if (other instanceof Vector) {
             return super.sub(other);
         } else if (other instanceof Matrix matrix) {
             if (localValue.length != matrix.value.length) {

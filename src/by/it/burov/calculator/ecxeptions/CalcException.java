@@ -1,4 +1,4 @@
-package by.it.burov.calculator;
+package by.it.burov.calculator.ecxeptions;
 
 public class CalcException extends Exception{
     public CalcException() {

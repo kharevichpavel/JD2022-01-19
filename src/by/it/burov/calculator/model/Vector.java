@@ -1,10 +1,12 @@
-package by.it.burov.calculator;
+package by.it.burov.calculator.model;
+
+import by.it.burov.calculator.ecxeptions.CalcException;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class Vector extends Var {
+public class Vector extends Var {
 
     private final double[] value;
 

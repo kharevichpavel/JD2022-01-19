@@ -1,4 +1,6 @@
-package by.it.burov.calculator;
+package by.it.burov.calculator.model;
+
+import by.it.burov.calculator.ecxeptions.CalcException;
 
 interface Operation {
     Var add(Var other)throws CalcException;

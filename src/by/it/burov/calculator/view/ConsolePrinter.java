@@ -1,4 +1,6 @@
-package by.it.burov.calculator;
+package by.it.burov.calculator.view;
+
+import by.it.burov.calculator.model.Var;
 
 public class ConsolePrinter implements Printer {
     @Override

@@ -1,6 +1,8 @@
-package by.it.burov.calculator;
+package by.it.burov.calculator.model;
 
-abstract class Var implements Operation {
+import by.it.burov.calculator.ecxeptions.CalcException;
+
+public abstract class Var implements Operation {
 
     @Override
     public Var add(Var other) throws CalcException {

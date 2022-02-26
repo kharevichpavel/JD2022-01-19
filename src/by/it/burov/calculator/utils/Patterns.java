@@ -1,4 +1,4 @@
-package by.it.burov.calculator;
+package by.it.burov.calculator.utils;
 
 public class Patterns {
     private Patterns() {

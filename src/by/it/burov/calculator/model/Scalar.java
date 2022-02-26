@@ -1,6 +1,8 @@
-package by.it.burov.calculator;
+package by.it.burov.calculator.model;
 
-class Scalar extends Var {
+import by.it.burov.calculator.ecxeptions.CalcException;
+
+public class Scalar extends Var {
 
     private final double value;
 
