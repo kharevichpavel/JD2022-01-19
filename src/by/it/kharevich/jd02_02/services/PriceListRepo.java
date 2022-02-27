@@ -1,6 +1,6 @@
-package by.it.kharevich.jd02_01.services;
+package by.it.kharevich.jd02_02.services;
 
-import by.it.kharevich.jd02_01.entity.Good;
+import by.it.kharevich.jd02_02.entity.Good;
 
 import java.util.HashMap;
 
