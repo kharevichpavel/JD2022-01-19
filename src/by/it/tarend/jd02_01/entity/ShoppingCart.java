@@ -1,10 +1,13 @@
 package by.it.tarend.jd02_01.entity;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShoppingCart {
 
-    public static final HashMap<Good, Double> cartList = new HashMap<Good, Double>();
+    public static final List<Good> goodsInCart = new ArrayList<>();
 
-
+    public static void putGoodIntoCart(Good good) {
+        goodsInCart.add(good);
+    }
 }

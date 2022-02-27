@@ -40,11 +40,11 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
         System.out.println(customer + " started to choose goods");
         int timeOut = RandomData.get(500, 2000);
         Sleeper.sleep(timeOut);
-        System.out.println(customer + " finished to choose goods");
         Set<Good> goods = PriceListRepo.priceList.keySet();
+        int randomGoodIndex = RandomData.get(0, goods.size());
+        System.out.println(customer + " finished to choose goods");
 
-
-        return new Good();
+        return goods.stream().toList().get(randomGoodIndex);
     }
 
     @Override
