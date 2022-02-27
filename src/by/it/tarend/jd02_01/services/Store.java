@@ -1,6 +1,7 @@
 package by.it.tarend.jd02_01.services;
 
 import by.it.tarend.jd02_01.entity.Customer;
+import by.it.tarend.jd02_01.utils.PriceListRepo;
 import by.it.tarend.jd02_01.exceptions.StoreException;
 import by.it.tarend.jd02_01.utils.RandomData;
 import by.it.tarend.jd02_01.utils.Sleeper;
@@ -9,9 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Store extends Thread {
+
+    public Store() {
+        PriceListRepo.createPriceList();
+    }
+
     @Override
     public void run() {
         System.out.println("Store opened");
+
+        PriceListRepo priceList = new PriceListRepo();
 
         int number = 0;
         List<Thread> threads = new ArrayList<>();
@@ -22,7 +30,7 @@ public class Store extends Thread {
                 Customer customer = new Customer(++number);
                 CustomerWorker customerWorker = new CustomerWorker(this, customer);
                 threads.add(customerWorker);
-                customerWorker.run();
+                customerWorker.start();
             }
             Sleeper.sleep(1000);
         }

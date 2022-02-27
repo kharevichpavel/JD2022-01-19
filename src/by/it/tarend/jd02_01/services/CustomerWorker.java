@@ -2,10 +2,13 @@ package by.it.tarend.jd02_01.services;
 
 import by.it.tarend.jd02_01.entity.Customer;
 import by.it.tarend.jd02_01.entity.Good;
+import by.it.tarend.jd02_01.utils.PriceListRepo;
 import by.it.tarend.jd02_01.utils.RandomData;
 import by.it.tarend.jd02_01.utils.Sleeper;
 
-public class CustomerWorker extends Thread implements CustomerAction{
+import java.util.Set;
+
+public class CustomerWorker extends Thread implements CustomerAction, ShoppingCardAction{
 
     private final Customer customer;
     private final Store store;
@@ -38,6 +41,8 @@ public class CustomerWorker extends Thread implements CustomerAction{
         int timeOut = RandomData.get(500, 2000);
         Sleeper.sleep(timeOut);
         System.out.println(customer + " finished to choose goods");
+        Set<Good> goods = PriceListRepo.priceList.keySet();
+
 
         return new Good();
     }
@@ -45,5 +50,21 @@ public class CustomerWorker extends Thread implements CustomerAction{
     @Override
     public void goOut() {
         System.out.println(customer + " go out");
+    }
+
+    @Override
+    public void TakeCart() {
+        int timeOut = RandomData.get(100,300);
+        Sleeper.sleep(timeOut);
+        System.out.println(customer + " took Cart");
+    }
+
+    @Override
+    public int putToCart(Good good) {
+        int goodNumber = RandomData.get(2, 5);
+        for (int i = 0; i < goodNumber; i++) {
+
+        }
+        return 0;
     }
 }
