@@ -3,9 +3,9 @@ package by.it.kharevich.jd01_09;
 abstract class Var implements Operation {
 
     public static Var create(String varValue) {
-        if (varValue.matches(by.it._classwork_.jd01_09.Patterns.SCALAR)){
+        if (varValue.matches(Patterns.SCALAR)){
             return new Scalar(varValue);
-        } else if (varValue.matches(by.it._classwork_.jd01_09.Patterns.VECTOR)){
+        } else if (varValue.matches(Patterns.VECTOR)){
             return new Vector(varValue);
  //       } else if (varValue.matches(Patterns.MATRIX)){
  //           return new Matrix(varValue);
