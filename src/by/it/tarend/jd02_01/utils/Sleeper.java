@@ -4,12 +4,12 @@ import by.it.tarend.jd02_01.exceptions.StoreException;
 
 public class Sleeper {
 
-    public Sleeper() {
+    private Sleeper() {
     }
 
-    public void sleep(int millis) {
+    public static void sleep(int millis) {
         try {
-            Thread.sleep(millis);
+            Thread.sleep(millis / Constants.K_SPEED);
         } catch (InterruptedException e) {
             throw new StoreException("message" +e);
         }

@@ -14,7 +14,7 @@ public class CustomerWorker extends Thread implements CustomerAction{
     public CustomerWorker(Store store, Customer customer) {
         this.customer = customer;
         this.store = store;
-        this.setName("Worker name"  + customer.toString() + " ");
+        this.setName("Worker name "  + customer.toString() + " ");
     }
 
     @Override
@@ -36,7 +36,7 @@ public class CustomerWorker extends Thread implements CustomerAction{
 
         System.out.println(customer + " started to choose goods");
         int timeOut = RandomData.get(500, 2000);
-
+        Sleeper.sleep(timeOut);
         System.out.println(customer + " finished to choose goods");
 
         return new Good();

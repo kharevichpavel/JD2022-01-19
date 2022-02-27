@@ -1,17 +1,40 @@
 package by.it.tarend.jd02_01.services;
 
 import by.it.tarend.jd02_01.entity.Customer;
+import by.it.tarend.jd02_01.exceptions.StoreException;
+import by.it.tarend.jd02_01.utils.RandomData;
+import by.it.tarend.jd02_01.utils.Sleeper;
 
-public class Store extends Thread{
+import java.util.ArrayList;
+import java.util.List;
+
+public class Store extends Thread {
     @Override
     public void run() {
+        System.out.println("Store opened");
 
-        for (int number = 0; number <= 2; number++) {
-            Customer customer = new Customer(number);
+        int number = 0;
+        List<Thread> threads = new ArrayList<>();
 
-            CustomerWorker customerWorker = new CustomerWorker(this, customer);
-            customerWorker.start();
+        for (int time = 0; time < 120; time++) {
+            int count = RandomData.get(2);
+            for (int i = 0; i < count; i++) {
+                Customer customer = new Customer(++number);
+                CustomerWorker customerWorker = new CustomerWorker(this, customer);
+                threads.add(customerWorker);
+                customerWorker.run();
+            }
+            Sleeper.sleep(1000);
         }
-
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new StoreException(e);
+            }
+        }
+        System.out.println("Store closed");
     }
+
 }
+

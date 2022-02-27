@@ -4,8 +4,6 @@ import java.util.Random;
 
 public class RandomData {
 
-
-
     private static final Random random = new Random();
 
     private RandomData() {
