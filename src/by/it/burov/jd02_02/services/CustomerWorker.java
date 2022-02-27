@@ -66,7 +66,7 @@ public class CustomerWorker extends Thread implements CustomerAction,ShoppingCar
 
     @Override
     public int putToCart(Good good) {
-        List<Good> goods = customer.getShoppingCart().goods;
+        List<Good> goods = customer.getShoppingCart().goodsInCart;
         goods.add(good);
         return goods.size();
     }

@@ -4,5 +4,5 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCart {
-    public final List<Good> goods = new ArrayList<>();
+    public final List<Good> goodsInCart = new ArrayList<>();
 }
