@@ -4,7 +4,7 @@ import by.it.tarend.jd02_01.entity.Good;
 
 public interface ShoppingCardAction {
 
-    void TakeCart(); // взял корзину
+    void takeCart(); // взял корзину
     int putToCart(Good good); // положил товар в корзину (возвращает число товаров)
 
 }

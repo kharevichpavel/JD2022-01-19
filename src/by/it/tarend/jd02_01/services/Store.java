@@ -19,8 +19,6 @@ public class Store extends Thread {
     public void run() {
         System.out.println("Store opened");
 
-        PriceListRepo priceList = new PriceListRepo();
-
         int number = 0;
         List<Thread> threads = new ArrayList<>();
 

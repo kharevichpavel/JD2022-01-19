@@ -2,6 +2,7 @@ package by.it.tarend.jd02_01.services;
 
 import by.it.tarend.jd02_01.entity.Customer;
 import by.it.tarend.jd02_01.entity.Good;
+import by.it.tarend.jd02_01.entity.ShoppingCart;
 import by.it.tarend.jd02_01.utils.PriceListRepo;
 import by.it.tarend.jd02_01.utils.RandomData;
 import by.it.tarend.jd02_01.utils.Sleeper;
@@ -23,8 +24,11 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
     @Override
     public void run() {
         enteredStore();
-        Good good = chooseGood();
-        System.out.println(customer + " choose " + good);
+        takeCart();
+        int randomGoodNumber = RandomData.get(2,5);
+        for (int i = 0; i < randomGoodNumber; i++) {
+            putToCart(chooseGood());
+        }
         goOut();
     }
 
@@ -53,7 +57,7 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
     }
 
     @Override
-    public void TakeCart() {
+    public void takeCart() {
         int timeOut = RandomData.get(100,300);
         Sleeper.sleep(timeOut);
         System.out.println(customer + " took Cart");
@@ -61,10 +65,11 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
 
     @Override
     public int putToCart(Good good) {
-        int goodNumber = RandomData.get(2, 5);
-        for (int i = 0; i < goodNumber; i++) {
+        int timeOut = RandomData.get(100,300);
+        Sleeper.sleep(timeOut);
+        ShoppingCart.goodsInCart.add(good);
+        System.out.println(customer + " put " + good + " into cart");
 
-        }
-        return 0;
+        return ShoppingCart.goodsInCart.size();
     }
 }
