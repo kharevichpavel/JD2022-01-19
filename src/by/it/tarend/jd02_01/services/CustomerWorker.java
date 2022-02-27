@@ -67,9 +67,10 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
     public int putToCart(Good good) {
         int timeOut = RandomData.get(100,300);
         Sleeper.sleep(timeOut);
-        ShoppingCart.goodsInCart.add(good);
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.goodsInCart.add(good);
         System.out.println(customer + " put " + good + " into cart");
 
-        return ShoppingCart.goodsInCart.size();
+        return shoppingCart.goodsInCart.size();
     }
 }

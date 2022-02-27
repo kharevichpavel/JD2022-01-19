@@ -5,9 +5,9 @@ import java.util.List;
 
 public class ShoppingCart {
 
-    public static final List<Good> goodsInCart = new ArrayList<>();
+    public List<Good> goodsInCart = new ArrayList<>();
 
-    public static void putGoodIntoCart(Good good) {
+    public void putGoodIntoCart(Good good) {
         goodsInCart.add(good);
     }
 }
