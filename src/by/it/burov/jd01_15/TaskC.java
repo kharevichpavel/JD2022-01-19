@@ -1,8 +1,10 @@
 package by.it.burov.jd01_15;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
-import java.util.Objects;
 
 import static java.io.File.separator;
 

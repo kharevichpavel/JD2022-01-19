@@ -3,6 +3,7 @@ package by.it.burov.jd02_02.services;
 import by.it.burov.jd02_02.entity.Cashier;
 import by.it.burov.jd02_02.entity.Manager;
 import by.it.burov.jd02_02.entity.Queue;
+import by.it.burov.jd02_02.utils.PriceListRepo;
 import by.it.burov.jd02_02.utils.Sleeper;
 import by.it.burov.jd02_02.entity.Customer;
 import by.it.burov.jd02_02.exceptions.StoreException;
@@ -22,6 +23,7 @@ public class Store extends Thread {
         this.name = name;
         this.queue = queue;
         this.manager = manager;
+        PriceListRepo.fillCatalog();
     }
 
     public Queue getQueue() {

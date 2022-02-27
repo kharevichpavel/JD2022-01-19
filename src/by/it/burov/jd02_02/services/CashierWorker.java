@@ -28,7 +28,7 @@ public class CashierWorker implements Runnable{
             if (optionalCustomer.isPresent()) {
                 Customer customer = optionalCustomer.get();
                 System.out.println("\t" + cashier + " start service " + customer);
-                int timeout = RandomData.get(2000, 500);
+                int timeout = RandomData.get(200, 500);
                 Sleeper.sleep(timeout);
                 System.out.println("\t" + cashier + " finished service " + customer);
                 synchronized (customer.getMonitor()){

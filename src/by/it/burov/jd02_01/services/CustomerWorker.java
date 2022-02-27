@@ -39,6 +39,13 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
     }
 
     @Override
+    public void takeCart() {
+        customer.setShoppingCart();
+        System.out.println(customer + " has taken the cart");
+
+    }
+
+    @Override
     public Good chooseGood() {
         System.out.println(customer + " started to choose goods");
         int timeout = RandomData.get(500,2000);
@@ -54,13 +61,6 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
     @Override
     public void goOut() {
         System.out.println(customer + " go out");
-    }
-
-    @Override
-    public void takeCart() {
-        customer.setShoppingCart();
-        System.out.println(customer + " has taken the cart");
-
     }
 
     @Override

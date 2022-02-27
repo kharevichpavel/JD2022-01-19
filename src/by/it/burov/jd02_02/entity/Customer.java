@@ -2,6 +2,7 @@ package by.it.burov.jd02_02.entity;
 
 public class Customer {
     private final String name;
+    private ShoppingCart shoppingCart;
 
     private boolean waiting;
 
@@ -25,8 +26,18 @@ public class Customer {
         return this;
     }
 
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart() {
+        this.shoppingCart = new ShoppingCart();
+    }
+
     @Override
     public String toString() {
         return name;
     }
+
+
 }
