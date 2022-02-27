@@ -1,6 +1,8 @@
-package by.it.kuzma.calculator;
+package by.it.kuzma.calculator.model;
 
-abstract class Var implements Operation {
+import by.it.kuzma.calculator.exceptions.CalcException;
+
+public abstract class Var implements Operation {
 
 
 

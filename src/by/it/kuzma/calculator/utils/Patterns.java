@@ -1,4 +1,4 @@
-package by.it.kuzma.calculator;
+package by.it.kuzma.calculator.utils;
 
 public class Patterns {
 

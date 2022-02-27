@@ -1,17 +1,25 @@
 package by.it.kuzma.calculator;
 
+import by.it.kuzma.calculator.controllers.MainController;
+import by.it.kuzma.calculator.exceptions.ApplicationException;
+import by.it.kuzma.calculator.model.Var;
+import by.it.kuzma.calculator.servces.CalcService;
+import by.it.kuzma.calculator.view.Printer;
+
 import java.util.Scanner;
 
 public class Application {
 
     public static final String END = "end";
     private final Printer printer;
-    private final Parser parser;
+    private final CalcService calcService;
+    private final MainController controller;
 
 
-    public Application(Printer printer, Parser parser) {
+    public Application(Printer printer, CalcService calcService, MainController controller) {
         this.printer = printer;
-        this.parser = parser;
+        this.calcService = calcService;
+        this.controller = controller;
     }
 
     public void run() {
@@ -22,11 +30,12 @@ public class Application {
             String line = scanner.nextLine();
             if (!line.equals(END)) {
                 try {
-                Var result= parser.calc(line);
-                    printer.print(result);
-                } catch (CalcException e){
+                Var result = controller.process(line);
+                printer.print(result);
+                } catch (ApplicationException e){
                     printer.print(e);
                 }
+
             } else {
                 System.out.println("App finished");
                 break;

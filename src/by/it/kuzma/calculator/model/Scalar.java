@@ -1,6 +1,8 @@
-package by.it.kuzma.calculator;
+package by.it.kuzma.calculator.model;
 
-class Scalar extends Var {
+import by.it.kuzma.calculator.exceptions.CalcException;
+
+public class Scalar extends Var {
 
     private final double value;
 

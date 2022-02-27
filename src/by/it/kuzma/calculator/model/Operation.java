@@ -1,4 +1,6 @@
-package by.it.kuzma.calculator;
+package by.it.kuzma.calculator.model;
+
+import by.it.kuzma.calculator.exceptions.CalcException;
 
 interface Operation {
     Var add(Var other) throws CalcException;

@@ -1,4 +1,4 @@
-package by.it.kuzma.calculator;
+package by.it.kuzma.calculator.test;
 
 
 import by.it.HomeWork;
