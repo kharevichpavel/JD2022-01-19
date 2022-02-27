@@ -27,30 +27,54 @@ public class StoreRunner extends Thread {
         yellowColourPrint("Store " + store.name + " opened");
 
         int customerNumber = 0;
-
-        ManagerRunner managerRunner = getAndRunManager(threads, this);
+        int minuteOfRun = 0;
 
         Manager managerOfThisStore = store.getManager();
-        int secondsPassed = 0;
+        getAndRunManager(threads, this);
+
         while (managerOfThisStore.shopOpened()) {
 
-            int customersAmount = RandomData.getRandomNumber(100, 1000);
-            for (int i = 0; i < customersAmount && managerOfThisStore.shopOpened(); i++) {
+            int secondOfRun = customerNumber;
 
-                generateAndRunNewCustomerRunner(++customerNumber, threads);
-                Sleeper.sleep(1000);
-                secondsPassed++;
+            if (secondOfRun == 60) {
+                secondOfRun = 0;
+                minuteOfRun++;
             }
+
+            int numberOfGeneratedCustomers = RandomData.getRandomNumber(100, 1000);
+            int currentNumberOfCustomersInStore = managerOfThisStore.customerIn - managerOfThisStore.customerOut;
+
+            for (int i = 0; i < numberOfGeneratedCustomers && managerOfThisStore.shopOpened(); i++) {
+
+                if (conditionCheck(secondOfRun)) {
+                    if (currentNumberOfCustomersInStore <= secondOfRun - minuteOfRun * 60 + 10) {
+                        generateAndRunNewCustomerRunner(++customerNumber, threads);
+                    }
+
+                } else {
+                    if (currentNumberOfCustomersInStore <= 40 + (30 - secondOfRun + minuteOfRun * 60)) {
+                        generateAndRunNewCustomerRunner(++customerNumber, threads);
+                    }
+                }
+
+                Sleeper.sleep(1000);
+            }
+
         }
 
         startToCloseShop(threads);
     }
 
-    private ManagerRunner getAndRunManager(List<Thread> threads, StoreRunner storeRunner) {
+    private boolean conditionCheck(int secondOfRun) {
+        double tempResult = (double) secondOfRun / 60;
+        double finalResult = tempResult % 1;
+        return finalResult < 0.5;
+    }
+
+    private void getAndRunManager(List<Thread> threads, StoreRunner storeRunner) {
         ManagerRunner managerRunner = new ManagerRunner(store, threads, storeRunner);
         this.threads.add(managerRunner);
         managerRunner.start();
-        return managerRunner;
     }
 
     public void getAndRunNewCashier(int number, List<Thread> threads) {
