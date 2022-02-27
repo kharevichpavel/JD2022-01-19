@@ -17,7 +17,7 @@ public class TaskA {
 
     public static void main(String[] args) {
 
-        int[][] matrix = createMatrix(4, 6, -15, 15);
+        int[][] matrix = createMatrix(6, 4, -15, 15);
 
         String filename = PathFinder.getFilename(TaskA.class, ROOT, MATRIX_TXT);
         save(matrix, filename);
