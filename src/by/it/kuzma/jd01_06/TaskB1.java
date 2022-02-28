@@ -16,8 +16,6 @@ public class TaskB1 {
         Pattern pattern = Pattern.compile(RU_LETTER);
         Matcher matcher = pattern.matcher(stringBuilder);
 
-
-
         while (matcher.find()){
             String word = matcher.group();
             checkWord(word);
@@ -34,16 +32,11 @@ public class TaskB1 {
                 for (char letter2 : lettersVal) {
                     if (letter2 == lastLetter) {
                         System.out.println(word);
-
                     }
                 }
 
             }
         }
-
-
-
-
 
 
     }
