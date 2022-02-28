@@ -2,6 +2,8 @@ package by.it.kharevich.jd02_02.services;
 
 import by.it.kharevich.jd02_02.entity.Customer;
 import by.it.kharevich.jd02_02.entity.Good;
+import by.it.kharevich.jd02_02.entity.Queue;
+import by.it.kharevich.jd02_02.exceptions.StoreException;
 import by.it.kharevich.jd02_02.utils.RandomData;
 import by.it.kharevich.jd02_02.utils.Sleeper;
 
@@ -10,13 +12,11 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
     private final Customer customer;
     private final Store store;
 
-
     public CustomerWorker(Store store, Customer customer) {
         this.customer = customer;
         this.store = store;
-
-
         this.setName("Worker for" + customer.toString() + " ");
+        store.getManager().customerIn();
     }
 
     @Override
@@ -26,6 +26,7 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
         Good good = chooseGood();
         System.out.println(customer + " choose " + good);
         goOut();
+        store.getManager().customerGoOut();
     }
 
     @Override
@@ -50,6 +51,24 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
     }
 
     @Override
+    public void goToQueue() {
+        System.out.println(customer + "waiting in Queue");
+        synchronized (customer){
+            Queue queue = store.getQueue();
+            queue.add(customer);
+            customer.setWaiting(true);
+            while (customer.isWaiting()){
+                try {
+                    customer.wait();
+                } catch (InterruptedException e) {
+                    throw new StoreException(e);
+                }
+            }
+        }
+        System.out.println(customer + "left the Queue");
+    }
+
+    @Override
     public int putToCart(Good good) {
         System.out.println(customer + " to put " + " goods in cart");
         return 0;
@@ -58,6 +77,7 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
     @Override
     public void goOut() {
         System.out.println(customer + " go out");
+        store.getManager().customerGoOut();
     }
 
 }
