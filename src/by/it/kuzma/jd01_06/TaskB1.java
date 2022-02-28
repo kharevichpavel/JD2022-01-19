@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 public class TaskB1 {
 
     public static final char[] lettersCon = {'й', 'ц', 'к', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ф',
-                                            'в',  'п', 'р', 'л', 'д', 'ж', 'б', 'т', 'м', 'с', 'ч'};;
-    public static final char[] lettersVal = {'а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е'};;
+                                            'в',  'п', 'р', 'л', 'д', 'ж', 'б', 'т', 'м', 'с', 'ч'};
+    public static final char[] lettersVal = {'а', 'у', 'о', 'ы', 'и', 'э', 'я', 'ю', 'ё', 'е'};
     public static final String RU_LETTER = "[А-Яа-яЁё]+";
 
     public static void main(String[] args) {
