@@ -2,7 +2,8 @@ package by.it.kharevich.jd02_03;
 
 import by.it.kharevich.jd02_03.entity.Manager;
 import by.it.kharevich.jd02_03.entity.Queue;
-import by.it.kharevich.jd02_03.services.Store;
+import by.it.kharevich.jd02_03.entity.Store;
+import by.it.kharevich.jd02_03.services.StoreWorker;
 
 public class Starter {
 
@@ -10,6 +11,7 @@ public class Starter {
         Manager manager = new Manager(100);
         Queue queue = new Queue();
         Store store = new Store(manager, queue);
-        store.start();
+        StoreWorker storeWorker = new StoreWorker(store);
+        storeWorker.start();
     }
 }

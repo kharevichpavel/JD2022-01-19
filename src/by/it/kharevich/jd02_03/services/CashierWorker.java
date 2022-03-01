@@ -1,9 +1,6 @@
 package by.it.kharevich.jd02_03.services;
 
-import by.it.kharevich.jd02_03.entity.Cashier;
-import by.it.kharevich.jd02_03.entity.Customer;
-import by.it.kharevich.jd02_03.entity.Manager;
-import by.it.kharevich.jd02_03.entity.Queue;
+import by.it.kharevich.jd02_03.entity.*;
 import by.it.kharevich.jd02_03.utils.RandomData;
 import by.it.kharevich.jd02_03.utils.Sleeper;
 

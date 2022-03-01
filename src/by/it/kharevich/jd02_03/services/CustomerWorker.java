@@ -3,6 +3,7 @@ package by.it.kharevich.jd02_03.services;
 import by.it.kharevich.jd02_03.entity.Customer;
 import by.it.kharevich.jd02_03.entity.Good;
 import by.it.kharevich.jd02_03.entity.Queue;
+import by.it.kharevich.jd02_03.entity.Store;
 import by.it.kharevich.jd02_03.exceptions.StoreException;
 import by.it.kharevich.jd02_03.utils.RandomData;
 import by.it.kharevich.jd02_03.utils.Sleeper;
