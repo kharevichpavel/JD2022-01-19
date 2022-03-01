@@ -2,7 +2,9 @@ package by.it.tarend.jd02_02.services;
 
 import by.it.tarend.jd02_02.entity.Customer;
 import by.it.tarend.jd02_02.entity.Good;
+import by.it.tarend.jd02_02.entity.Queue;
 import by.it.tarend.jd02_02.entity.ShoppingCart;
+import by.it.tarend.jd02_02.exceptions.StoreException;
 import by.it.tarend.jd02_02.utils.PriceListRepo;
 import by.it.tarend.jd02_02.utils.RandomData;
 import by.it.tarend.jd02_02.utils.Sleeper;
@@ -14,22 +16,25 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
     private final Customer customer;
     private final Store store;
 
-
     public CustomerWorker(Store store, Customer customer) {
         this.customer = customer;
         this.store = store;
         this.setName("Worker name "  + customer.toString() + " ");
+        store.getManager().customerIn();
     }
 
     @Override
     public void run() {
+
         enteredStore();
         takeCart();
         int randomGoodNumber = RandomData.get(2,5);
         for (int i = 0; i < randomGoodNumber; i++) {
             putToCart(chooseGood());
         }
+
         goOut();
+        store.getManager().customerOut();
     }
 
     @Override
@@ -52,8 +57,21 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
     }
 
     @Override
-    public void goOut() {
-        System.out.println(customer + " go out");
+    public void goToQueue() {
+        System.out.println(customer + " go to Queue");
+        synchronized (customer) {
+            Queue queue = store.getQueue();
+            queue.add(customer);
+            customer.setWaiting(true);
+            while (customer.isWaiting()){
+                try {
+                    customer.wait();
+                } catch (InterruptedException e) {
+                    throw  new StoreException(e);
+                }
+            }
+        }
+        System.out.println(customer + " left Queue");
     }
 
     @Override
@@ -72,5 +90,11 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
         System.out.println(customer + " put " + good + " into cart");
 
         return shoppingCart.goodsInCart.size();
+    }
+
+    @Override
+    public void goOut() {
+
+        System.out.println(customer + " go out");
     }
 }
