@@ -1,7 +1,6 @@
 package by.it.zaretskaya.calculator.model;
 
-import by.it.zaretskaya.calculator.CalcException;
-import by.it.zaretskaya.calculator.model.Var;
+import by.it.zaretskaya.calculator.exeptions.CalcException;
 
 interface Operation {
     Var add(Var other) throws CalcException;

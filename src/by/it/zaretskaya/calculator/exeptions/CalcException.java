@@ -1,4 +1,4 @@
-package by.it.zaretskaya.calculator;
+package by.it.zaretskaya.calculator.exeptions;
 
 public class CalcException extends Exception{
     public CalcException() {

@@ -1,5 +1,6 @@
 package by.it.zaretskaya.calculator;
 
+import by.it.zaretskaya.calculator.exeptions.CalcException;
 import by.it.zaretskaya.calculator.model.Matrix;
 import by.it.zaretskaya.calculator.model.Scalar;
 import by.it.zaretskaya.calculator.model.Var;
@@ -11,7 +12,7 @@ import java.util.Map;
 public class VarRepository {
 
     private Map<String, Var> variables=new HashMap<>();
- Var save (String name,Var value){
+ public Var save (String name,Var value){
     variables.put(name,value);
     return value;
 }

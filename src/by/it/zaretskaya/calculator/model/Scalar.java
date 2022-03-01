@@ -1,6 +1,6 @@
 package by.it.zaretskaya.calculator.model;
 
-import by.it.zaretskaya.calculator.CalcException;
+import by.it.zaretskaya.calculator.exeptions.CalcException;
 
 public class Scalar extends Var {
     private final double value;

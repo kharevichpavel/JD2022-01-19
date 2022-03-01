@@ -1,15 +1,18 @@
-package by.it.zaretskaya.calculator;
+package by.it.zaretskaya.calculator.service;
 
+import by.it.zaretskaya.calculator.exeptions.CalcException;
+import by.it.zaretskaya.calculator.Patterns;
+import by.it.zaretskaya.calculator.VarRepository;
 import by.it.zaretskaya.calculator.model.Var;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Parser {
+public class CalcService {
 
 private final VarRepository varRepository;
 
-    public Parser(VarRepository varRepository) {
+    public CalcService(VarRepository varRepository) {
         this.varRepository = varRepository;
     }
 

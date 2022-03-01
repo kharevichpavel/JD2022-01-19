@@ -1,6 +1,8 @@
 package by.it.zaretskaya.calculator;
 
+import by.it.zaretskaya.calculator.exeptions.CalcException;
 import by.it.zaretskaya.calculator.model.Var;
+import by.it.zaretskaya.calculator.service.CalcService;
 
 import java.util.Scanner;
 
@@ -8,11 +10,11 @@ public class Application {
 
     public static final String END="end";
     private final Printer printer;
-    private final Parser parser;
+    private final CalcService calcService;
 
-    public Application(Printer printer, Parser parser) {
+    public Application(Printer printer, CalcService calcService) {
         this.printer = printer;
-        this.parser = parser;
+        this.calcService = calcService;
     }
 
     public void run() {
@@ -22,7 +24,7 @@ public class Application {
             String line = scanner.nextLine();
             if (!line.equals(END)) {
                 try{
-                    Var result= parser.calc(line);
+                    Var result= calcService.calc(line);
                 printer.print (result);
                 }
                 catch (CalcException e){
