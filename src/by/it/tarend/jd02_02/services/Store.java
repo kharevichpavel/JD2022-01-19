@@ -17,7 +17,6 @@ public class Store extends Thread {
     private final Manager manager;
     private final Queue queue;
 
-
     public Store(Manager manager, Queue queue) {
         this.manager = manager;
         this.queue = queue;
