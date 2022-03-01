@@ -1,5 +1,6 @@
-package by.it.zaretskaya.calculator;
+package by.it.zaretskaya.calculator.controllers;
 
+import by.it.zaretskaya.calculator.exeptions.ApplicationException;
 import by.it.zaretskaya.calculator.exeptions.CalcException;
 import by.it.zaretskaya.calculator.model.Var;
 import by.it.zaretskaya.calculator.service.CalcService;
@@ -11,13 +12,12 @@ public class MainController {
         this.calcService = calcService;
     }
 
-    Object evaluate(String request){
+    public Var process(String request){
         try{
-            Var result= calcService.calc(request);
-            return  result;
+            return calcService.calc(request);
         }
         catch (CalcException e){
-            return e;
+            throw new ApplicationException(e);
         }
     }
 }

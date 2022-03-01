@@ -1,7 +1,7 @@
 package by.it.zaretskaya.calculator.service;
 
 import by.it.zaretskaya.calculator.exeptions.CalcException;
-import by.it.zaretskaya.calculator.Patterns;
+import by.it.zaretskaya.calculator.utils.Patterns;
 import by.it.zaretskaya.calculator.VarRepository;
 import by.it.zaretskaya.calculator.model.Var;
 

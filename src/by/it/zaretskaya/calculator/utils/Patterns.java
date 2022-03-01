@@ -1,4 +1,4 @@
-package by.it.zaretskaya.calculator;
+package by.it.zaretskaya.calculator.utils;
 
 public class Patterns {
     private Patterns() {

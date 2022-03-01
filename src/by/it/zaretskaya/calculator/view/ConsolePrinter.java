@@ -1,4 +1,4 @@
-package by.it.zaretskaya.calculator;
+package by.it.zaretskaya.calculator.view;
 
 import by.it.zaretskaya.calculator.model.Var;
 

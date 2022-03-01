@@ -5,6 +5,7 @@ import by.it.zaretskaya.calculator.model.Matrix;
 import by.it.zaretskaya.calculator.model.Scalar;
 import by.it.zaretskaya.calculator.model.Var;
 import by.it.zaretskaya.calculator.model.Vector;
+import by.it.zaretskaya.calculator.utils.Patterns;
 
 import java.util.HashMap;
 import java.util.Map;
