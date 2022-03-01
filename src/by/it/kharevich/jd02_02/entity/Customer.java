@@ -27,7 +27,6 @@ public class Customer {
         return  this;
     }
 
-
     @Override
     public String toString() {
         return name;

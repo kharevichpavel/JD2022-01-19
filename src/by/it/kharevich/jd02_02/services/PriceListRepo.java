@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class PriceListRepo{
 
-    public static final HashMap<Good, Double> priceList = new HashMap<>();
+/*    public static final HashMap<Good, Double> priceList = new HashMap<>();
 
     public static void priceListRepo() {
         for (char i = 97; i < 123; i++) {
@@ -13,5 +13,5 @@ public class PriceListRepo{
             Good newGood = new Good(good, RandomData.get(10, 100));
             priceList.put(newGood, newGood.getPrice());
         }
-    }
+    }*/
 }

@@ -18,7 +18,7 @@ public class Manager {
         countCustomerOut++;
     }
 
-    public boolean shopOpend(){
+    public boolean shopOpened(){
         return countCustomerIn!=planCount;
     }
 

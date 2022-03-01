@@ -42,9 +42,9 @@ public class Store extends Thread {
             threads.add(thread);
             thread.start();
         }
-        while (manager.shopOpend()) {
+        while (manager.shopOpened()) {
             int countCustomer = RandomData.get(2);
-            for (int i = 0; i < countCustomer && manager.shopOpend(); i++) {
+            for (int i = 0; i < countCustomer && manager.shopOpened(); i++) {
                 Customer customer = new Customer(++number);
                 CustomerWorker customerWorker = new CustomerWorker(this, customer);
                 threads.add(customerWorker);
