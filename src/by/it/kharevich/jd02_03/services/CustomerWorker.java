@@ -7,7 +7,6 @@ import by.it.kharevich.jd02_03.exceptions.StoreException;
 import by.it.kharevich.jd02_03.utils.RandomData;
 import by.it.kharevich.jd02_03.utils.Sleeper;
 
-
 public class CustomerWorker extends Thread implements CustomerAction {
 
     private final Customer customer;
@@ -18,7 +17,6 @@ public class CustomerWorker extends Thread implements CustomerAction {
         this.store = store;
         this.setName("Worker for" + customer.toString() + " ");
         store.getManager().customerIn();
-
     }
 
     @Override
@@ -33,7 +31,6 @@ public class CustomerWorker extends Thread implements CustomerAction {
     @Override
     public void enteredStore() {
         System.out.println(customer + " entered to store");
-
     }
 
     @Override
@@ -48,11 +45,11 @@ public class CustomerWorker extends Thread implements CustomerAction {
     @Override
     public void goToQueue() {
         System.out.println(customer + "waiting in Queue");
-        synchronized (customer){
+        synchronized (customer) {
             Queue queue = store.getQueue();
             queue.add(customer);
             customer.setWaiting(true);
-            while (customer.isWaiting()){
+            while (customer.isWaiting()) {
                 try {
                     customer.wait();
                 } catch (InterruptedException e) {
@@ -67,5 +64,4 @@ public class CustomerWorker extends Thread implements CustomerAction {
     public void goOut() {
         System.out.println(customer + " go out");
     }
-
 }

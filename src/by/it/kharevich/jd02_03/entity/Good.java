@@ -1,6 +1,6 @@
 package by.it.kharevich.jd02_03.entity;
 
-public class Good{
+public class Good {
 
     public final String name;
     public final double price;
