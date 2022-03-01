@@ -11,6 +11,10 @@ public class Customer {
         name = "Customer # " + number;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public boolean isWaiting() {
         return waiting;
     }

@@ -1,16 +1,20 @@
 package by.it.kharevich.jd02_01.services;
 
 import by.it.kharevich.jd02_01.entity.Customer;
-import by.it.kharevich.jd02_01.entity.ShoppingCart;
 import by.it.kharevich.jd02_01.exceptions.StoreException;
 import by.it.kharevich.jd02_01.utils.RandomData;
 import by.it.kharevich.jd02_01.utils.Sleeper;
+
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Store extends Thread {
+
+    public Store() {
+        PriceListRepo.priceListRepo();
+    }
 
     @Override
     public void run() {

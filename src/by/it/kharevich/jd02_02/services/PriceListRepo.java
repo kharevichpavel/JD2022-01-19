@@ -1,24 +1,17 @@
 package by.it.kharevich.jd02_02.services;
-
+import by.it.kharevich.jd02_02.utils.RandomData;
 import by.it.kharevich.jd02_02.entity.Good;
-
 import java.util.HashMap;
 
-public class PriceListRepo extends Thread {
+public class PriceListRepo{
 
+    public static final HashMap<Good, Double> priceList = new HashMap<>();
 
-    private final Good good;
-
-    public PriceListRepo() {
-        good = new Good();
-
-    }
-
-
-    public PriceListRepo(Good good) {
-        HashMap<String, Integer> priceListRepo = new HashMap<>();
-
-
-        this.good = null;
+    public static void priceListRepo() {
+        for (char i = 97; i < 123; i++) {
+            String good = "Good " + i;
+            Good newGood = new Good(good, RandomData.get(10, 100));
+            priceList.put(newGood, newGood.getPrice());
+        }
     }
 }

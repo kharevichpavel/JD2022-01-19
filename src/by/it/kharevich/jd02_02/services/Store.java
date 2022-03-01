@@ -13,6 +13,7 @@ import java.util.List;
 
 public class Store extends Thread {
 
+
     private final Manager manager;
     private  final Queue queue;
 
@@ -24,10 +25,10 @@ public class Store extends Thread {
     public Queue getQueue() {
         return queue;
     }
-
     public Manager getManager() {
         return manager;
     }
+
 
     @Override
     public void run() {

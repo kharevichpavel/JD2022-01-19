@@ -1,11 +1,13 @@
 package by.it.kharevich.jd02_02.services;
 
+import by.it.kharevich.jd02_02.entity.ShoppingCart;
 import by.it.kharevich.jd02_02.entity.Customer;
 import by.it.kharevich.jd02_02.entity.Good;
 import by.it.kharevich.jd02_02.entity.Queue;
 import by.it.kharevich.jd02_02.exceptions.StoreException;
 import by.it.kharevich.jd02_02.utils.RandomData;
 import by.it.kharevich.jd02_02.utils.Sleeper;
+
 
 public class CustomerWorker extends Thread implements CustomerAction, ShoppingCardAction {
 
@@ -17,6 +19,7 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
         this.store = store;
         this.setName("Worker for" + customer.toString() + " ");
         store.getManager().customerIn();
+
     }
 
     @Override
@@ -38,7 +41,6 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
     @Override
     public void takeCart() {
         System.out.println(customer + " take cart");
-
     }
 
     @Override
@@ -46,7 +48,7 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
         System.out.println(customer + " started to choose goods");
         int timeout = RandomData.get(500, 2000);
         Sleeper.sleep(timeout);
-        System.out.println(customer + " finished to choose goods");
+        System.out.println(customer + " finished choose goods");
         return new Good();
     }
 
@@ -70,8 +72,10 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
 
     @Override
     public int putToCart(Good good) {
-        System.out.println(customer + " to put " + " goods in cart");
-        return 0;
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.goodsAllInCart.add(good);
+        System.out.println(customer + " to put " + good + " in cart");
+        return shoppingCart.goodsAllInCart.size();
     }
 
     @Override

@@ -14,7 +14,9 @@ public class Good{
         this("noName", 0);
     }
 
-
+    public double getPrice() {
+        return price;
+    }
 
     @Override
     public String toString() {
