@@ -1,12 +1,12 @@
-package by.it.kharevich.jd02_02.services;
+package by.it.kharevich.jd02_03.services;
 
-import by.it.kharevich.jd02_02.entity.Cashier;
-import by.it.kharevich.jd02_02.entity.Customer;
-import by.it.kharevich.jd02_02.entity.Manager;
-import by.it.kharevich.jd02_02.entity.Queue;
-import by.it.kharevich.jd02_02.exceptions.StoreException;
-import by.it.kharevich.jd02_02.utils.RandomData;
-import by.it.kharevich.jd02_02.utils.Sleeper;
+import by.it.kharevich.jd02_03.entity.Cashier;
+import by.it.kharevich.jd02_03.entity.Customer;
+import by.it.kharevich.jd02_03.entity.Manager;
+import by.it.kharevich.jd02_03.entity.Queue;
+import by.it.kharevich.jd02_03.exceptions.StoreException;
+import by.it.kharevich.jd02_03.utils.RandomData;
+import by.it.kharevich.jd02_03.utils.Sleeper;
 
 import java.util.ArrayList;
 import java.util.List;
