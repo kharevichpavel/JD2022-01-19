@@ -1,4 +1,4 @@
-package by.it.katsal.jd_01_12;
+package by.it.katsal.jd01_12;
 
 
 import by.it.HomeWork;
