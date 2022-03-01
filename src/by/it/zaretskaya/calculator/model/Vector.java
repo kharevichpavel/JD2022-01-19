@@ -1,6 +1,8 @@
-package by.it.zaretskaya.calculator;
+package by.it.zaretskaya.calculator.model;
 
-class Vector extends Var {
+import by.it.zaretskaya.calculator.CalcException;
+
+public class Vector extends Var {
 
  public Vector(double[] value) {
   this.value = value.clone();

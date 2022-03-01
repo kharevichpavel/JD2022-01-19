@@ -1,11 +1,16 @@
 package by.it.zaretskaya.calculator;
 
+import by.it.zaretskaya.calculator.model.Matrix;
+import by.it.zaretskaya.calculator.model.Scalar;
+import by.it.zaretskaya.calculator.model.Var;
+import by.it.zaretskaya.calculator.model.Vector;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class VarRepository {
 
-    private Map<String,Var> variables=new HashMap<>();
+    private Map<String, Var> variables=new HashMap<>();
  Var save (String name,Var value){
     variables.put(name,value);
     return value;

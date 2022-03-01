@@ -1,5 +1,7 @@
 package by.it.zaretskaya.calculator;
 
+import by.it.zaretskaya.calculator.model.Var;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

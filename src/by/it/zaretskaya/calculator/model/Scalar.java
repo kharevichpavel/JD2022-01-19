@@ -1,6 +1,8 @@
-package by.it.zaretskaya.calculator;
+package by.it.zaretskaya.calculator.model;
 
-class Scalar extends Var {
+import by.it.zaretskaya.calculator.CalcException;
+
+public class Scalar extends Var {
     private final double value;
 
     public Scalar(String stringValue) {

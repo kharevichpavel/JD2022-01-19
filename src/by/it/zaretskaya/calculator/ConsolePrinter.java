@@ -1,5 +1,7 @@
 package by.it.zaretskaya.calculator;
 
+import by.it.zaretskaya.calculator.model.Var;
+
 public class ConsolePrinter implements Printer {
     @Override
     public void print(Var var) {
