@@ -37,3 +37,6 @@ public class TaskA2 {
         return result;
     }
 }
+
+
+

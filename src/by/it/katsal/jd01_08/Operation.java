@@ -10,3 +10,5 @@ interface Operation {
 
     Var div(Var other);
 }
+
+

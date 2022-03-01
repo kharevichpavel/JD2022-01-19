@@ -34,3 +34,5 @@ package by.it.katsal.jd01_08;
       return "abstract variable";
    }
 }
+
+
