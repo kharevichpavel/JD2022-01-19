@@ -9,7 +9,7 @@ public class TaskC {
 
     public static void main(String[] args) {
 
-        String pathToClass = PathFinder.getFileName(TaskC.class, ROOT, TaskC.class.getSimpleName()).replaceAll(File.separator+TaskC.class.getSimpleName(), "");
+        String pathToClass = PathFinder.getFileName(TaskC.class, ROOT, TaskC.class.getSimpleName()).replace(File.separator+TaskC.class.getSimpleName(), "");
 
         String pathToSurname = getSurnameDirectory(pathToClass);
 
