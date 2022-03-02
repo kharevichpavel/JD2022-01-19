@@ -48,17 +48,18 @@ public class CashierWorker implements Runnable{
     }
 
     private void serveCustomer(Customer customer) {
-        synchronized (customer) {
-            System.out.println();
-            System.out.println("------- Bill for " + customer + "-------");
+            StringBuilder bill = new StringBuilder();
+            String billHead = "\n------- Bill for " + customer + "-------\n";
+            bill.append(billHead);
             for (Good good : customer.getShoppingCart().goodsInCart) {
                 Double goodPrice = PriceListRepo.priceList.get(good);
                 customer.bill += goodPrice;
                 cashier.cashRegister += goodPrice;
-                System.out.println("\t" + good);
+                String position = "\t" + good + "\n";
+                bill.append(position);
             }
-            System.out.println("\tTotal for " + customer + " = " + customer.bill);
-            System.out.println();
-        }
+            String billTotal = "\tTotal for " + customer + " = " + customer.bill + "\n";
+            bill.append(billTotal);
+            System.out.println(bill);
     }
 }
