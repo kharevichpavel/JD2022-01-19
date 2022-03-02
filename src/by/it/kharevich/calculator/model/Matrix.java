@@ -1,6 +1,6 @@
-package by.it.kharevich.calculator;
+package by.it.kharevich.calculator.model;
 
-class Matrix extends Var {
+public class Matrix extends Var {
 
     private final double[][] value;
 

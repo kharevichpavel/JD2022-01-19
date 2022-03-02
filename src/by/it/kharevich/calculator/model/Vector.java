@@ -1,6 +1,8 @@
-package by.it.kharevich.calculator;
+package by.it.kharevich.calculator.model;
 
-class Vector extends Var {
+import by.it.kharevich.calculator.exceptions.CalcException;
+
+public class Vector extends Var {
 
     private final double[] value;
 

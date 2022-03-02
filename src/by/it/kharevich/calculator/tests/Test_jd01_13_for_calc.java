@@ -1,4 +1,4 @@
-package by.it.kharevich.calculator;
+package by.it.kharevich.calculator.tests;
 
 
 import by.it.HomeWork;

@@ -1,6 +1,8 @@
-package by.it.kharevich.calculator;
+package by.it.kharevich.calculator.model;
 
-abstract class Var implements Operation {
+import by.it.kharevich.calculator.exceptions.CalcException;
+
+public abstract class Var implements Operation {
 
     @Override
     public Var add(Var other) throws CalcException {

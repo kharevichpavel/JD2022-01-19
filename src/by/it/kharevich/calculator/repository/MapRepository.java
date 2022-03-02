@@ -1,18 +1,24 @@
-package by.it.kharevich.calculator;
+package by.it.kharevich.calculator.repository;
+
+import by.it.kharevich.calculator.exceptions.ApplicationException;
+import by.it.kharevich.calculator.model.Scalar;
+import by.it.kharevich.calculator.model.Var;
+import by.it.kharevich.calculator.model.Vector;
+import by.it.kharevich.calculator.utils.Patterns;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class VarReposito {
+public class MapRepository implements VarRepository{
 
-    private Map<String, Var> variables = new HashMap<>();
+    private final Map<String, Var> variables = new HashMap<>();
 
-    Var save(String name, Var value) {
+    public Var save(String name, Var value) {
         variables.put(name, value);
         return value;
     }
 
-    Var getByName(String name) {
+    private Var getByName(String name) {
         return variables.get(name);
     }
 
@@ -26,6 +32,6 @@ public class VarReposito {
         } else if (variables.containsKey(varValueOrName)) {
             return getByName(varValueOrName);
         }
-        return null; //TODO ex
+        throw new ApplicationException("NOT FOUND" + varValueOrName);
     }
 }

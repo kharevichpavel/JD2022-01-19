@@ -1,6 +1,8 @@
-package by.it.kharevich.calculator;
+package by.it.kharevich.calculator.model;
 
-class Scalar extends Var {
+import by.it.kharevich.calculator.exceptions.CalcException;
+
+public class Scalar extends Var {
 
     private final double value;
 
@@ -17,7 +19,7 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var add(Var other) throws CalcException{
+    public Var add(Var other) throws CalcException {
         if (other instanceof Scalar otherScalar) {
             return new Scalar(this.value + otherScalar.value);
         } else

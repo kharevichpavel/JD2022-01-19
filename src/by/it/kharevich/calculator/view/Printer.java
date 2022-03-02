@@ -1,4 +1,6 @@
-package by.it.kharevich.calculator;
+package by.it.kharevich.calculator.view;
+
+import by.it.kharevich.calculator.model.Var;
 
 public interface Printer {
 

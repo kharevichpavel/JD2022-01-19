@@ -1,4 +1,4 @@
-package by.it.kharevich.calculator;
+package by.it.kharevich.calculator.utils;
 
 public class Patterns {
 

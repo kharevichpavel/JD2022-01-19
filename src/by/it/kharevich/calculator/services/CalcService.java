@@ -1,13 +1,18 @@
-package by.it.kharevich.calculator;
+package by.it.kharevich.calculator.services;
+
+import by.it.kharevich.calculator.exceptions.CalcException;
+import by.it.kharevich.calculator.repository.VarRepository;
+import by.it.kharevich.calculator.utils.Patterns;
+import by.it.kharevich.calculator.model.Var;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Parser {
-    private VarReposito varReposito;
+public class CalcService {
+    private final VarRepository repository;
 
-    public Parser(VarReposito varReposito) {
-        this.varReposito = varReposito;
+    public CalcService(VarRepository repository) {
+        this.repository = repository;
     }
 
 
@@ -15,14 +20,14 @@ public class Parser {
         expression = expression.replaceAll(Patterns.SPACES, "");
         String[] parts = expression.split(Patterns.OPERATION, 2);
         if (parts.length == 1) {
-            return varReposito.create(expression);
+            return repository.create(expression);
         }
-        Var right = varReposito.create(parts[1]);
+        Var right = repository.create(parts[1]);
         if (expression.contains("=")) {
             String name = parts[0];
-            return varReposito.save(name, right);
+            return repository.save(name, right);
         }
-        Var left = varReposito.create(parts[0]);
+        Var left = repository.create(parts[0]);
         if (left == null || right == null) {
             String message = "Incorrect expression " + expression;
             throw new CalcException(message);
