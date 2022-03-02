@@ -1,9 +1,7 @@
 package by.it.tarend.jd02_02.services;
 
-import by.it.tarend.jd02_02.entity.Cashier;
-import by.it.tarend.jd02_02.entity.Customer;
-import by.it.tarend.jd02_02.entity.Manager;
-import by.it.tarend.jd02_02.entity.Queue;
+import by.it.tarend.jd02_02.entity.*;
+import by.it.tarend.jd02_02.utils.PriceListRepo;
 import by.it.tarend.jd02_02.utils.RandomData;
 import by.it.tarend.jd02_02.utils.Sleeper;
 
@@ -34,6 +32,7 @@ public class CashierWorker implements Runnable{
                 System.out.println("\t" + cashier + " start service " + customer);
                 int timeOut = RandomData.get(2000, 5000);
                 Sleeper.sleep(timeOut);
+                serveCustomer(customer);
                 System.out.println("\t" + cashier + " finished service " + customer);
                 synchronized (customer.getMonitor()) {
                     customer.setWaiting(false);
@@ -44,6 +43,22 @@ public class CashierWorker implements Runnable{
             }
         }
         System.out.println("\t" + cashier + " finished");
+        System.out.println("\tTotal for " + cashier + " = " + cashier.cashRegister);
 
+    }
+
+    private void serveCustomer(Customer customer) {
+        synchronized (customer) {
+            System.out.println();
+            System.out.println("------- Bill for " + customer + "-------");
+            for (Good good : customer.getShoppingCart().goodsInCart) {
+                Double goodPrice = PriceListRepo.priceList.get(good);
+                customer.bill += goodPrice;
+                cashier.cashRegister += goodPrice;
+                System.out.println("\t" + good);
+            }
+            System.out.println("\tTotal for " + customer + " = " + customer.bill);
+            System.out.println();
+        }
     }
 }

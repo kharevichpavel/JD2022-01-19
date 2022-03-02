@@ -5,6 +5,7 @@ public class Customer {
     private final String name;
     private boolean waiting;
     private ShoppingCart shoppingCart;
+    public double bill = 0.0;
 
     public Customer(int number) {
         name = "Customer № " + number;

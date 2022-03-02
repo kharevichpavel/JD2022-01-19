@@ -46,7 +46,7 @@ public class Store extends Thread {
         }
         while (manager.shopOpened()) {
             int count = RandomData.get(2);
-            for (int i = 0; i < count & manager.shopOpened(); i++) {
+            for (int i = 0; i < count && manager.shopOpened(); i++) {
                 Customer customer = new Customer(++number);
                 CustomerWorker customerWorker = new CustomerWorker(this, customer);
                 threads.add(customerWorker);
@@ -54,8 +54,6 @@ public class Store extends Thread {
             }
             Sleeper.sleep(1000);
         }
-
-
 
         for (Thread thread : threads) {
             try {
