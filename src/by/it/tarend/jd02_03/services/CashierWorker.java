@@ -41,8 +41,7 @@ public class CashierWorker implements Runnable{
                 Sleeper.sleep(100);
             }
         }
-        System.out.println("\t" + cashier + " finished");
-        System.out.println("\tTotal for " + cashier + " = " + cashier.cashRegister);
+        System.out.println("\t" + cashier + " finished\tTotal for " + cashier + " = " + cashier.cashRegister);
 
     }
 
