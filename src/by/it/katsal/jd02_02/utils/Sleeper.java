@@ -1,6 +1,6 @@
-package by.it.katsal.jd02_01.utils;
+package by.it.katsal.jd02_02.utils;
 
-import by.it.katsal.jd02_01.exceptions.StoreException;
+import by.it.katsal.jd02_02.exceptions.StoreException;
 
 public class Sleeper {
 

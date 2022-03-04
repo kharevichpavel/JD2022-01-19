@@ -1,9 +1,9 @@
 package by.it.katsal.jd02_01.services;
 
-import by.it._classwork_.jd02_01.entity.Customer;
-import by.it._classwork_.jd02_01.exceptions.StoreException;
-import by.it._classwork_.jd02_01.utils.RandomData;
-import by.it._classwork_.jd02_01.utils.Sleeper;
+import by.it.katsal.jd02_01.entity.Customer;
+import by.it.katsal.jd02_01.exceptions.StoreException;
+import by.it.katsal.jd02_01.utils.RandomData;
+import by.it.katsal.jd02_01.utils.Sleeper;
 
 import java.util.ArrayList;
 import java.util.List;
