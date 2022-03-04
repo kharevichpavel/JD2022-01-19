@@ -2,6 +2,7 @@ package by.it.kharevich.calculator;
 
 import by.it.kharevich.calculator.controllers.MainController;
 import by.it.kharevich.calculator.repository.FileRepository;
+import by.it.kharevich.calculator.repository.MapRepository;
 import by.it.kharevich.calculator.repository.VarRepository;
 import by.it.kharevich.calculator.services.CalcService;
 import by.it.kharevich.calculator.utils.PathFinder;

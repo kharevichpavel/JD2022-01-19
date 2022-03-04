@@ -18,8 +18,8 @@ import java.util.Map;
 
 public class FileRepository implements VarRepository{
 
-    private final Map<String,Var> variables = new HashMap<>();
     private final String txtDataBase;
+    private final Map<String,Var> variables = new HashMap<>();
 
     public FileRepository(String txtDataBase) {
         this.txtDataBase = txtDataBase;
@@ -47,13 +47,13 @@ public class FileRepository implements VarRepository{
     public Var save(String name, Var value) {
         variables.put(name,value);
         try (PrintWriter printWriter = new PrintWriter(txtDataBase)){
-            for (Map.Entry<String, Var> stringVarEntry : variables.entrySet()) {
-                printWriter.printf("%s=%s%n",stringVarEntry.getKey(),stringVarEntry.getValue());
+            for (Map.Entry<String, Var> entry : variables.entrySet()) {
+                printWriter.printf("%s=%s%n",entry.getKey(),entry.getValue());
             }
         } catch (FileNotFoundException e) {
             throw new ApplicationException(e);
         }
-        return null;
+        return value;
     }
 
     public Var create(String varValueOrName) {
