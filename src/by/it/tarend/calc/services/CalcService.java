@@ -6,44 +6,87 @@ import by.it.tarend.calc.utils.Patterns;
 import by.it.tarend.calc.repositories.MapRepository;
 import by.it.tarend.calc.model.Var;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CalcService {
 
     private final VarRepository repository;
+    private final Map<String, Integer> priorityMap = Map.of(
+            "=", 0,
+            "+", 1,
+            "-", 1,
+            "*", 2,
+            "/", 2
+    );
 
     public CalcService(VarRepository repository) {
         this.repository = repository;
     }
 
     public Var calc(String expression) throws CalcException {
+
+        // A=2+5*8
         expression = expression.replaceAll(Patterns.SPACES, "");
-        String[] parts = expression.split(Patterns.OPERATION, 2);
-        if (parts.length == 1) {
-            return repository.create(expression); // TODO вынести в отдельный класс
+        List<String> operands = new ArrayList<>(Arrays.asList(expression.split(Patterns.OPERATION))); // A 2 5 8
+        List<String> operations = new ArrayList<>(); // = + *
+        Matcher operationFinder = Pattern.compile(Patterns.OPERATION).matcher(expression);
+        while (operationFinder.find()) {
+            operations.add(operationFinder.group());
         }
 
-        Var right = repository.create(parts[1]);
-        if (expression.contains("=")) {
-            String name = parts[0];
-            return repository.save(name, right);
+        while (!operations.isEmpty()) {
+            int index = getIndexOperation(operations);
+            String left = operands.remove(index);
+            String right = operands.remove(index);
+            String operation = operations.remove(index);
+            // A 2, = +
+            Var result = calcOneOperation(left, operation, right);
+            operands.add(index, result.toString());
+
         }
-        Var left = repository.create(parts[0]);
+        return repository.create(operands.get(0));
+    }
+
+    private Var calcOneOperation(String leftStr, String operation, String rightStr) throws CalcException {
+
+        Var right = repository.create(rightStr);
+        if (operation.equals("=")) {
+            return repository.save(leftStr, right);
+        }
+        Var left = repository.create(leftStr);
         if (left == null || right == null) {
-            throw new CalcException("Incorrect expression " + expression);
+            throw new CalcException("Incorrect expression " + leftStr + operation + rightStr);
         }
+        switch (operation) {
+            case "+":
+                return left.add(right);
+            case "-":
+                return left.sub(right);
+            case "*":
+                return left.mul(right);
+            case "/":
+                return left.div(right);
+        }
+        throw new CalcException("LOL");
+    }
 
-        Matcher matcher = Pattern.compile(Patterns.OPERATION).matcher(expression);
-        if (matcher.find()) {
-            String operation = matcher.group();
-            switch (operation) {
-                case "+": return left.add(right);
-                case "-": return left.sub(right);
-                case "*": return left.mul(right);
-                case "/": return left.div(right);
+
+    private int getIndexOperation(List<String> operations) {
+        int index = -1;
+        int currentPriority = -1;
+        for (int i = 0; i < operations.size(); i++) {
+            String operation = operations.get(i);
+            if (currentPriority < priorityMap.get(operation)) {
+                currentPriority = priorityMap.get(operation);
+                index = i;
             }
         }
-        throw new CalcException("???");
+
+        return index;
     }
 }
