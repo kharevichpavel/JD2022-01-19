@@ -1,31 +1,37 @@
 package by.it.kharevich.calculator.model;
 
 import by.it.kharevich.calculator.exceptions.CalcException;
+import by.it.kharevich.calculator.resources.ResourceManager;
+import by.it.kharevich.calculator.utils.ExceptionMessages;
 
 public abstract class Var implements Operation {
 
     @Override
     public Var add(Var other) throws CalcException {
-        throw new CalcException(String.format("Operation addition %s + %s impossible%n", this, other));
+        throw new CalcException(String.format(ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_ADD)
+                + " %s + %s" + ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_IMP)+"%n", this, other));
     }
 
     @Override
     public Var sub(Var other) throws CalcException {
-        throw new CalcException(String.format("Operation subtraction %s - %s impossible%n", this, other));
+        throw new CalcException(String.format(ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_SUB)
+                + " %s - %s" + ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_IMP)+"%n", this, other));
     }
 
     @Override
     public Var mul(Var other) throws CalcException {
-        throw new CalcException(String.format("Operation multiplication %s * %s impossible%n", this, other));
+        throw new CalcException(String.format(ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_MULT)
+                + " %s * %s" + ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_IMP)+"%n", this, other));
     }
 
     @Override
     public Var div(Var other) throws CalcException {
-        throw new CalcException(String.format("Operation division %s / %s impossible%n", this, other));
+        throw new CalcException(String.format(ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_DIV)
+                + " %s / %s" + ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_IMP)+"%n", this, other));
     }
 
     @Override
     public String toString() {
-        return "abstract variable";
+        return ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_ABSTR);
     }
 }

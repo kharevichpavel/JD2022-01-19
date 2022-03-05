@@ -1,5 +1,8 @@
 package by.it.kharevich.calculator.exceptions;
 
+import by.it.kharevich.calculator.resources.ResourceManager;
+import by.it.kharevich.calculator.utils.ExceptionMessages;
+
 public class CalcException extends Exception {
 
     public CalcException() {
@@ -7,11 +10,11 @@ public class CalcException extends Exception {
     }
 
     public CalcException(String message) {
-        super("ERROR: " + message);
+        super(ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_1) + message);
     }
 
     public CalcException(String message, Throwable cause) {
-        super("ERROR: " + message, cause);
+        super(ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_1) + message, cause);
     }
 
     public CalcException(Throwable cause) {

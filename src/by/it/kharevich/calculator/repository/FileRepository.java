@@ -4,6 +4,8 @@ import by.it.kharevich.calculator.exceptions.ApplicationException;
 import by.it.kharevich.calculator.model.Scalar;
 import by.it.kharevich.calculator.model.Var;
 import by.it.kharevich.calculator.model.Vector;
+import by.it.kharevich.calculator.resources.ResourceManager;
+import by.it.kharevich.calculator.utils.ExceptionMessages;
 import by.it.kharevich.calculator.utils.Patterns;
 
 import java.io.FileNotFoundException;
@@ -66,6 +68,6 @@ public class FileRepository implements VarRepository{
         } else if (variables.containsKey(varValueOrName)) {
             return variables.get(varValueOrName);
         }
-        throw new ApplicationException("NOT FOUND" + varValueOrName);
+        throw new ApplicationException(ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_NF) + varValueOrName);
     }
 }

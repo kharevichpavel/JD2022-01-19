@@ -2,6 +2,8 @@ package by.it.kharevich.calculator.services;
 
 import by.it.kharevich.calculator.exceptions.CalcException;
 import by.it.kharevich.calculator.repository.VarRepository;
+import by.it.kharevich.calculator.resources.ResourceManager;
+import by.it.kharevich.calculator.utils.ExceptionMessages;
 import by.it.kharevich.calculator.utils.Patterns;
 import by.it.kharevich.calculator.model.Var;
 
@@ -50,7 +52,7 @@ public class CalcService {
         }
         Var left = repository.create(leftStr);
         if (left == null || right == null) {
-            throw new CalcException("INCORRECT OPERATION " + leftStr + operation + rightStr);
+            throw new CalcException(ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_IO)+ " " + leftStr + operation + rightStr);
         }
         switch (operation) {
             case "+":
@@ -62,7 +64,7 @@ public class CalcService {
             case "/":
                 return left.div(right);
         }
-        throw new CalcException("INCORRECT SYMBOL OPERATION");
+        throw new CalcException(ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_IOS));
     }
 
     private int getIndexOperation(List<String> operations) {
