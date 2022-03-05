@@ -2,10 +2,12 @@ package by.it.tarend.jd02_04;
 
 import by.it.tarend.calc.exceptions.CalcException;
 import by.it.tarend.calc.model.Scalar;
+import by.it.tarend.calc.model.Vector;
 import by.it.tarend.calc.repositories.MapRepository;
 import by.it.tarend.calc.repositories.VarRepository;
 import by.it.tarend.calc.services.CalcService;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -45,23 +47,34 @@ public class CalcServiceTest {
         double expected4 = 2.65;
         double real4 = var4.getValue();
         assertEquals(expected4, real4, 1e-10);
+
+        Scalar var5 = (Scalar) calcService.calc("C=B+(A*2)");
+        double expected5 = 40.15;
+        double real5 = var5.getValue();
+        assertEquals(expected5, real5, 1e-10);
+
+        Vector var6 = (Vector) calcService.calc("E={2,3}*(10/2)");
+        String real6 = var6.toString();
+        String expected6 = "{10.0,15.0}";
+        assertEquals(expected6, real6);
     }
 
 
-//    @Test
-//    public void calcVectorTaskB() throws CalcException {
-//        Scalar var1 = (Scalar) calcService.calc("C=B+(A*2)");
-//        double expected1 = 40.15;
-//        double real1 = var1.getValue();
-//        assertEquals(expected1, real1, 1e-10);
-//
-///*        Scalar var2 = (Scalar) calcService.calc("D=((C-0.15)-20)/(7-5)");
-//        double expected2 = 10;
-//        double real2 = var2.getValue();
-//        assertEquals(expected2, real2, 1e-10);
-//
-//        Vector var3 = (Vector) calcService.calc("E={2,3}*(D/2)");
-//        Vector expected3 = (Vector) repository.create("10,15");
-//        assertEquals(expected3, var3);*/
-//    }
+    @Test
+    public void calcVectorTaskB() throws CalcException {
+        Scalar var1 = (Scalar) calcService.calc("C=B+(A*2)");
+        double expected1 = 40.15;
+        double real1 = var1.getValue();
+        assertEquals(expected1, real1, 1e-10);
+
+        Scalar var2 = (Scalar) calcService.calc("D=((C-0.15)-20)/(7-5)");
+        double expected2 = 10;
+        double real2 = var2.getValue();
+        assertEquals(expected2, real2, 1e-10);
+
+        Vector var3 = (Vector) calcService.calc("E={2,3}*(D/2)");
+        String real3 = var3.toString();
+        String expected3 = "{10.0,15.0}";
+        assertEquals(expected3, real3);
+    }
 }

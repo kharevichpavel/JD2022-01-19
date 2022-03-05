@@ -62,7 +62,7 @@ public class CalcService {
                 }
             }
             String subExpression = newExpression.substring(openBrace + 1, closeBrace);
-            System.out.println(subExpression);
+//            System.out.println(subExpression);
             if (subExpression.contains("(")) {
                 calcBracesExpressions(subExpression);
             } else {
