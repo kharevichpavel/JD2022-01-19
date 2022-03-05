@@ -2,6 +2,8 @@ package by.it.tarend.jd02_04;
 
 import by.it.tarend.calc.exceptions.CalcException;
 import by.it.tarend.calc.model.Scalar;
+import by.it.tarend.calc.model.Var;
+import by.it.tarend.calc.model.Vector;
 import by.it.tarend.calc.repositories.MapRepository;
 import by.it.tarend.calc.repositories.VarRepository;
 import by.it.tarend.calc.services.CalcService;
@@ -13,10 +15,11 @@ import static org.junit.Assert.*;
 public class CalcServiceTestA {
 
     private static CalcService calcService;
+    private static VarRepository repository;
 
     @BeforeClass
     public static void setUp() throws Exception {
-        VarRepository repository = new MapRepository();
+        repository = new MapRepository();
         calcService = new CalcService(repository);
     }
 
@@ -60,10 +63,8 @@ public class CalcServiceTestA {
         double real2 = var2.getValue();
         assertEquals(expected2, real2, 1e-10);
 
-        Scalar var3 = (Scalar) calcService.calc("E={2,3}*(D/2)");
-        double expected3 = 10.15;
-        double real3 = var3.getValue();
-        assertEquals(expected3, real3, 1e-10);
-
+        Vector var3 = (Vector) calcService.calc("E={2,3}*(D/2)");
+        Vector expected3 = (Vector) repository.create("10,15");
+        assertEquals(expected3, var3);
     }
 }

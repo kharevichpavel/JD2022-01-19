@@ -86,7 +86,6 @@ public class CalcService {
                 index = i;
             }
         }
-
         return index;
     }
 }
