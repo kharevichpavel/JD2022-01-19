@@ -6,11 +6,11 @@ public class Patterns {
     }
     // 2.0322+2 1.04*5.9{-1, -2.2, 3}+{1,1,1}  {{1,1,1},{2,2,2}} + {{1,1,1}, {3,3,3}}
     // -3+-1.3--2.5*-4+{-1,-2.3,-3}
-    //
+    // {1.0,2.0,3.0}
 
     public static final String OPERATION = "(?<=[^-+*/=,{])[-*+/=]";
     public static final String SPACES = "//s";
     public static final String SCALAR = "-?[0-9]+(\\.[0-9]*)?";
-    public static final String VECTOR = "\\{("+ SCALAR +")(," + SCALAR +")*}";
-    public static final String MATRIX = "\\{("+ VECTOR +")(," + VECTOR +")*}";
+    public static final String VECTOR = "\\{("+ SCALAR +")(," + SCALAR +")*\\}";
+    public static final String MATRIX = "\\{("+ VECTOR +")(," + VECTOR +")*\\}";
 }

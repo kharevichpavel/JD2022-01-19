@@ -67,6 +67,6 @@ public class FileRepository implements VarRepository{
         } else if (variables.containsKey(varValueOrName)) {
             return variables.get(varValueOrName);
         } else
-            throw new ApplicationException("not found" + varValueOrName);
+            throw new ApplicationException(varValueOrName);
     }
 }

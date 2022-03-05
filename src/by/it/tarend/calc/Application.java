@@ -13,13 +13,11 @@ public class Application {
     public static final String END = "end";
     private final Printer printer;
     private final CalcService calcService;
-    private final Reader reader;
     private final MainController controller;
 
-    public Application(Printer printer, CalcService calcService, Reader reader, MainController controller) {
+    public Application(Printer printer, CalcService calcService, MainController controller) {
         this.printer = printer;
         this.calcService = calcService;
-        this.reader = reader;
         this.controller = controller;
     }
 
