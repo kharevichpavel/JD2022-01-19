@@ -31,25 +31,64 @@ public class CalcService {
     public Var calc(String expression) throws CalcException {
 
         // A=2+5*8
+        // C=B+(A*2)
+        // D=((C-0.15)-20)/(7-5)
+        // E={2,3}*(D/2)
+
         expression = expression.replaceAll(Patterns.SPACES, "");
+        if (expression.contains("(")) {
+            expression = calcBracesExpressions(expression);
+        }
+        String result = calcWithoutBraces(expression);
+        return repository.create(result);
+    }
+
+    private String calcBracesExpressions(String expression) throws CalcException {
+        String newExpression = expression;
+        while (newExpression.contains("(")) {
+            int braceCounter = 0;
+            int openBrace = newExpression.indexOf('(');
+            int closeBrace = 0;
+            for (int i = openBrace; i < newExpression.length(); i++) {
+                if (newExpression.charAt(i) == '(') {
+                    braceCounter++;
+                }
+                if (newExpression.charAt(i) == ')') {
+                    braceCounter--;
+                }
+                if (braceCounter == 0) {
+                    closeBrace = i;
+                    break;
+                }
+            }
+            String subExpression = newExpression.substring(openBrace + 1, closeBrace);
+            System.out.println(subExpression);
+            if (subExpression.contains("(")) {
+                calcBracesExpressions(subExpression);
+            } else {
+                newExpression = newExpression.replace("("+subExpression+")", calcWithoutBraces(subExpression));
+            }
+        }
+        return newExpression;
+    }
+
+    private String calcWithoutBraces(String expression) throws CalcException {
         List<String> operands = new ArrayList<>(Arrays.asList(expression.split(Patterns.OPERATION))); // A 2 5 8
         List<String> operations = new ArrayList<>(); // = + *
         Matcher operationFinder = Pattern.compile(Patterns.OPERATION).matcher(expression);
         while (operationFinder.find()) {
             operations.add(operationFinder.group());
         }
-
         while (!operations.isEmpty()) {
             int index = getIndexOperation(operations);
             String left = operands.remove(index);
             String right = operands.remove(index);
             String operation = operations.remove(index);
             // A 2, = +
-            Var result = calcOneOperation(left, operation, right);
+            Var result = calcOneOperation(left, operation, right); // 5*8
             operands.add(index, result.toString());
-
         }
-        return repository.create(operands.get(0));
+        return operands.get(0);
     }
 
     private Var calcOneOperation(String leftStr, String operation, String rightStr) throws CalcException {
