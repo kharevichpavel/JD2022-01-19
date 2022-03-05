@@ -12,12 +12,10 @@ public class Application {
 
     public static final String END = "end";
     private final Printer printer;
-    private final CalcService calcService;
     private final MainController controller;
 
-    public Application(Printer printer, CalcService calcService, MainController controller) {
+    public Application(Printer printer, MainController controller) {
         this.printer = printer;
-        this.calcService = calcService;
         this.controller = controller;
     }
 

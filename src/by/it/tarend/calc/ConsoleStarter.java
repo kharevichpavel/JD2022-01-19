@@ -16,7 +16,7 @@ public class ConsoleStarter {
         VarRepository repository = new MapRepository();
         CalcService calcService = new CalcService(repository);
         MainController mainController = new MainController(calcService);
-        Application application = new Application(printer, calcService, mainController);
+        Application application = new Application(printer, mainController);
         application.run();
     }
 }
