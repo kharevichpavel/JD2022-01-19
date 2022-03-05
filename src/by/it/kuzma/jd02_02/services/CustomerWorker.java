@@ -2,7 +2,9 @@ package by.it.kuzma.jd02_02.services;
 
 import by.it.kuzma.jd02_02.entity.Customer;
 import by.it.kuzma.jd02_02.entity.Good;
+import by.it.kuzma.jd02_02.entity.Queue;
 import by.it.kuzma.jd02_02.entity.ShoppingCart;
+import by.it.kuzma.jd02_02.exception.StoreException;
 import by.it.kuzma.jd02_02.utils.PriceListRepo;
 import by.it.kuzma.jd02_02.utils.RandomData;
 import by.it.kuzma.jd02_02.utils.Sleeper;
@@ -19,6 +21,7 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
         this.customer = customer;
         this.store = store;
         this.setName("Worker for" + customer.toString() + " ");
+        store.getManager().customerIn();
     }
 
     @Override
@@ -31,6 +34,7 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
             putToCart(good);
         }
         goOut();
+        store.getManager().customerGoOut();
 
     }
 
@@ -56,6 +60,25 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
         System.out.println(customer + " finished to choose goods");
 
         return good;
+    }
+
+    @Override
+    public void goToQueue() {
+
+        System.out.println(customer + "waiting in Queue");
+        synchronized (customer) {
+            Queue queue = store.getQueue();
+            queue.add(customer);
+            customer.setWaiting(true);
+            while (customer.isWaiting()) {
+                try {
+                    customer.wait();
+                } catch (InterruptedException e) {
+                    throw new StoreException(e);
+                }
+            }
+        }
+        System.out.println(customer + "left the Queue");
     }
 
     @Override
