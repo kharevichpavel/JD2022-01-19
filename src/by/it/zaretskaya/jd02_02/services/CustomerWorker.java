@@ -1,7 +1,9 @@
 package by.it.zaretskaya.jd02_02.services;
 
+import by.it.zaretskaya.calculator.exeptions.ApplicationException;
 import by.it.zaretskaya.jd02_02.entity.Customer;
 import by.it.zaretskaya.jd02_02.entity.Good;
+import by.it.zaretskaya.jd02_02.entity.Queue;
 import by.it.zaretskaya.jd02_02.utils.RandomData;
 import by.it.zaretskaya.jd02_02.utils.Sleeper;
 
@@ -36,6 +38,24 @@ public class CustomerWorker extends Thread implements CustomerAction {
         Sleeper.sleeper(timeout);
         System.out.println(customer+" finished to choose goods");
         return new Good();
+    }
+
+    @Override
+    public void goToQueue() {
+        System.out.println(customer+" waiting in the Queue");
+        synchronized (customer) {
+            Queue queue = store.getQueue();
+            queue.add(customer);
+            customer.setWaiting(true);
+            while (customer.isWaiting()){
+                try {
+                    customer.wait();
+                } catch (InterruptedException e) {
+                    throw new ApplicationException(e);
+                }
+        }
+        }
+        System.out.println(customer+" left the Queue");
     }
 
     @Override
