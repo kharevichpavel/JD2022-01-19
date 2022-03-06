@@ -29,23 +29,29 @@ public class TaskC {
             if (command.equals("end")) {
                 break;
 
-            } else if (command.equals("dir")) {
+            }
+            else if (command.equals("dir")) {
                 printDirectoryContents(Objects.requireNonNull(file.listFiles()));
 
-            } else if (command.equals("cd..") || command.equals("cd ..")) {
+            }
+            else if (command.equals("cd..") || command.equals("cd ..")) {
                 directoryName1 = directoryName1.substring(0, directoryName1.lastIndexOf(separator));
 
                 if (directoryName1.length() == 2) {
                     directoryName1 += separator;
                 }
 
-            } else if (command.contains("cd ")) {
+            }
+            else if (command.contains("cd ")) {
                 directoryName1 = directoryName1 + separator + command.substring(3) + separator;
             }
         }
     }
 
+
+
     private static String getStartDirectoryName() {
+
 
         String userDir = System.getProperty("user.dir");
         String returnString = ROOT + separator +
@@ -64,10 +70,17 @@ public class TaskC {
                         (Files.isDirectory(file.toPath())) ? "<DIR>" : "<FILE>",
                         Files.size(file.toPath()),
                         fileName);
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
+
                 throw new RuntimeException(e);
             }
         }
     }
 
 }
+
+
+
+
+

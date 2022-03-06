@@ -11,6 +11,7 @@ import java.io.RandomAccessFile;
 public class TaskB {
 
 
+
     public static final String ROOT = "src";
     public static final String INPUT_FILE = "TaskB.java";
     public static final String OUTPUT_FILE = "TaskB.txt";
@@ -35,6 +36,7 @@ public class TaskB {
 
     private static void checkForCommentsAndDelete(String inputFile, StringBuilder stringBuilder) {
         try {
+
             RandomAccessFile file = new RandomAccessFile(inputFile, "r");
 
             boolean shouldAppend = true;
@@ -48,6 +50,7 @@ public class TaskB {
                 }
 
                 if (tempString.contains(SLASH)) {
+
                     if (tempString.contains(OPEN_COMMENT)) {
                         tempString = tempString.substring(0, tempString.indexOf(SLASH));
                         stringBuilder.append(tempString).append("\n");
@@ -61,10 +64,12 @@ public class TaskB {
                 }
 
                 if (shouldAppend) {
+
                     stringBuilder.append(tempString).append("\n");
                 }
             }
         } catch (IOException e) {
+
             throw new RuntimeException("IO error:", e);
         }
     }
@@ -78,7 +83,10 @@ public class TaskB {
             printWriter.print(stringBuilder);
 
         } catch (IOException e) {
+
             throw  new RuntimeException("ERROR: ", e);
         }
     }
 }
+
+
