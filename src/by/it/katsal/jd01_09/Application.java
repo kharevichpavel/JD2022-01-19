@@ -1,30 +1,35 @@
 package by.it.katsal.jd01_09;
 
+
 import java.util.Scanner;
 
 public class Application {
 
-    public static final String END = "end";
+    private static final String END = "end";
     private final Printer printer;
-    private final Parser parser;
+    private final Parcer parcer;
 
-    public Application(Printer printer, Parser parser) {
+
+    public Application(Printer printer, Parcer parcer) {
         this.printer = printer;
-        this.parser = parser;
+        this.parcer = parcer;
     }
 
-    public void run() {
+    public void run(){
         System.out.println("App started");
-        Scanner scanner = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         while (true){
-            String line = scanner.nextLine();
-            if (!line.equals(END)) {
-                Var result= parser.calc(line);
+            String line = scan.nextLine();
+            if(!line.equals(END)){
+                Var result = parcer.calc(line);
                 printer.print(result);
-            } else {
+            }else{
                 System.out.println("App finished");
+
                 break;
+
             }
         }
     }
 }
+
