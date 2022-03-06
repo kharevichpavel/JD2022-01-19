@@ -9,7 +9,7 @@ import java.util.Scanner;
 import static by.it.katsal.jd01_14.PathFinder.DOT;
 import static java.io.File.separator;
 
-public class Taskc {
+public class TaskC {
 
     public static final String ROOT = "src";
 
