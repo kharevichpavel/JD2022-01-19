@@ -12,7 +12,11 @@ public class Queue {
     private final BlockingDeque<Customer> customerDeque = new LinkedBlockingDeque<>(30);
 
     public void add(Customer customer){
-            customerDeque.addLast(customer);
+        try {
+            customerDeque.putLast(customer);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public Optional<Customer> extract() {

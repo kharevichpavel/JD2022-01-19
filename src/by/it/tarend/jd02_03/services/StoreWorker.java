@@ -10,11 +10,13 @@ import by.it.tarend.jd02_03.utils.Sleeper;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 public class StoreWorker extends Thread{
 
     private final Store store;
+    private final Semaphore semaphoreHall = new Semaphore(20);
 
     public StoreWorker(Store store) {
         this.store = store;
@@ -37,7 +39,14 @@ public class StoreWorker extends Thread{
             for (int i = 0; i < count && manager.shopOpened(); i++) {
                 Customer customer = new Customer(++number);
                 CustomerWorker customerWorker = new CustomerWorker(store, customer);
-                customerWorker.start();
+                try {
+                    semaphoreHall.acquire();
+                    customerWorker.start();
+                } catch (InterruptedException e) {
+                    throw new StoreException(e);
+                } finally {
+                    semaphoreHall.release();
+                }
             }
             Sleeper.sleep(1000);
         }
