@@ -10,17 +10,19 @@ public class Manager {
         this.planCount = planCount;
     }
 
-    public synchronized void customerIn(){
+    public synchronized void customerIn() {
         countCustomerIn++;
     }
-    public synchronized void customerGoOut(){
+
+    public synchronized void customerGoOut() {
         countCustomerOut++;
     }
 
-    public boolean shopOpened(){
-        return countCustomerIn < planCount;
+    public boolean shopOpened() {
+        return countCustomerIn != planCount;
     }
-    public boolean shopClosed(){
+
+    public boolean shopClosed() {
         return countCustomerOut == planCount;
     }
 }

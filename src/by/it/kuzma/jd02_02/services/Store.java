@@ -4,23 +4,21 @@ import by.it.kuzma.jd02_02.entity.Cashier;
 import by.it.kuzma.jd02_02.entity.Customer;
 import by.it.kuzma.jd02_02.entity.Manager;
 import by.it.kuzma.jd02_02.entity.Queue;
-import by.it.kuzma.jd02_02.exception.StoreException;
-import by.it.kuzma.jd02_02.utils.PriceListRepo;
+import by.it.kuzma.jd02_02.exceptions.StoreException;
 import by.it.kuzma.jd02_02.utils.RandomData;
 import by.it.kuzma.jd02_02.utils.Sleeper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Store extends Thread{
+public class Store extends Thread {
 
-    private final Queue queue;
     private final Manager manager;
+    private final Queue queue;
 
-    public Store(Queue queue, Manager manager){
-        this.queue = queue;
+    public Store(Manager manager, Queue queue) {
         this.manager = manager;
-        PriceListRepo.priceGood();
+        this.queue = queue;
     }
 
     public Queue getQueue() {
@@ -47,7 +45,6 @@ public class Store extends Thread{
         while (manager.shopOpened()) {
             int count = RandomData.get(2);
             for (int i = 0; i < count && manager.shopOpened(); i++) {
-
                 Customer customer = new Customer(++number);
                 CustomerWorker customerWorker = new CustomerWorker(this, customer);
                 threads.add(customerWorker);
@@ -55,6 +52,9 @@ public class Store extends Thread{
             }
             Sleeper.sleep(1000);
         }
+
+
+
         for (Thread thread : threads) {
             try {
                 thread.join();
@@ -65,3 +65,4 @@ public class Store extends Thread{
         System.out.println("Store closed");
     }
 }
+

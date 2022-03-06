@@ -1,11 +1,12 @@
-package by.it.kuzma.jd02_02.services;
+package by.it.kuzma.jd02_03.services;
 
-import by.it.kuzma.jd02_02.entity.Customer;
-import by.it.kuzma.jd02_02.entity.Good;
-import by.it.kuzma.jd02_02.entity.Queue;
-import by.it.kuzma.jd02_02.exceptions.StoreException;
-import by.it.kuzma.jd02_02.utils.RandomData;
-import by.it.kuzma.jd02_02.utils.Sleeper;
+import by.it.kuzma.jd02_03.entity.Customer;
+import by.it.kuzma.jd02_03.entity.Good;
+import by.it.kuzma.jd02_03.entity.Queue;
+import by.it.kuzma.jd02_03.entity.Store;
+import by.it.kuzma.jd02_03.exceptions.StoreException;
+import by.it.kuzma.jd02_03.utils.RandomData;
+import by.it.kuzma.jd02_03.utils.Sleeper;
 
 public class CustomerWorker extends Thread implements CustomerAction {
 

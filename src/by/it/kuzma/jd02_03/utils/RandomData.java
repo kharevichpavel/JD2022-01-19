@@ -1,4 +1,4 @@
-package by.it.kuzma.jd02_02.utils;
+package by.it.kuzma.jd02_03.utils;
 
 import java.util.Random;
 

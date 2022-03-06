@@ -1,11 +1,8 @@
-package by.it.kuzma.jd02_02.services;
+package by.it.kuzma.jd02_03.services;
 
-import by.it.kuzma.jd02_02.entity.Cashier;
-import by.it.kuzma.jd02_02.entity.Customer;
-import by.it.kuzma.jd02_02.entity.Manager;
-import by.it.kuzma.jd02_02.entity.Queue;
-import by.it.kuzma.jd02_02.utils.RandomData;
-import by.it.kuzma.jd02_02.utils.Sleeper;
+import by.it.kuzma.jd02_03.entity.*;
+import by.it.kuzma.jd02_03.utils.RandomData;
+import by.it.kuzma.jd02_03.utils.Sleeper;
 
 import java.util.Optional;
 

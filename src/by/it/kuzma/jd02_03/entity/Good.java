@@ -1,4 +1,4 @@
-package by.it.kuzma.jd02_02.entity;
+package by.it.kuzma.jd02_03.entity;
 
 public class Good {
 

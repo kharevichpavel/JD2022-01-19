@@ -8,16 +8,14 @@ public class Queue {
 
     private final Deque<Customer> customerDeque = new ArrayDeque<>();
 
-    private final Object monitor = new Object();
-
-    public synchronized void add(Customer customer){
-        //synchronized (monitor) {
+    public synchronized void add(Customer customer) {
+        //synchronized (this) {
             customerDeque.addLast(customer);
         //}
     }
 
-    public synchronized Optional<Customer> extract(){
-        //synchronized (monitor) {
+    public synchronized Optional<Customer> extract() {
+        //synchronized (this) {
             return Optional.ofNullable(customerDeque.pollFirst());
         //}
     }

@@ -1,6 +1,6 @@
-package by.it.kuzma.jd02_02.services;
+package by.it.kuzma.jd02_03.services;
 
-import by.it.kuzma.jd02_02.entity.Good;
+import by.it.kuzma.jd02_03.entity.Good;
 
 public interface CustomerAction {
     void enteredStore(); //вошел в магазин (мгновенно)

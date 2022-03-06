@@ -1,4 +1,4 @@
-package by.it.kuzma.jd02_02.exception;
+package by.it.kuzma.jd02_02.exceptions;
 
 public class StoreException extends RuntimeException{
 

@@ -1,6 +1,6 @@
-package by.it.kuzma.jd02_02.utils;
+package by.it.kuzma.jd02_03.utils;
 
-import by.it.kuzma.jd02_02.exceptions.StoreException;
+import by.it.kuzma.jd02_03.exceptions.StoreException;
 
 public class Sleeper {
 
