@@ -1,4 +1,4 @@
-package by.it.zaretskaya.calculator;
+package by.it.zaretskaya.calculator.tests;
 
 
 import by.it.HomeWork;

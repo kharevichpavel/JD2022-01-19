@@ -1,5 +1,6 @@
-package by.it.zaretskaya.calculator;
+package by.it.zaretskaya.calculator.repositories;
 
+import by.it.zaretskaya.calculator.exeptions.ApplicationException;
 import by.it.zaretskaya.calculator.exeptions.CalcException;
 import by.it.zaretskaya.calculator.model.Matrix;
 import by.it.zaretskaya.calculator.model.Scalar;
@@ -10,17 +11,18 @@ import by.it.zaretskaya.calculator.utils.Patterns;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VarRepository {
+public class MapRepository implements VarRepository{
 
-    private Map<String, Var> variables=new HashMap<>();
- public Var save (String name,Var value){
+    private final Map<String, Var> variables=new HashMap<>();
+ public Var save (String name,Var value) {
     variables.put(name,value);
     return value;
 }
-Var getByName(String name){
+     private Var getByName(String name){
     return variables.get(name);
 }
-    public  Var create(String varValueOrName) throws CalcException {
+
+    public  Var create(String varValueOrName)  {
         if (varValueOrName.matches(Patterns.SCALAR)){
             return new Scalar(varValueOrName);
         }else if (varValueOrName.matches(Patterns.VECTOR)){
@@ -30,6 +32,7 @@ Var getByName(String name){
         }else if(variables.containsKey(varValueOrName)){
             return getByName(varValueOrName);
         }
-            throw new CalcException("not found"+varValueOrName);
+
+            throw new ApplicationException("not found"+varValueOrName);
     }
 }
