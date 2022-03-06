@@ -1,6 +1,11 @@
-package by.it.kharevich.calculator;
+package by.it.kharevich.calculator.model;
 
-class Scalar extends Var {
+import by.it.kharevich.calculator.exceptions.ApplicationException;
+import by.it.kharevich.calculator.exceptions.CalcException;
+import by.it.kharevich.calculator.resources.ResourceManager;
+import by.it.kharevich.calculator.utils.ExceptionMessages;
+
+public class Scalar extends Var {
 
     private final double value;
 
@@ -17,7 +22,7 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var add(Var other) throws CalcException{
+    public Var add(Var other) throws CalcException {
         if (other instanceof Scalar otherScalar) {
             return new Scalar(this.value + otherScalar.value);
         } else
@@ -44,8 +49,8 @@ class Scalar extends Var {
     public Var div(Var other) throws CalcException {
         if (other instanceof Scalar otherScalar) {
             if (otherScalar.value == 0) {
-                String message = String.format("ERROR: division by zero %s / %s%n", this, other);
-                throw new CalcException(message);
+                String message = String.format(ResourceManager.INSTANCE.get(ExceptionMessages.MESSAGE_2) + " %s / %s%n", this, other);
+                throw new ApplicationException(message);
             }
             return new Scalar(this.value / otherScalar.value);
         }

@@ -1,4 +1,6 @@
-package by.it.kharevich.calculator;
+package by.it.kharevich.calculator.model;
+
+import by.it.kharevich.calculator.exceptions.CalcException;
 
 interface Operation {
     Var add(Var other) throws CalcException;
