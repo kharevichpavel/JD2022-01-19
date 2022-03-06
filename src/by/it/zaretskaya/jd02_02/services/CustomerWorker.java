@@ -16,6 +16,7 @@ public class CustomerWorker extends Thread implements CustomerAction {
         this.customer =  customer;
         this.store = store;
         this.setName("Worker for"+customer.toString()+" ");
+        store.getManager().customerIn();
     }
 
     @Override
@@ -24,6 +25,7 @@ public class CustomerWorker extends Thread implements CustomerAction {
         Good good = chooseGood();
         System.out.println(customer+" choose "+good);
         goOut();
+        store.getManager().customerOut();
     }
 
     @Override
@@ -61,5 +63,6 @@ public class CustomerWorker extends Thread implements CustomerAction {
     @Override
     public void goOut() {
         System.out.println(customer+" go out to green ");
+
     }
 }

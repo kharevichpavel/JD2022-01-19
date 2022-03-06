@@ -19,7 +19,12 @@ public class Customer {
     }
 
     public void setWaiting(boolean waiting) {
+
         this.waiting= waiting;
+    }
+
+    public Object getMonitor(){
+        return this;
     }
 
     @Override
