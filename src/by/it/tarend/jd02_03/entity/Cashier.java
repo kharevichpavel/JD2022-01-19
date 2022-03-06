@@ -1,4 +1,4 @@
-package by.it.tarend.jd02_02.entity;
+package by.it.tarend.jd02_03.entity;
 
 public class Cashier {
 

@@ -1,17 +1,18 @@
-package by.it.tarend.jd02_02.services;
+package by.it.tarend.jd02_03.services;
 
-import by.it.tarend.jd02_02.entity.Customer;
-import by.it.tarend.jd02_02.entity.Good;
-import by.it.tarend.jd02_02.entity.Queue;
-import by.it.tarend.jd02_02.exceptions.StoreException;
-import by.it.tarend.jd02_02.utils.PriceListRepo;
-import by.it.tarend.jd02_02.utils.RandomData;
-import by.it.tarend.jd02_02.utils.Sleeper;
+import by.it.tarend.jd02_03.entity.Customer;
+import by.it.tarend.jd02_03.entity.Good;
+import by.it.tarend.jd02_03.entity.Queue;
+import by.it.tarend.jd02_03.entity.Store;
+import by.it.tarend.jd02_03.exceptions.StoreException;
+import by.it.tarend.jd02_03.utils.PriceListRepo;
+import by.it.tarend.jd02_03.utils.RandomData;
+import by.it.tarend.jd02_03.utils.Sleeper;
 
 import java.util.List;
 import java.util.Set;
 
-public class CustomerWorker extends Thread implements CustomerAction, ShoppingCardAction{
+public class CustomerWorker extends Thread implements CustomerAction, ShoppingCardAction {
 
     private final Customer customer;
     private final Store store;
@@ -95,7 +96,6 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
 
     @Override
     public void goOut() {
-
         System.out.println(customer + " go out");
     }
 }

@@ -1,9 +1,9 @@
-package by.it.tarend.jd02_02.services;
+package by.it.tarend.jd02_03.services;
 
-import by.it.tarend.jd02_02.entity.*;
-import by.it.tarend.jd02_02.utils.PriceListRepo;
-import by.it.tarend.jd02_02.utils.RandomData;
-import by.it.tarend.jd02_02.utils.Sleeper;
+import by.it.tarend.jd02_03.entity.*;
+import by.it.tarend.jd02_03.utils.PriceListRepo;
+import by.it.tarend.jd02_03.utils.RandomData;
+import by.it.tarend.jd02_03.utils.Sleeper;
 
 import java.util.Optional;
 
@@ -24,7 +24,6 @@ public class CashierWorker implements Runnable{
         System.out.println("\t" + cashier + " started");
         Manager manager = store.getManager();
         Queue queue = store.getQueue();
-
         while (!manager.shopClosed()){
             Optional<Customer> optionalCustomer = queue.extract();
             if (optionalCustomer.isPresent()) {
@@ -42,8 +41,7 @@ public class CashierWorker implements Runnable{
                 Sleeper.sleep(100);
             }
         }
-        System.out.println("\t" + cashier + " finished");
-        System.out.println("\tTotal for " + cashier + " = " + cashier.cashRegister);
+        System.out.println("\t" + cashier + " finished\tTotal for " + cashier + " = " + cashier.cashRegister);
 
     }
 
