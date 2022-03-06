@@ -62,6 +62,25 @@ public class CalcServiceTest {
 
     @Test
     public void calcVectorTaskB() throws CalcException {
+        Scalar var1 = (Scalar) calcService.calc("{{1,2,3},{3,2,1}}+{{4,5,6},{6,5,4}}");
+        double expected1 = 40.15;
+        double real1 = var1.getValue();
+        assertEquals(expected1, real1, 1e-10);
+
+        Scalar var2 = (Scalar) calcService.calc("D=((C-0.15)-20)/(7-5)");
+        double expected2 = 10;
+        double real2 = var2.getValue();
+        assertEquals(expected2, real2, 1e-10);
+
+        Vector var3 = (Vector) calcService.calc("E={2,3}*(D/2)");
+        String real3 = var3.toString();
+        String expected3 = "{10.0,15.0}";
+        assertEquals(expected3, real3);
+    }
+
+
+    @Test
+    public void calcMatrixTaskB() throws CalcException {
         Scalar var1 = (Scalar) calcService.calc("C=B+(A*2)");
         double expected1 = 40.15;
         double real1 = var1.getValue();
