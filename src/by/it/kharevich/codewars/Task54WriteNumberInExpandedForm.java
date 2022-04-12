@@ -26,8 +26,7 @@ public class Task54WriteNumberInExpandedForm {
 }
 
 /*
- public static String expandedForm(int num)
-    {
+ public static String expandedForm(int num){
         String outs = "";
         for (int i = 10; i < num; i *= 10) {
             int rem = num % i;
